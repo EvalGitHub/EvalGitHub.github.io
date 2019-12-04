@@ -140,9 +140,10 @@ this.setState({
 react执行diff算法时候比较的是两个引用，所以为了状态的改变能更新视图，我们需要返回一个新的引用
 ```
 // 方法一：将state先赋值给另外的变量，然后使用slice创建新数组
-this.setState(preState => ({
-  books: preState.books.slice(1,3)
-}))
+let books = this.state.books; 
+this.setState({
+  books: books.slice(1,3)
+})
 // 方法二：使用preState、slice创建新数组
 this.setState(preState => ({
   books: preState.books.slice(1,3)
