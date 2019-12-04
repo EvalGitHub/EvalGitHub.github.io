@@ -14,6 +14,7 @@ module.exports = {
     "/前端杂记/域名的设置",
     "/前端杂记/css不常用样式技巧汇总",
     "/前端杂记/H5，移动端开发总结",
+    "/前端杂记/前端h5项目调试方案汇总",
   ],
   sidebarDepth: 2, // 默认是1: 提取h2标题 0: 禁用headers链接 2: 提取h2, h3标题
   // displayAllHeaders: true, // 是否展示所有标题
