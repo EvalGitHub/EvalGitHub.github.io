@@ -154,11 +154,24 @@ es6提供了大量的新语法以及新的api，对于新的语法我们通过@b
 
 ### corejs
 
-如果这只的useBuiltIns：entry/usage，那么这选项才有作用，默认为2
+如果设置了useBuiltIns：entry/usage，那么这选项才有作用，默认为2。
+coreje的版本有2，3默认是2（只有稳定版的js特性才会被注入，对于一些提案的新特性是不会注入的），如果你想注入那些正在提案中的新特性可以
+```
+useBuiltIns: 'usage'
+corejs: { 
+  version: 3, 
+  proposals: true
+}
+```
+或者
+```
+js文件中导入：import "core-js/proposals/string-replace-all"
 
-设置了entry，就不支持配置corejs，
+useBuiltIns: "entry"
+```
+设置了useBuiltIns:entry，就不支持配置corejs，
 
 
 [值得看的babel讲解文章](<https://zhuanlan.zhihu.com/p/58624930>)
 
-https://juejin.im/post/5ddff3abe51d4502d56bd143#heading-8
+[不容错过的 Babel7 知识](<https://juejin.im/post/5ddff3abe51d4502d56bd143#heading-8>)
