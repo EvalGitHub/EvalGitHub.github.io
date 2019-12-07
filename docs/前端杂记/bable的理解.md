@@ -39,7 +39,7 @@ plugins: [
 
 es6提供了大量的新语法以及新的api，对于新的语法我们通过@babel/preset-env基本上可以解决，但是对于新的api（promise、weakMap、Array.from、Object.assign）他就无能为力了，这个时候你可以选择@babel/polyfill。
 
-关于@babel/polyfill需要注意：
+ **关于@babel/polyfill需要注意：**
 
 1. 它一般用于项目开发，而不用于函数库框架等开发，因为他会修改全局的作用域和原型prototype，所以在开发的时候我们要清楚的知道自己在做什么；在开发一个公用的库的时候不使用@babel/polyfill，而是使用 @babel/plugin-transform-runtime
 避免在别人的项目因引入你的库而出现不可与预知的问题。
@@ -113,9 +113,9 @@ es6提供了大量的新语法以及新的api，对于新的语法我们通过@b
 
 ### modules
 
-将ES6模块语法转换成其他类型（amd" | "umd" | "systemjs" | "commonjs" | "cjs" | "auto" | false），默认default，false不会转换。
+将ES6模块语法转换成其他类型（amd | umd | systemjs | commonjs | cjs | auto | false），默认default，false不会转换。
 
-在做开发的时候我们可能会遇到一些奇葩的babel错误提醒，例如"Cannot assign to read only property 'exports' of object '#<Object>' "；错误的根源就是webpack不能混合使用import和module.exports；
+在做开发的时候我们可能会遇到一些奇葩的babel错误提醒，例如```Cannot assign to read only property 'exports' of object #<Object>```；错误的根源就是webpack不能混合使用import和module.exports；
 这个时候我们或许可以使用这个配置变量来解决问题。
 
 > "module": 'commonjs',
@@ -169,7 +169,7 @@ js文件中导入：import "core-js/proposals/string-replace-all"
 
 useBuiltIns: "entry"
 ```
-设置了useBuiltIns:entry，就不支持配置corejs，
+**note：** 设置了useBuiltIns:entry，就不支持配置corejs。
 
 
 [值得看的babel讲解文章](<https://zhuanlan.zhihu.com/p/58624930>)
