@@ -30,7 +30,8 @@
   * 在这个函数里面，旧的属性仍可以通过this.props来获取；
   * 此函数可以作为 react 在 prop 传入之后， render() 渲染之前更新 state 的机会。即可以根据属性的变化，通过调用this.setState()来更新你的组件状态，在该函数中调用 this.setState() 将不会引起第二次渲染。
   * 也可在此函数内根据需要调用自己的自定义函数，来对prop的改变做出一些响应。
-	  如果你只是调用this.setState()而不是从外部传入props, 那么不会触发componentWillReceiveProps(nextProps)函数；这就意味着: this.setState()方法不会触发componentWillReceiveProps(), props的改变或者props没有改变才会触发这个方法;		
+	  如果你只是调用this.setState()而不是从外部传入props, 那么不会触发componentWillReceiveProps(nextProps)函数；这就意味着: this.setState()方法不会触发componentWillReceiveProps(), props的改变或者props没有改变就会触发这个方法;但是值得注意的是componentWillReceiveProps被调用了不一定意味着props的改变。
+  [a=>b不等于b=>a](<https://reactjs.org/blog/2016/01/08/A-implies-B-does-not-imply-B-implies-A.html>)
   ```
   componentWillReceiveProps (nextProps:any) {
     this.setState({
