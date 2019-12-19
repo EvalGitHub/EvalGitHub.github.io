@@ -96,6 +96,10 @@ React v15.3开始提供了一个叫做 PureComponent 的组件来替代 Componen
 
 1. Immutable.js 用来替代浅拷贝和深拷贝的方式，用来创建不可变的数据。
 
+### 五）保持稳定的Dom结构
 
+通过css影藏或者显示节点而不是真正的移除或者添加DOM节点。
+
+> React 只会简单地考虑同层级节点的位置变换，而对于不同层级的节点，只有创建和删除操作
 
 参考：<https://www.jianshu.com/p/c46e5866eaec>
