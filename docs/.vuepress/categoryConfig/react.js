@@ -16,6 +16,7 @@ module.exports = {
     "/react/创建一个全局toast",
     "/react/react全局方法使用",
     "/react/react中组件之间的相互通信",
+    "/react/react中setState异步思想",
   ],
   sidebarDepth: 2, // 默认是1: 提取h2标题 0: 禁用headers链接 2: 提取h2, h3标题
   // displayAllHeaders: true, // 是否展示所有标题

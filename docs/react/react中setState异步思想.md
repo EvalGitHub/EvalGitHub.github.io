@@ -94,7 +94,51 @@ setState异步执行，等待其他变动一起修改state，然后同步渲染v
 举个例子：比如你现在正在打字，那么TextBox组件需要实时的刷新。但是当你在输入的时候，来了一个信息，这个时候，可能让信息延后刷新可能更符合交互。
 
 这个理由，可能是react发展的一个方向，目前还没有实现。
- 
+
+### 6.简单说下setState的异步原理？
+
+当调用setState时候，实际上使用enqueueSetState方法对partialState和_pendingStateQueue更新队列进行合并操作，最终通过enqueueUpdate执行state更新。
+```
+enqueueSetState: function(publicInstance, partialState) {
+ var internalInstance = getInternalInstanceReadyForUpdate(
+ publicInstance,
+ 'setState'
+ );
+ if (!internalInstance) {
+ return;
+ }
+ // 更新队列合并操作
+ var queue = internalInstance._pendingStateQueue || (internalInstance._pendingStateQueue = []);
+ queue.push(partialState);
+ enqueueUpdate(internalInstance);
+}, 
+```
+![avatar](../assets/set_state.png)
+
+关于enqueueUpdate的简单源码实现“
+```
+function enqueueUpdate(component) {
+  ensureInjected();
+  // 如果不处于批量更新模式
+  if (!batchingStrategy.isBatchingUpdates) {
+    batchingStrategy.batchedUpdates(enqueueUpdate, component);
+    return;
+    }
+    // 如果处于批量更新模式，则将该组件保存在 dirtyComponents 中
+    dirtyComponents.push(component);
+  }
+}
+```
+如果 isBatchingUpdates 为 true，则对所有队列中的更新执行 batchedUpdates 方法，否则只
+把当前组件（即调用了 setState 的组件）放入 dirtyComponents 数组中。
+
+### 7.为什么react需要shouldComponentUpdate而vue不需要？？
+
+https://www.zhihu.com/question/266656197
+
+
 <https://github.com/facebook/react/issues/11527>
+
 <https://juejin.im/post/5a6f440a51882573336652af>
+
 <https://www.jianshu.com/p/cc12e9a8052c>
