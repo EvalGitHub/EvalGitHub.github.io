@@ -1,2 +1,14 @@
-# react-redux 与 redux的使用情况
+# redux的理解从源码角度分析
+
+## 为啥对redux的更新是返回一个全新的state?
+
+Redux接受一个给定的state，然后通过循环将state传递给每个对应的reducer。如果有发生变化reducer将返回一个新的对象，如果不发生变化，将返回旧的state。
+
+在项目开发中考虑到state复杂性，如果对state的修改不是返回一个新的state，那么就需要对state进行一个深层比较，这是十分不值得的。
+
+## 为啥要用纯函数对redux的状态进行修改？
+
+使用纯函数保证相同的输入得到相同的输出，保证状态的可预测性。想象下如果页面同时存在异步请求之后进行dispatch状态修改，以及一个按钮的操作去dispatch一个action修改状态，这个时候就会导致最终的状态不可预测性，因为你无法100%预测这两个操作谁会先执行。
+
+
 https://www.jianshu.com/p/ad7eddb23d66

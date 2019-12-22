@@ -20,6 +20,7 @@ class Component extends React.Component <initProps, initState> {
     return (
       <>
        <Input className='input_itme' name='targetUrl'  
+        value={this.state.targetUrl}
         onInput={this.handleStateValue} placeholder='显示之前填入的配置链接'/>
       </>
     )

@@ -73,7 +73,7 @@ class ParentComponent {
 
   详细使用方式参照redux的使用方式。
 
-- 通过自定义事件的方式（借助[Node.js Events](<https://www.npmjs.com/package/events>)模块的浏览器版实现）
+- 通过自定义事件的方式(此方法不仅仅适用于兄弟组件之间的通信)（借助[Node.js Events](<https://www.npmjs.com/package/events>)模块的浏览器版实现）
 
 **具体实现方式：**
 
@@ -99,7 +99,10 @@ createMsg () {
     this.setState({
       message,
     });
-  });
+  }).removeListener('updateUserInfoSucc', () => {
+    // 每一次监听之后就移除，避免重复监听
+    console.log('移除');
+  });;
 };
 componentWillUnmount() {
   emitter.removeListener(this.eventEmitter, () => {});

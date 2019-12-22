@@ -5,7 +5,6 @@ module.exports = {
     "/react/",
     "/react/react中setState异步思想",
     "/react/react-router",
-    "/react/redux使用实践",
     "/react/react使用优化实践",
     "/react/react-redux的学习与使用",
     "/react/react生命周期",
@@ -17,6 +16,8 @@ module.exports = {
     "/react/react全局方法使用",
     "/react/react中组件之间的相互通信",
     "/react/react中setState异步思想",
+    "/react/redux与react-redux的使用实践",
+    "/react/redux-saga的学习与使用",
   ],
   sidebarDepth: 2, // 默认是1: 提取h2标题 0: 禁用headers链接 2: 提取h2, h3标题
   // displayAllHeaders: true, // 是否展示所有标题
