@@ -105,6 +105,7 @@ createMsg () {
   });;
 };
 componentWillUnmount() {
+  // emitter.removeAllListeners();
   emitter.removeListener(this.eventEmitter, () => {});
 };
 componentDidMount () {
