@@ -134,8 +134,11 @@ function enqueueUpdate(component) {
 
 ### 7.为什么react需要shouldComponentUpdate而vue不需要？？
 
-https://www.zhihu.com/question/266656197
+因为react是diff dom, vue是diff数据，在react中整个框架并不能自己知道数据是否发生了变化，只能通过开发者手动的setState，然后react内部将这个动作放入_penddingStateEquenu中，然后在循环执行，
+然后对应的就是虚拟dom的修改，通过diff算法去更新dom；但是在vue中每当数据的修改都会触发对象属性描述方法set，进而就会触发一个notify(如果没做修改则不会触发)，然后去创建虚拟dom，进而更新视图。
+总体描述：在react中是开发者手动去setSate继而更新视图，vue中只要数据变了就会触发视图更新，他们的实现方式也就注定了这个api的存在与否。
 
+[参考文档](<https://www.zhihu.com/question/266656197>)
 
 <https://github.com/facebook/react/issues/11527>
 
