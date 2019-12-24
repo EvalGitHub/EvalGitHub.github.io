@@ -20,7 +20,7 @@ em:
 dispatch({type: 'CHANGE_NAME', value: XXX})
 
 function *watchName() {
-  const acton = yiled('CHANGE_NAME');
+  const acton = yield('CHANGE_NAME');
   ...
   ...
 }
