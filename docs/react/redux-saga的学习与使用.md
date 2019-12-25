@@ -198,6 +198,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 ```
+https://github.com/Arrayeval/react_pro/blob/master/src/base/reduxUse2.js
 
 [彻彻底底教会你使用Redux-saga(包含样例代码)](<https://segmentfault.com/a/1190000015583055#item-5>)
 
