@@ -10,7 +10,7 @@
 
 redux的设计原则之一使用纯函数修改state，其目的就是为了保证状态的可以预测性。
 
-redux-saga的api: 
+## redux-saga的常用api注解 
 > take，call，put，select，fork，takeEvery，takeLatest
 
 - take用来监听action，返回的是一个对象
@@ -20,7 +20,7 @@ em:
 dispatch({type: 'CHANGE_NAME', value: XXX})
 
 function *watchName() {
-  const acton = yield('CHANGE_NAME');
+  const acton = yield ('CHANGE_NAME');
   ...
   ...
 }
@@ -66,12 +66,138 @@ takeEvery可以同时监听到多个相同的action。
 
 takeLatest是会监听执行最近的那个被触发的action。
 
+## redux与redux-saga的使用实例
 
+在正常使用react-redux与reduxd搭建起之后，需要使用redux的中间件插件"applyMiddleware"
 
+**因此你的store.js文件是这样的：**
 
+```
+import {createStore, applyMiddleware} from 'redux'
+import createSagaMiddleware  from 'redux-saga'
+import Reducers from './reducers'
+import rootSaga from '../saga';
 
+const sagaMiddleware = createSagaMiddleware()
 
+const store = createStore(Reducers,applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootSaga); // 执行所有的saga
 
+export default store
+```
+
+**actionType.js的文件是这样的：**
+
+```
+export const GET_ERROR = 'getError'
+export const ARTICLE_FETCH_REQUEST = 'getArticleList'
+export const GET_ARTICLE_LIST_SUCC = 'getArticListSucc'
+export const GET_ARTICLE_LIST_FAIL = 'getArticListFail'
+```
+**saga/index.js文件是这样的：**
+
+```
+import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
+import article from '../service/article/index';
+
+import { ARTICLE_FETCH_REQUEST, GET_ARTICLE_LIST_SUCC, GET_ARTICLE_LIST_FAIL } from '../redux/actionType'
+import {get_errors, get_users} from '../redux/action'
+
+function* getArticleList(obj) {
+  try {
+    const articleListData = yield call(article.getArticleList, {...obj.preload});
+    yield put({
+      type: GET_ARTICLE_LIST_SUCC,
+      preload: articleListData
+    });
+  } catch(e) {
+    yield put({
+      type: GET_ARTICLE_LIST_FAIL,
+      message: e.message
+    });
+  }
+}
+ 
+// wacther saga
+function* watchGetPosts() {
+  yield takeEvery(ARTICLE_FETCH_REQUEST, getArticleList);
+}
+
+// root saga
+export default function* rootSaga() {
+  yield watchGetPosts()
+} 
+```
+分析下以上代码的数据走向：
+
+1. 首先export rootSaga，在store中通过sagaMiddleware.run(rootSaga)启动了所有的监听
+2. 在watchGetPosts中又监听了“ARTICLE_FETCH_REQUEST”这个action，一旦触发就执行 getArticleList方法
+3. getArticleList中通过call去发起异步请求，成功就put一个名为"GET_ARTICLE_LIST_SUCC"的action，参数为请求成功返回的结果
+失败就put一个名为“GET_ARTICLE_LIST_FAIL”的action，参数为message
+4. 通过匹配action返回新state的操作在reducer中执行
+
+**对应的reducer：**
+
+```
+import * as ActionTypes from './actionType'
+import {errorInfo} from './data.js'
+const initialState = {
+  ...errorInfo
+}
+
+export const fetchInfoReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ActionTypes.GET_ARTICLE_LIST_FAIL: 
+      return {
+        status: 400,
+        msg: '获取文章列表失败'
+      }  
+    case ActionTypes.GET_ARTICLE_LIST_SUCC: 
+      return {
+        status: 200,
+        msg: '获取文章列表成功succ'
+      }  
+    default:
+      return state
+  }
+}
+```
+
+上面的实例代码实现了部分数据流，还差一个启动“ARTICLE_FETCH_REQUEST” 的操作
+在实际的运用场景下，可以通过点击一个按钮去触发拉取数据请求。
+
+```
+<li  className="redux-li-item"> 
+  <button className="btn btn-redux" onClick={getArticleList}>测试下redux-saga</button>
+  <p>
+    {JSON.stringify(this.props.errorInfo)}
+  </p>
+</li>
+
+...
+......
+.......
+
+const mapStateToProps = function(store) {
+  return {
+    productList: store.changeDataReducer,
+    bookList: store.BookReducer,
+    errorInfo: store.fetchInfoReducer
+  };
+};
+
+// 通过mapDispatchProps
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDecrement2: () => {
+      dispatch({...Action.decrease(),  preload: {quantity:3}})
+    },
+    getArticleList: () => {
+      dispatch({type: 'getArticleList', preload: {type: '', pageStart: 0}})
+    }
+  }
+};
+```
 
 [彻彻底底教会你使用Redux-saga(包含样例代码)](<https://segmentfault.com/a/1190000015583055#item-5>)
 
