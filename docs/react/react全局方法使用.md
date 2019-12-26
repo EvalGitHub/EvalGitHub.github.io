@@ -39,9 +39,56 @@ export class CreateEle extends React.Component {
 ```
 ## React.cloneElement
 
+以 element 元素为样板克隆并返回新的 React 元素。返回元素的 props 是将新的 props 与原始元素的 props 浅层合并后的结果。新的子元素将取代现有的子元素，而来自原始元素的 key 和 ref 将被保留
+```
+React.cloneElement(
+  element,
+  [props],
+  [...children]
+)
+```
+
+[参考官网](<https://zh-hans.reactjs.org/docs/react-api.html#cloneelement>)
+
 
 ## ReactDOM.createPortal
 
+可以使用这个方法将子节点渲染到父组件意外的DOM节点
+
+>ReactDOM.createPortal(child, container)
+
+- child
+
+是任何可渲染的React子元素（元素，字符串，fragment）
+
+- container
+
+是一个dom元素
+
+>通常来讲，当你从组件的 render 方法返回一个元素时，该元素将被挂载到 DOM 节点中离其最近的父节点：
+
+```
+render() {
+  // React 挂载了一个新的 div，并且把子元素渲染其中
+  return (
+    <div>
+      {this.props.children}
+    </div>
+  );
+}
+```
+然而，有时候将子元素插入到 DOM 节点中的不同位置也是有好处的：
+
+```
+render() {
+  // React 并*没有*创建一个新的 div。它只是把子元素渲染到 `domNode` 中。
+  // `domNode` 是一个可以在任何位置的有效 DOM 节点。
+  return ReactDOM.createPortal(
+    this.props.children,
+    domNode
+  );
+}
+```
 ## 使用React.memo提升性能
 react性能提升，只在props属性更新了，才会触发重新渲染，功能同React.PureComponent，但是他只使用与函数组件。
 
