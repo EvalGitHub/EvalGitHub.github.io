@@ -207,3 +207,27 @@ module.exports = {
   </Switch>
 </Router>
 ```
+
+## 本地打包之后图片路径总是不对？
+
+**可能原因：**
+
+1. 重复添加url-loader，优先排查webpack.common.config.js 和webpack.dev.config.js
+
+```
+{
+  test: /\.(png|svg|jpg|gif)$/,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        outputPath: 'assets/',
+        limit: 20024, // 20kb(20*1024)
+        name: '[name].[ext]'
+      }
+    }
+  ]
+}
+```
+
+public一般会用在图片资源上传七牛的时候用到
