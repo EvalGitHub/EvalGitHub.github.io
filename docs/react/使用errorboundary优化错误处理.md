@@ -1,0 +1,1 @@
+# https://codesandbox.io/s/react-error-boundary-2zee4

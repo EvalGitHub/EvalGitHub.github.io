@@ -19,6 +19,9 @@ module.exports = {
     "/react/redux与react-redux的使用实践",
     "/react/redux-saga的学习与使用",
     "/react/redux原理分析",
+    "/react/react新版生命周期函数及意义",
+    "/react/mobx的学习与使用",
+    "/react/使用errorboundary优化错误处理",
   ],
   sidebarDepth: 2, // 默认是1: 提取h2标题 0: 禁用headers链接 2: 提取h2, h3标题
   // displayAllHeaders: true, // 是否展示所有标题
