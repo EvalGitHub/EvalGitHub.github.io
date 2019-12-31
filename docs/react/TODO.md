@@ -6,5 +6,12 @@
 7. docker
  
 8. 前端杂技/虚拟dom以及diff的理解
+https://mp.weixin.qq.com/s/9q77WluVxmONDnlfeSWsvA
 
+9. react/vue对比
+https://www.zhihu.com/question/301860721/answer/724759264
+
+10. mobx
 https://cn.mobx.js.org/
+
+https://github.com/danistefanovic/build-your-own-x
