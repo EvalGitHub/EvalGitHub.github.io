@@ -3,7 +3,6 @@ module.exports = {
   collapsable: true,
   children: [
     "/react/",
-    "/react/react中setState异步思想",
     "/react/react-router",
     "/react/react使用优化实践",
     "/react/react-redux的学习与使用",
