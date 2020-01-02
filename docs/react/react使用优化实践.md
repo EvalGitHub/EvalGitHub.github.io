@@ -65,14 +65,14 @@ class User extends Component {
 
 #### 三）jsx中的判断
 
-&&运算会比三目运算性能更好
+&&运算会比三目运算性能更好，同时更建议使用css样式进行隐藏，渲染。
 
 ```
 return (
     { title &&
-        <div className="tui-dialog__hd">
-            <strong className="weui-dialog__title">{title}</strong>
-        </div>
+      <div className="tui-dialog__hd">
+        <strong className="weui-dialog__title">{title}</strong>
+      </div>
     }
 )
 ```
@@ -101,5 +101,17 @@ React v15.3开始提供了一个叫做 PureComponent 的组件来替代 Componen
 通过css影藏或者显示节点而不是真正的移除或者添加DOM节点。
 
 > React 只会简单地考虑同层级节点的位置变换，而对于不同层级的节点，只有创建和删除操作
+
+### 六）循环列表不要轻易使用数组的index,作为key值
+
+react使用的是虚拟DOM,diff算法去优化前端性能，其中在diff算法中判断两个节点是否相同的时候会使用到元素的key值(如果有的话，没回key的话就会进行遍历查找对应的旧接点)；所以如果提供了key值，如果key值在新旧对比中是相同的则会复用，然后如果你使用的是index作为key值的话，就可能会出现一些界面显示与实际值不一致的问题。
+
+
+**关于不使用index作为key的讲解：**
+
+- https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+- https://muyiy.cn/question/frame/1.html
+
+
 
 参考：<https://www.jianshu.com/p/c46e5866eaec>
