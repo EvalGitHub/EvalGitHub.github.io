@@ -27,7 +27,7 @@
 		* 这个方法会在render()之后立即执行；
 		* 这里可以对DOM进行操作，这个函数之后ref变成实际的DOM
 		
-### componentWillReceiveProps
+### componentWillReceiveProps(nextProps, preState)
 * 执行场景
 	* 在已经挂在的组件(mounted component)接收到新props时触发;	(简单说初始化的时候不会执行)
 * 解释
@@ -47,7 +47,7 @@
   ```
   上面实现的就是在componentWillReceiveProps中讲props的值复制给state,因为props是不允许被修改的（因为props一般是从父组件传递给子组件，这就需要保证props的不变性，确定所有的子组件都能获取相同的props值）。
   正是由于这个问题，在实现Input的双向绑定的时候，如果从父组件中传递给子组件，直接绑定到Input[value]，这个时候即使你输入不同的值，输入框的内容是不会更改的，因此我们需要有一个合适的地方（componentWillReceiveProps）中将props的值赋值给state。
-### shouldComponentUpdate
+### shouldComponentUpdate(nextProps, nextState)
 * 执行场景
 	* 在接收到新props或state时，或者说在componentWillReceiveProps(nextProps)后触发
 * 解释
@@ -55,7 +55,7 @@
 	* 在首次渲染时或者forceUpdate()时不会触发;
 	* 这个方法如果返回false, 那么props或state发生改变的时候会阻止子组件发生重新渲染;
 
-### componentWillUpdate
+### componentWillUpdate(nextProps, nextState)
 * 执行场景
 	* 在props或state发生改变或者shouldComponentUpdate(nextProps, nextState)触发后, 在render()之前	 
 * 解释
@@ -63,7 +63,7 @@
 	* 不要在这个函数中调用this.setState()方法.会造成死循环
 	* 如果确实需要响应props的改变，那么你可以在componentWillReceiveProps(nextProps)中做响应操作
 
-### componentDidUpdate
+### componentDidUpdate(prevProps, prevState, snapshot)
 * 执行场景
 	* 在发生更新或componentWillUpdate(nextProps, nextState)后	
 * 解释： 
@@ -110,10 +110,84 @@ componentWillUnmount
 
 ![avatar](../assets/react_lifecycle_new.png)
 
-从上图可以看出新版生命周期函数中新增“getDerivedStateFromProps”，“getSnapshotBeforeUpdate”这两个生命周期函数，去除了“componentWillReceiveProps”，“componentWillUpdate”，“componentWillMount”
+从上图可以看出新版生命周期函数中新增“static getDerivedStateFromProps”，“getSnapshotBeforeUpdate”这两个生命周期函数，去除了“componentWillReceiveProps”，“componentWillUpdate”，“componentWillMount”
 
-### 新的是生命周期函数的意义（为何替换旧版的生命周期）？
 
+### 关于static getDerivedStateFromProps(preProps, nextState)
+
+>getDerivedStateFromProps 会在调用 render 方法之前调用，并且在初始挂载及后续更新时都会被调用。它应返回一个对象来更新 state，如果返回 null 则不更新任何内容。
+
+值得说的是这是个静态方法，意味着组件对他是没有直接访问权限的，在里面不能直接通过this访问组件的state，props，methods；通过这个生命周期函数的名字就可以看出，他的作用就是将props的属性映射到state上。
+
+他是componentWillReceiveProps的替代函数，如果state没做修改返回一个null，这个返回值是必须的，所以尽量将其写到函数的末尾。
+
+此外必须了解的是getDerivedStateFromProps在父组件的re-render，以及组件的props修改之时
+
+```
+static getDerivedStateFromProps(nextProps, prevState) {
+  const {type} = nextProps;
+  // 当传入的type发生变化的时候，更新state
+  if (type !== prevState.type) {
+    return {
+      type,
+    };
+  }
+  // 否则，对于state不进行任何操作
+  return null;
+}
+```
+
+在新版生命周中官方建议使用getDerivedStateFromProps与componentDidUpdate一起使用去处理异步请求
+
+```
+// 在getDerivedStateFromProps中进行state的改变
+static getDerivedStateFromProps(nextProps, prevState) {
+  if (nextProps.type !== prevState.type) {
+    return {
+      type: nextProps.type,
+    };
+  }
+  return null;
+}
+// 在componentDidUpdate中进行异步操作，驱动数据的变化
+componentDidUpdate() {
+    this._loadAsyncData({...this.state});
+}
+```
+
+### 关于getSnapshotBeforeUpdate(prevProps, prevState)
+
+>getSnapshotBeforeUpdate() 在最近一次渲染输出（提交到 DOM 节点）之前调用。它使得组件能在发生更改之前从 DOM 中捕获一些信息（例如，滚动位置）。此生命周期的任何返回值将作为参数传递给 componentDidUpdate()。
+
+```
+ getSnapshotBeforeUpdate(prevProps, prevState) {
+    // 我们是否在 list 中添加新的 items ？
+    // 捕获滚动​​位置以便我们稍后调整滚动位置。
+    if (prevProps.list.length < this.props.list.length) {
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // 如果我们 snapshot 有值，说明我们刚刚添加了新的 items，
+    // 调整滚动位置使得这些新 items 不会将旧的 items 推出视图。
+    //（这里的 snapshot 是 getSnapshotBeforeUpdate 的返回值）
+    if (snapshot !== null) {
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot;
+    }
+  }
+```
+
+### 为什么要替换掉componentWillReceiveProps？
+
+最直接的目的就是禁止用户在componentWillReceiveProps中执行异步操作，当然getDerivedStateFromProps也应该是一个处理props和state的纯函数，所以官方强制使得getDerivedStateFromProps为一个静态函数。
+
+[进一步学习](<https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html>)
+
+[你应该知道的requestIdleCallback](<https://juejin.im/post/5ad71f39f265da239f07e862>)
 
 
  [生命周期示意图](<http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>)
