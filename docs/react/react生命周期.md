@@ -183,13 +183,42 @@ componentDidUpdate() {
 
 ### 为什么要替换掉componentWillReceiveProps？
 
-最直接的目的就是禁止用户在componentWillReceiveProps中执行异步操作，当然getDerivedStateFromProps也应该是一个处理props和state的纯函数，所以官方强制使得getDerivedStateFromProps为一个静态函数。
+在新版react中使用的是react fiber的概念来进行任务处理
 
-[进一步学习](<https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html>)
+>把一个耗时长的任务分成很多小片，每一个小片的运行时间很短，虽然总时间依然很长，但是在每个小片执行完之后，都给其他任务一个执行的机会，这样唯一的线程就不会被独占，其他任务依然有运行的机会。因为一个更新过程可能被打断，所以React Fiber一个更新过程被分为两个阶段(Phase)：第一个阶段Reconciliation Phase和第二阶段Commit Phase。
+
+在第一阶段Reconciliation Phase，React Fiber会找出需要更新哪些DOM，这个阶段是可以被打断的；但是到了第二阶段Commit Phase，那就一鼓作气把DOM更新完，绝不会被打断。
+
+这两个阶段大部分工作都是React Fiber做，和我们相关的也就是生命周期函数。
+以render函数为界，第一阶段可能会调用下面这些生命周期函数，说是“可能会调用”是因为不同生命周期调用的函数不同。
+
+componentWillMount
+
+componentWillReceiveProps
+
+shouldComponentUpdate
+
+componentWillUpdate
+
+
+下面这些生命周期函数则会在第二阶段调用。
+
+componentDidMount
+
+componentDidUpdate
+ 
+componentWillUnmount
+
+因为第一阶段的过程会被打断而且“重头再来”，就会造成意想不到的情况。
+
+[React Fiber是什么](<https://zhuanlan.zhihu.com/p/26027085>)
 
 [你应该知道的requestIdleCallback](<https://juejin.im/post/5ad71f39f265da239f07e862>)
 
 
- [生命周期示意图](<http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>)
 
- [官网描述](<https://zh-hans.reactjs.org/docs/react-component.html#mounting>)
+
+
+[生命周期示意图](<http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>)
+
+[官网描述](<https://zh-hans.reactjs.org/docs/react-component.html#mounting>)
