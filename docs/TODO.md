@@ -15,3 +15,5 @@ https://www.zhihu.com/question/301860721/answer/724759264
 https://cn.mobx.js.org/
 
 https://github.com/danistefanovic/build-your-own-x
+
+web -> node -> 服务器
