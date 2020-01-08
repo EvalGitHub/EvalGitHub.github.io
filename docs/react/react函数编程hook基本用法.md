@@ -90,7 +90,8 @@ function Example() {
 **使用useEffect：需要清除的副作用**
 - 只需要在useEffect中返回一个函数，React将会执行清除操作时调用它
 - 每个 effect 都可以返回一个清除函数,可选的清除机制
-- 会在调用一个新的 effect 之前对前一个 effect 进行清理
+- 会在调用一个新的effect之前对前一个effect进行清理，对于需要清理的副作用(定时器，监听器)我们需要定义这个函数，
+  并且为防止内存泄漏，清除函数会在组件卸载前执行。
 ```
 import React, { useState, useEffect } from 'react';
 function FriendStatusWithCounter(props) {
@@ -128,7 +129,15 @@ useEffect(() => {
 }, [count]); // 仅在 count 更改时更新
 ```
 > 如果数组中有多个元素，即使只有一个元素发生变化，React 也会执行 effect。
-如果你传入了一个空数组（[]），effect 内部的 props 和 state 就会一直拥有其初始值。
+
+### 关于第二个参数
+常见的一个问题，如果第二个参数省略了在useEffect中执行了相关的异步操作并且修改了某个状态，会发现一直循环的执行下去，
+这个时候就可以传入了一个空数组（[]）去解决这个问题，传入一个空数组的作用就相当于是状态组件的componentDidMounted中
+执行一样，只会在初始化执行一次。
+
+>函数组件初始化，以及状态更新的时候(如果没有提供第二个参数)，都会执行useEffect。
+
+[useEffect使用指南](<https://zhuanlan.zhihu.com/p/65773322>)
 
 ## useContext
 接受一个context对象并返回该context的当前值；读取 context 的值以及订阅 context的变化
@@ -211,7 +220,18 @@ useState中的异步问题，使用useRef可以很好地解决
 
 ## useReducer
 
+可以看做是useState的替代方案
+```
+const [state, dispatch] = useReducer(reducer, initialArg, init);
+```
+useReducer 会比 useState 更适用，例如 state 逻辑较复杂且包含多个子值，或者下一个 state 依赖于之前的 state 等。并且，使用 useReducer 还能给那些会触发深更新的组件做性能优化，[因为你可以向子组件传递 dispatch 而不是回调函数](<https://zh-hans.reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down>)。
+
+示例代码参考官网：[代码](<https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer>)
 
 
+## useCallback
 
+## useMemo
+
+https://zhuanlan.zhihu.com/p/65773322
 https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d
