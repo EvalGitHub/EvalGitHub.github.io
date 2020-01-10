@@ -28,6 +28,9 @@
     }
   ```
 
+  >确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。
+
+
 ## useState
 > import React, { useState } from 'react';
 
@@ -229,9 +232,32 @@ useReducer 会比 useState 更适用，例如 state 逻辑较复杂且包含多�
 示例代码参考官网：[代码](<https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer>)
 
 
-## useCallback
+## useCallback，useMemo
 
-## useMemo
+这两个hook可用于优化react性能，在项目中经常会存在大批量的逻辑运算，其中有些函数是纯函数（没有任何副作用），相同的输入会返回相同的结果，但是如果不做处理，这些计算会在react组件重新渲染的时候会又一次的去执行，所有我们有必要将这些纯函数逻辑进行缓存，对于相同输入的
+情况直接去缓存结果，而不需要重新计算，这就是useCallback，useMemo存在的目的。
+
+useCallback返回缓存的函数
+```
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+```
+useMemo返回缓存的变量
+```
+const expensiveCount = useMemo(() => {
+  let sum = 0;
+  for (let i = 0; i < count * 100; i++) {
+    sum += i;
+  }
+  return sum;
+}, [count]);
+```
+
+[react中useMemo的用法](<https://blog.csdn.net/hesongGG/article/details/84347484>)
 
 https://zhuanlan.zhihu.com/p/65773322
 https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d
