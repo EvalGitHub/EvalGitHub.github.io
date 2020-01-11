@@ -93,7 +93,9 @@ declare module '*'
   .....
 }    
 ```
-## css不支持单行注释  em:  // margin: 20px
+## css不支持单行注释  
+
+em: // margin: 20px
 
 但是可以使用 /* margin：20px  */
 
@@ -145,7 +147,7 @@ class App extends React.Component {
     );
   }
 }
-hot(App);
+hot(App); // @1
 if (module.hot) {
   module.hot.accept(() => {
     console.log('app 更新了');
@@ -156,7 +158,7 @@ if (module.hot) {
 ```
 entry: {
   main: [
-    "react-hot-loader/patch",
+    "react-hot-loader/patch", // @2
     './index.tsx'
   ],
 },
@@ -166,10 +168,12 @@ entry: {
   options: {
     babelrc: false,
     presets: ['@babel/preset-env', '@babel/preset-react'],
-    plugins: ['react-hot-loader/babel']
+    plugins: ['react-hot-loader/babel'] // @3
   },
 }
 ```
+[react-hot-loader使用](<http://gaearon.github.io/react-hot-loader/getstarted/>)
+
 值得注意的几个问题：
 
 **note:** react-hot-loader只支持同步加载的组件，不支持懒加载的组件
