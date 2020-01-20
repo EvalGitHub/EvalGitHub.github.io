@@ -96,16 +96,21 @@ React v15.3开始提供了一个叫做 PureComponent 的组件来替代 Componen
 解决这个问题：
 
 1. Immutable.js 用来替代浅拷贝和深拷贝的方式，用来创建不可变的数据。
+>Immutable 实现的原理是 Persistent Data Structure（持久化数据结构），也就是使用旧数据创建新数据时，要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 Structural Sharing（结构共享），即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。
 
+>`Immutable.is` 比较的是两个对象的 `hashCode` 或 `valueOf`（对于 JavaScript 对象）。由于 immutable 内部使用了 Trie 数据结构来存储，只要两个对象的 `hashCode` 相等，值就是一样的。这样的算法避免了深度遍历比较，性能非常好。
+
+[Immutable 详解及 React 中实践
+]<(https://zhuanlan.zhihu.com/p/20295971?columnSlug=purerender)>
 **父组件的re-render都会导致子组件的re-render而引发的重新计算问题**
 
 如果父组件的state发生了变化，会导致父组件重新渲染的同时也会导致子组件的重新渲染，这就会存在一个性能问题，如果子组件依赖的props没有什么变化并且存在很大批量的复杂运算，这种无意义的重复计算就会很没必要，有如下的解决方案：
 
-1. 使用PureComponent + 将计算逻辑放在render函数中
+2. 使用PureComponent + 将计算逻辑放在render函数中
 
 使用PureComponent可以避免子组件的重新render，计算逻辑放在render中就可以避免没必要的重新计算了。
 
-2. 使用[mermoization](<https://www.npmjs.com/package/memoize-one>)帮助函数进行缓存
+3. 使用[mermoization](<https://www.npmjs.com/package/memoize-one>)帮助函数进行缓存
 
 只是进行浅比较（a === b），如果需要对数组或者对象进行处理需要自定义比较函数
  
