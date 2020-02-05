@@ -4,6 +4,7 @@ const VueConfig =  require('./categoryConfig/vue');
 const JSConfig =  require('./categoryConfig/javascript');
 const WebpackConfig =  require('./categoryConfig/webpack');
 const FlutterConfig =  require('./categoryConfig/flutter');
+const H5 =  require('./categoryConfig/h5');
 const FinancialManageConfig =  require('./categoryConfig/financialManage');
 module.exports = {
   title: '个人主页',
@@ -39,6 +40,7 @@ module.exports = {
       { ...JSConfig },
       { ...WebpackConfig},
       { ...FlutterConfig },
+      { ...H5 },
      // { ...FinancialManageConfig },
     ]
 
