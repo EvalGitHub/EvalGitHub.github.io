@@ -91,7 +91,7 @@ function Example() {
 >默认在组件挂载完之后，和组件更新之后都会执行
 
 **使用useEffect：需要清除的副作用**
-- 只需要在useEffect中返回一个函数，React将会执行清除操作时调用它
+- 只需要在useEffect中返回一个函数，React将会在**组件卸载时**执行清除操作
 - 每个 effect 都可以返回一个清除函数,可选的清除机制
 - 会在调用一个新的effect之前对前一个effect进行清理，对于需要清理的副作用(定时器，监听器)我们需要定义这个函数，
   并且为防止内存泄漏，清除函数会在组件卸载前执行。
@@ -218,8 +218,74 @@ export function HookComponent () {
 
 ## useRef
 
-useState中的异步问题，使用useRef可以很好地解决
-<https://mp.weixin.qq.com/s/vUN6HX8L5eXOAOgnUnHwDw>
+useRef可用于获取元素节点，常见的操作就是获取input这个元素，实现初始化的自动获取焦点。
+
+```
+const Example:React.FC<InitProps> = (props:InitProps) => {
+  const inputEl = useRef(null);
+  const onBtnClick = () => {
+    inputEl.current.focus();
+  };
+  return (
+    <>
+      <input ref={inputEl} type="text"/>
+      <button onClick={onBtnClick}>clickBtn</button>
+    </>
+  );
+}
+```
+上面的例子可以清晰看到，使用useRef获取了input这个元素节点，然后修改属性自动获取焦点。
+
+**useRef返回的ref对象在组件的整个生命周期内保持不变**
+
+利用上面的这个特性能做规避很多问题：
+
+1. timeout中读不到其他状态的新值
+
+```
+export default function App() {
+  const [flag, setFlag] = React.useState(false);
+  function dealClick() {
+    setValue(!flag);
+    timer = window.setTimeout(() => {
+      setValue(!flag);
+      console.log(value);
+    }, 1000);
+  }
+  return (
+    <>
+      <p>{value ? "true" : "false"}</p>
+      <button onClick={dealClick}>click me </button>
+    </>
+  );
+}
+```
+我们可以看到在点击按钮之后界面上显示true，1s之后打印出false,但是界面并没有更新为false，上面的问题就是**setValue(!flag)**
+这句有问题，因为setValue是用来修改flag（flag是一个状态，对于状态的修改必须返回新的state才会是的视图更新）
+
+使用UseRef来救场
+
+```
+export default function App() {
+  const [flag, setFlag] = React.useState(false);
+  const valueRef = React.useRef(flag); 
+  valueRef.current = flag;
+
+  function dealClick() {
+    setFalg(!valueRef.current); 
+    timer = window.setTimeout(() => {
+      setValue(!valueRef.current);
+    }, 1000);
+  }
+  return (
+    <>
+      <p>{valueRef.current}</p>
+      <button onClick={dealClick}>click me </button>
+    </>
+  );
+}
+```
+因为valueRef.current对于flag来说就是一个新的状态。
 
 ## useReducer
 

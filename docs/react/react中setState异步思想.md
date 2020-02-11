@@ -51,7 +51,7 @@ this.setState((
   console.log(this.state,target);
 })
 why?：但是问题是为啥在setTimeout/setInterval中却能同步获取我们想要的值呢？
-reason：在React内部机制能检测到的地方， setState就是异步的；在React检测不到的地方，例如setInterval,setTimeout里，setState就是同步更新的。
+reason：在React内部机制能检测到的地方， setState就是异步的；在React检测不到的地方（非合成事件，非生命周期中），例如setInterval,setTimeout，原生事件里，setState就是同步更新的。
 
 ### 2.setState更新状态的机制？
 this.setState()不仅会改变组件的当前状态【返回一个新状态，使用了Object.assign(),将已修改的属性添加进去，而不是覆盖】，还会触发组件的render(),更新view
