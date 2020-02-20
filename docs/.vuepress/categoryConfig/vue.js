@@ -3,7 +3,8 @@ module.exports =  {
   collapsable: true,
   children: [
     "/vue/",
-    "/vue/vue",
+    "/vue/vue知识点汇总",
+    "/vue/vue3.0更新点",
     "/vue/router",
     "/vue/vuex",
     "/vue/自定义一个全局组件"
