@@ -41,7 +41,7 @@ module.exports = {
       { ...WebpackConfig},
       { ...FlutterConfig },
       { ...H5 },
-     // { ...FinancialManageConfig },
+      // { ...FinancialManageConfig },
     ]
 
     // // fallback
