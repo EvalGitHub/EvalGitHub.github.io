@@ -141,9 +141,6 @@ arr = [1,2,3,4];
 arr.push(4);
 ```
 
-##  讲讲vue观察者模式和发布订阅者模式的具体实现
-
-
 ## vue中异步渲染，以及异步渲染的原因
 
 > vue在更新dom的时候是异步执行的，只要监听到数据变化，vue将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更，如果同一个watcher被触发多次只会推入到队列一次；如果数据没有发生改变是不会触发watcher的；这样做的目的是为了减少不必要的计算和DOM操作；当刷新队列时组件会在下一个事件循环“tick”中更新。
@@ -222,11 +219,11 @@ data数据更新之后，虚拟dom重新渲染之前被调用，此时修改data
 
 **beforeDestory**
 
-组件实例销毁之前被调用。
+组件实例销毁之前被调用，常用于开发者手动释放内存，清除事件监听，例如setTimeout, setInterval, 以及其第三方库的释放。
 
 **destroyed**
 
-实例销毁之后调用，清除事件监听。
+实例销毁之后调用，清除事件监听，释放变量内存。
 
 分别在每个生命beforeCreate, created, beforeMount, mounted阶段执行下面的输出
 
@@ -241,7 +238,232 @@ console.log(this.$el)
 
 [每个生命周期做了什么](https://blog.csdn.net/weixin_34050005/article/details/87964047)
 
+## ajax请求应该放在哪个生命周期中？
 
+数据请求回来会之后会使用到data对象，只有在created生命周期之后才可以拿到data对象，因此可以放在data中，
+不能放在beforeCreate中；如果在异步请求中会涉及到DOM操作，那么建议放在mounted生命周期中；但是不要放在
+updated中，因为会造成死循环。
+
+## vue的computed与函数的区别，实现原理？
+
+> 计算属性会依据他的响应式依赖进行缓存，只要响应式依赖发生了改变才会重新求新值。
+
+```
+computed: {
+  now: function () {
+    return Date.now()
+  }
+}
+```
+上面的例子不会触发更新，因为他的依赖不是响应式的。
+
+**相比函数的优点：** 不需要手动调用，并且计算属性是有缓存的。
+
+**计算属性的setter** 
+
+计算属性的默认只有一个getter，如果你需要手动修改计算属性必须提供一个setter方法。
+
+[计算属性setter](<https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84-setter>)
+
+## watch中的deep:true作用，及实现原理？
+
+> 用于观察vue实例上的一个表达式或者函数计算结果的变化，回调函数返回新值或者旧值。
+
+**选项：**
+
+- deep：表示是否深度监听
+
+- immediate：表示是否立即触发回调
+
+```
+watch: {
+  firstName: {
+    handler(newName, oldName) {
+      this.fullName = newName + ' ' + this.lastName;
+    },
+    // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
+    immediate: true,
+    deep: true,
+  }
+}
+```
+**deep:true的实现原理**
+
+如果检测到deep:true，则会对当前监听的值进行遍历处理为每个值添加依赖。
+
+```
+const seenObjects = new Set()
+// 内部递归时会传入seen参数，用于保存seen中已经存在的数据
+function traverse (val, seen) {
+  let i, keys
+  if (!seen) {
+    // 如果没有配饰seen，把它指向seenObjects，并清空内容
+    seen = seenObjects
+    seen.clear()
+  }
+  const isA = isArray(val)
+  const isO = isObject(val)
+  if (isA || isO) {
+    // 如果当前值有Observer
+    if (val.__ob__) {
+      // 拿到当前值的Observer的订阅者管理员的id
+      var depId = val.__ob__.dep.id
+      // 如果seen中已经有这个id了，直接返回
+      if (seen.has(depId)) {
+        return
+      } else {
+        // 否则添加到seen中
+        seen.add(depId)
+      }
+    }
+    // 递归数组
+    if (isA) {
+      i = val.length
+      // 触发数组内部元素的get，因为此时Dep.target依然引用了当前Watcher，因此数组内部元素的Observer的订阅者管理员中也会被加入当前订阅者从而达到深度监听的目的
+      while (i--) traverse(val[i], seen)
+    // 递归对象
+    } else if (isO) {
+      keys = Object.keys(val)
+      i = keys.length
+      while (i--) traverse(val[keys[i]], seen)
+    }
+  }
+}
+```
+[watch源码](https://github.com/vuejs/vue/blob/4f111f9225f938f7a2456d341626dbdfd210ff0c/src/core/observer/watcher.js)
+
+## vue事件绑定的原理？
+
+vue中通过v-on指令绑定的Dom事件都是最终都是通过el.addEventListener(event, cb, useCapture)进行绑定的。
+
+对于v-on自定义事件，以及通过$emit，$on派发的事件都是同事事件订阅的方式实现的。
+
+[Vue源码解读-方法与事件绑定](https://defed.github.io/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB-%E6%96%B9%E6%B3%95%E4%B8%8E%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A/)
+
+**关于事件订阅的简单实现：**
+
+定义一个事件对象，存储形式就是事件名为key，事件函数组成的数组为值。
+
+```
+let eventsList = {
+  'shift': [fun1(), fun2()],
+  'getData': [fun2(), fun3()],
+};
+```
+$on作用就是向这个对象中添加事件
+
+```
+function $on(type, fn) {
+  if (!eventList[type]) {
+    eventList[type] = [];
+  }
+  eventList[type].push(fn);
+}
+```
+$emit做用就是触发这个事件
+
+```
+function $emit() {
+  let type = Array.prototype.shift.call(arguments);
+  let onFunctions = eventList[type];
+  if (onFunctions && onFunctions.length > 0) {
+    for(let i = 0, fn; fn = onFunctions[i++];) {
+      fn.apply(this, arguments);
+    }
+  }
+}
+```
+[$emit, $on的实现思路](https://www.jianshu.com/p/3046f663e45f)
+
+## vue组件如何通信？
+
+- 父子组件的通信：props传递属性，自定事件，$emit,$on订阅，通过$ref,$parent,$children获取组件实例获取属性。
+
+[组件之间通信](https://www.cnblogs.com/evaling/p/7242567.html)
+
+- 兄弟之间的通信：中央事件总线。
+
+[中央事件总线](https://www.cnblogs.com/evaling/p/9192728.html)
+
+- 全局：vuex状态管理
+
+[vux状态管理](https://www.cnblogs.com/evaling/p/7291573.html)
+
+- 如果是跨组件之间的相互通信，例如高阶组件，可以使用$attrs获取祖组件的属性, $listeners触发祖组件的事件
+
+[listeners, attrs的使用](https://github.com/EvalGitHub/vue-study/blob/master/src/components/child.vue)
+
+## 什么是作用域插槽？
+
+插槽使用与扩充组件内容，使用形式是在父组件中使用子组件，在子组件开始结束标签之前传递内容，只是一种父组件定义子组件内容的行为，但是有时候我们需要在父组件中使用到这个子组件的内容，一般来说如果不通过组件之间的通信是无法做的的，但是我们可以使用作用域插槽。
+
+子组件：baseLayout.vue
+
+```
+<template>
+  <article>
+    <main>
+      <slot name="default" v-bind:userInfo="userInfo">
+        {{userInfo.defaultSlot.name}}
+      </slot>
+    </main>
+    <footer>
+      <slot name="footer"></slot>
+    </footer>
+  </article>
+</template>
+<script>
+export default {
+  name: 'BaseLayout',
+  data () {
+    return {
+      userInfo: {
+        defaultSlot: {
+          name: 'default Name',
+          comment: 'this is show for default name'
+        }
+      }
+    }
+  }
+}
+</script>
+```
+
+父组件：slot.vue
+
+```
+ <base-layout>
+  <template v-slot:header>
+    <h1 style="color: red"> header here might be a page title</h1>
+  </template>
+  <template v-slot:default>
+    <div style="color: green">
+      // 作用域插槽内容
+      <span>name: {{userInfo.defaultSlot.name}}</span> 
+      <span>comment: {{userInfo.defaultSlot.comment}}</span> 
+    </div>
+  </template>
+  <template v-slot:footer>
+    <p style="color: orange;font-size:20px">footer Here's some contact info</p>
+  </template>
+</base-layout>
+```
+
+[slot的使用](https://github.com/EvalGitHub/vue-study/blob/master/src/views/VueSlot.vue)
+
+## 为哈v-if和v-for不能一起使用？
+
+## v-for中为什么要用key？
+
+## 用vnode描述一个DOM结构？
+
+## diff算法原理，以及时间复杂度？
+
+## 描述组件渲染和更新的过程？
+
+## vue父子组件生命周期调用顺序，minx与组件的生命周期顺序？
+
+## 讲讲vue观察者模式和发布订阅者模式的具体实现
 
 
 
