@@ -479,7 +479,22 @@ arr = ['jack', 'tom', 'hanson'];
 
 ## vue常见的性能优化？
 
+- 对于数据的处理，如果不是响应式数据则不需要放在data或者computed中定义，因为这里定义的数据会被Observer
+给层层遍历增加getter，setter属性，这是个比较损耗性能的过程
+
+- 引入第三方库如果进行了初始化，在组件卸载之前（beforeDestory中）销毁初始化的实例；以及记得销毁setTimeout/setInterval实例子
+
+- 尽量使用v-show代替v-show，减少dom的重排
+
+- 长列表数据懒加载，组件懒加载，路由分割减小文件体积
+
 ## 谈谈你对keep-alive的理解？
+
+切换的组件会被销毁，新加载的组件会执行完整的生命周期；例如从A -> B, A页面会被销毁，丢失所有的状态，但是有时候我们希望从B页面返回的时候，A页面仍然保存之前的状态 (表单数据，页面滚动位置)，这个时候就可以使用keep-alive来进行操作。如果使用keep-alive进行包裹，被切换的组件不会触发beforeDestory，destoryed生命周期，会触发disactived，被呈现的组件会触发actived。
+
+在与vue-router配合使用的时候，会使用到路由的meta属性来有有条件控制组件的状态保存。
+
+[keep-alive的使用讲解](https://juejin.im/post/5d5a534351882568916523b7)
 
 ## 用vnode描述一个DOM结构？
 
@@ -490,7 +505,4 @@ arr = ['jack', 'tom', 'hanson'];
 ## 讲讲vue观察者模式和发布订阅者模式的具体实现
 
 
-
-
-
-
+[vue.js技术揭秘](https://ustbhuangyi.github.io/vue-analysis/v2/extend/keep-alive.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
