@@ -3,10 +3,12 @@
 > Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性
 
 **解决问题：**
-- class组件逻辑难复用 ---> 自定义hook实现逻辑的复用
+- class组件逻辑难复用（高阶组件，render props） ---> 自定义hook实现逻辑的复用，因为组件和 Hook 都是函数，所以操作起来很方便。
 - class组件代码趋于复杂不易被理解 ---> 使用function
 - class组件的生命周期中往往会注入许多逻辑代码,甚至是滥用 ---> 去掉构造函数、生命周期提升性能，useEffect中可以返回回调函数清除副作用，而不需要在多个生命周期中写入处理代码
 - class组件this的必须邦定， hook中不需要绑定this
+
+至于性能方面的提升还有带商榷。
 
 **好处**
 >从此可以很流畅的编写无状态组件，减少代码量
@@ -28,7 +30,7 @@
     }
   ```
 
-  >确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。
+  > 确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。
 
 
 ## useState
@@ -36,6 +38,8 @@
 
 - useState会返回一对值：当前状态、更新状态的函数；类似 class 组件的 this.setState，但是它不会把新的 state 和旧的 state 进行合并
 - useState 唯一的参数就是初始state
+- 使用Object.is进行判断，如果传入的值相等就不会更新，这点相对于class组件来时是做了优化处理，不需要手动去使用
+shouldComponentUpdate去判断。
 
 函数组件：
 ```
@@ -61,6 +65,15 @@ export function Example () {
 }
 ```
 > 如果我们想要在 state 中存储两个不同的变量，只需调用 useState() 两次即可。
+
+useState可以传入函数
+
+```
+setState(prevState => { // 可以拿到上一次的 state 值
+  // 也可以使用 Object.assign
+  return {...prevState, ...updatedValues};
+});
+```
 
 ## useEffect
 
@@ -302,6 +315,9 @@ useReducer 会比 useState 更适用，例如 state 逻辑较复杂且包含多�
 
 这两个hook可用于优化react性能，在项目中经常会存在大批量的逻辑运算，其中有些函数是纯函数（没有任何副作用），相同的输入会返回相同的结果，但是如果不做处理，这些计算会在react组件重新渲染的时候会又一次的去执行，所有我们有必要将这些纯函数逻辑进行缓存，对于相同输入的
 情况直接去缓存结果，而不需要重新计算，这就是useCallback，useMemo存在的目的。
+
+> reack hook在组件diff的时候是会重新执行一遍的，这就意味着如果你在react组件中定义普通变量都会重新初始化，但是
+如果使用的是useState等hook函数声明的变量只能被是对应的函数更新。
 
 useCallback返回缓存的函数
 ```
