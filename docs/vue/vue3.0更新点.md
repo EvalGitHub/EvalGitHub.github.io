@@ -230,5 +230,17 @@ setup() {
 }
 ```
 
+# 为什么vue3.0不实现时间分片？
+
+原因就是不需要，vue的响应式设计原理相对于react的Reactivity（通过setState去出发更新）已经减少了很多不必要的
+DOM重新渲染。
+
+时间分片的目的就是充分利用cpu的效率去执行程序，但是他只是改善了cpu的执行效率，而不是解决DOM的更新优化；
+在react中由于他的底层实现原理，以及JSX语法等相对与vue来说都是比较消耗性能的（react因此提供了一些钩子函数（shouldComponent, pureComponent, useMemo, useCallback）让开发者自行去优化，但是大部分情况下都是被忽视的），因此react相对于vue是更需要时间分片的；
+
+[Why remove time slicing from vue3?](https://github.com/vuejs/rfcs/issues/89)
+
+
+
 参考：
 https://vue-composition-api-rfc.netlify.com/api.html#setup
