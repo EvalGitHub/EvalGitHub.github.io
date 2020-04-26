@@ -213,6 +213,8 @@ const copy = readonly(original)
 - destroyed -> onUnmounted
 - errorCaptured -> onErrorCaptured
 
+
+
 这些生命周期函数在使用之前需要通过import引入，并且只能在setup中使用
 
 ```
