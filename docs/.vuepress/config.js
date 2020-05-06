@@ -5,6 +5,7 @@ const JSConfig = require('./categoryConfig/javascript');
 const WebpackConfig = require('./categoryConfig/webpack');
 const FlutterConfig = require('./categoryConfig/flutter');
 const H5 = require('./categoryConfig/h5');
+const WebSafe = require('./categoryConfig/webSafe');
 const FinancialManageConfig = require('./categoryConfig/financialManage');
 module.exports = {
   title: '个人主页',
@@ -41,6 +42,7 @@ module.exports = {
       { ...WebpackConfig},
       { ...FlutterConfig },
       { ...H5 },
+      { ...WebSafe },
       // { ...FinancialManageConfig },
     ]
 
