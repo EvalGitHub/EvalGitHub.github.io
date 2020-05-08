@@ -566,6 +566,32 @@ AST指的是js对象对节点的描述组成的树形结构。
 }
 ```
 
+## vue.$set的作用及实现原理
+
+vue只能侦测到初始化的data对象中的属性变更（添加）
+
+```
+data () {
+  return {
+    obj: '12445'
+  }
+}
+在后续的代码中先是
+this.data = {
+  name: 'tom',
+  age: 23
+}
+首次变化也是能监听到的，但是如果我们改变this.data.name = 'jack'，这个时候就不能监听到了
+常见的解决方法使用vue.$set(this.data, name, 1234)
+```
+**分析源码：**
+
+![avatar](../assets/vue_$set.png)
+
+会发现**defineReactive(ob.value, key, val)**，就是将这个属性添加到这个对象的监听中，
+
+![avatar](../assets/object_defineReactive.png)
+
 ## 描述组件渲染和更新的过程？
 
 ## vue父子组件生命周期调用顺序，minx与组件的生命周期顺序？

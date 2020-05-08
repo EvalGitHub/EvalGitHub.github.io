@@ -17,6 +17,10 @@
 
 3. API更新
 
+4. 数据侦测使用proxy代替Object.defineProperty，很好的解决了数组，对象的侦测问题
+  （v2.0中对于数组的侦测需要使用vue改写的8种数组操作API push，pop，shift，unshift，splice，sort，reverse, 针对对象使用$set来处理），但是总是不优雅，
+  改写Array的原生api，$set的重新添加侦测。
+
 **setup**
 
 - 释意：这是一个新提出的组件属性，充当整个组件的入口，在组件属性初始化的时候会调用，早于beforeCreate生命周期。
