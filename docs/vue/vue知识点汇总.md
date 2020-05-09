@@ -592,6 +592,57 @@ this.data = {
 
 ![avatar](../assets/object_defineReactive.png)
 
+# 使用proxy简单实现Object.defineProperty的数据侦测？
+
+```
+var classInfo = {
+  count: 4,
+  student: {
+    age: 20,
+    name: 'tom'
+  }
+}
+
+let observer = (data) => {
+  if (!data || Object.prototype.toString.call(data) !== '[object Object]') {
+    return;
+  }
+  Object.keys(data).forEach((itemKey) => {
+    let currentValue = classInfo['itemKey'];
+    if (typeof currentValue === 'object') {
+      observer(currentValue);
+      data[itemKey] = new Proxy(currentValue, {
+        set(target, property, value, receiver) {
+          return Reflect.set(target, property, value, receiver);
+        };
+      })
+    } else {
+      Object.defineproperty(data, itemKey, {
+        get() {
+          return currentValue;
+        },
+        set (newVal) {
+          currentValue = value;
+        }
+      });
+    }
+  });
+}
+observer(classInfo);
+```
+**补充：**
+
+- Proxy是对对象的一个代理，重塑了点运算符，基本套路是 
+```
+// target是目标对象，第二个参数是处理手段
+var proxy = new Proxy(target, {
+  .....
+});
+```
+- Reflect是Object.defineProperty的替代，现阶段，某些方法同时在Object和Reflect对象上部署，
+未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。
+Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。
+
 ## 描述组件渲染和更新的过程？
 
 ## vue父子组件生命周期调用顺序，minx与组件的生命周期顺序？
