@@ -270,6 +270,7 @@ computed: {
 关于computed的实现，**源码如下**
 
 在初始化的时候使用的是initComputed方法进行初始化
+
 ![avatar](../assets/initComputed.png)
 
 从上图可以看出：
@@ -286,9 +287,13 @@ computed: {
   )
 ```
 让我们接着看**defineComputed**
+
 ![avatar](../assets/definComputed.png)
+
 定义了每一个变量的sharedPropertyDefinition.get(及在获取值的时候会触发)，在其中使用createComputedGetter
+
 ![avatar](../assets/createComputedGetter.png)
+
 如果watcher.dirty===true，则最终是调用watcher的evaluate方法返回值，而不会去触发依赖更新，这就是computed的缓存机制。
 
 ## watch中的deep:true作用，及实现原理？

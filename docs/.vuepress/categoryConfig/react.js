@@ -4,6 +4,7 @@ module.exports = {
   children: [
     "/react/",
     "/react/react-router",
+    "/react/浅析react_fiber",
     "/react/react使用优化实践",
     "/react/react-redux的学习与使用",
     "/react/react生命周期",
