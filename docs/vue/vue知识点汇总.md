@@ -263,7 +263,33 @@ computed: {
 
 计算属性的默认只有一个getter，如果你需要手动修改计算属性必须提供一个setter方法。
 
-[计算属性setter](<https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84-setter>)
+[计算属性的setter](<https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84-setter>)
+
+**computed的实现以及缓存原理**
+
+关于computed的实现，**源码如下**
+
+在初始化的时候使用的是initComputed方法进行初始化
+![avatar](../assets/initComputed.png)
+
+从上图可以看出：
+- 不支持服务器渲染
+- computed中定义的属性不能在data中出现
+
+另外从上面可以看到，是为computed的每一个属性添加了监听，进而可通知模版编译
+```
+ watchers[key] = new Watcher(
+    vm,
+    getter || noop,
+    noop,
+    computedWatcherOptions
+  )
+```
+让我们接着看**defineComputed**
+![avatar](../assets/definComputed.png)
+定义了每一个变量的sharedPropertyDefinition.get(及在获取值的时候会触发)，在其中使用createComputedGetter
+![avatar](../assets/createComputedGetter.png)
+如果watcher.dirty===true，则最终是调用watcher的evaluate方法返回值，而不会去触发依赖更新，这就是computed的缓存机制。
 
 ## watch中的deep:true作用，及实现原理？
 
