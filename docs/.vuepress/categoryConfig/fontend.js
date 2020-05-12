@@ -14,7 +14,8 @@ module.exports = {
     "/前端杂记/域名的设置",
     "/前端杂记/css不常用样式技巧汇总",
     "/前端杂记/bable的理解",
-    "/前端杂记/前端引入第三js实践总结"
+    "/前端杂记/前端引入第三js实践总结",
+    "/前端杂记/如何获取localStorage已使用空间，以及最大存储空间"
   ],
   sidebarDepth: 3, // 默认是1: 提取h2标题 0: 禁用headers链接 2: 提取h2, h3标题
   // displayAllHeaders: true, // 是否展示所有标题
