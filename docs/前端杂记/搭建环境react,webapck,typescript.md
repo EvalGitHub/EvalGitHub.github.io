@@ -235,3 +235,29 @@ module.exports = {
 ```
 
 public一般会用在图片资源上传七牛的时候用到
+
+## 实现tree shaking
+
+在项目中会使用很多第三库，但是有时候我们只是使用了其中的部分方法，如果不做特殊处理的话，会将整个库进行打包，这是十分
+没有必要的，针对这个问题，webpack提出了treeShaking的思路。
+
+**前提：必须是esmodule的形式引入文件，commonJs的形式不支持；因为esmodule的静态化，在编译时候(决定import 不能放在执行代码中)确定模块之间的以来关系，以及输入输出变量。**
+
+[js的模块化规范](https://www.cnblogs.com/evaling/p/10341112.html)
+
+配置方式：
+
+1. 修改package.json
+
+```
+  "sideEffects": false 或者 ["*.css", "*.scss"],
+```
+如果配置成false，则对所有的import引入都做tree shaking，如果是数组则是避免tree shaking的处理
+
+2. 配置webpack的配置(如果是生产环境则不需要处理（默认配置）)
+
+```
+ optimization: {
+    usedExports: true 
+  }
+```
