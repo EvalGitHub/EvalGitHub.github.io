@@ -75,6 +75,22 @@ setState(prevState => { // 可以拿到上一次的 state 值
 });
 ```
 
+**源码分析**
+
+常规用法：const [count, setCount] = React.useState(0)
+返回一个函数，第一个参数是一个state值，第二个参数是修改state的函数
+
+```
+Object.assing(React,  {
+  useState(initVal:any) {
+   function setVal(val:any) {
+     initVal = val;
+   }
+   return [initVal, setVal] 
+  }
+})
+```
+
 ## useEffect
 
 **副作用/作用的概念**
@@ -130,13 +146,16 @@ function FriendStatusWithCounter(props) {
 }
 ```
 对于上面的例子我么会发现，每一次的组件更新都会执行**document.title = `You clicked ${count} times**，问题是有时候即使我们没有更新count但还是会执行这句话，就是没有必要的性能浪费。
+
 - class组件中可以做如下优化
+
 ```
 componentDidUpdate (preProps, preState) {
   if(preState.count !== this.state.count) {
     document.title = `You clicked ${count} times
   }
 }
+
 ```
 - 在useEffect中
 ```
@@ -147,16 +166,72 @@ useEffect(() => {
 > 如果数组中有多个元素，即使只有一个元素发生变化，React 也会执行 effect。
 
 ### 关于第二个参数
+
 常见的一个问题，如果第二个参数省略了在useEffect中执行了相关的异步操作并且修改了某个状态，会发现一直循环的执行下去，
 这个时候就可以传入了一个空数组（[]）去解决这个问题，传入一个空数组的作用就相当于是状态组件的componentDidMounted中
-执行一样，只会在初始化执行一次。
+执行一样，只会在组件mount之后，ummount之前执行。
 
 >函数组件初始化，以及状态更新的时候(如果没有提供第二个参数)，都会执行useEffect。
 
 [useEffect使用指南](<https://zhuanlan.zhihu.com/p/65773322>)
 
+**源码分析**
+
+useEffect接受两个参数，第一个回调函数，第二个参数是一个数组
+
+```
+Object.assign(React, {
+  let _tmp = null;
+  useEffect(callback, depArr:any[]) {
+    if (!_tmp) {
+      _tmp = depArr.slice();
+    }
+    let _shouldUpdate = depArr.length === 0 ? true : depArr.every((item:any, index:number) => _tmp[index]) ? false : true;
+    if (_shouldUpdate) {
+      callback();
+      _tmp = depArr.slice();
+    }
+  }
+})
+```
+
+**进一步拓展**
+
+>在react hook的使用限制中明确指出，reactHook必须在函数组件的最顶层建立，不能在条件语句循环语句，以及自定义的函数中建立的原因是什么？
+
+首先我们可以看到在定义React.useState、React.useEffect的时候我们可以建立多个，在使用的时候，并不会出现混淆，原因就是hook的源码中使用数组来存储着他们的定义顺序（多以禁忌在条件语句中定义）。
+
+进一步优化上面的源码：
+
+```
+const React = (function(){
+  let hooks = [];
+  let currentIndex = 0;
+  return Object.design(React, {
+    useState(initStateVal) {
+      hooks[currentIndex] = initStateVal;
+      function setState(val) {
+        hooks[currentIndex] = val;
+      }
+      return [hooks[currentIndex++], setState]
+    },
+   
+    useEffect(callback, depArr) {
+      hooks[currntIndex] = depArr.slice();
+      let shouleUpdate = depArr.length === 0? hooks[currntIndex].every((item:any, index:number) => hooks[currntIndex][index] === item) ? false : true;
+      if (shouleUpdate) {
+        callback();
+        hooks[currntIndex++] = depArr;
+      }
+    }
+  })
+})()
+
+```
 ## useContext
+
 接受一个context对象并返回该context的当前值；读取 context 的值以及订阅 context的变化
+
 - useContext 的参数必须是 context 对象本身
 
 **在父组件中创建一个context**
@@ -190,7 +265,9 @@ class App extends React.Component<initProps, initState> {
   }
 };
 ```
+
 **子组件中消费context**
+
 - Consumer：Consumer需要嵌套在生产者(provider)下面才能通过回调的方式拿到共享的数据源。当然也可以单独使用（例如不是父(index.tsx)子(hook_component.tsx)关系的list.tsx与index.tsx组件），那就只能消费到上文提到的defaultValue
 ```
 import { NameContext } from '@/index';
@@ -311,6 +388,75 @@ useReducer 会比 useState 更适用，例如 state 逻辑较复杂且包含多�
 示例代码参考官网：[代码](<https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer>)
 
 
+**比较useState，useReducer**
+
+使用useState的情况：
+
+- state 为基本类型（也要看情况）
+- state 转换逻辑简单的场景
+- state 转换只会在当前组件中出现，其他组件不需要感知这个 state
+- 多个 useState hooks 之间的 state 并没有关联关系
+
+使用 useReducer 的情况：
+
+- state 为引用类型（也要看情况）
+- state 转换逻辑比较复杂的场景
+- 不同 state 之间存在较强的关联关系，应该作为一个 object，用一个 state 来表示的场景
+
+### useReducer的使用方法
+
+store.js
+
+```
+import React from 'react';
+const store = React.createContext(null);
+
+export const initialState  = {
+ // ....
+ // ...
+}
+
+export const reducer = (state, action) => {
+  switch (action.type) {
+    // ...
+  }
+}
+
+export default store
+```
+Provider根组件的挂载
+
+```
+import React, { useReducer } from 'react'
+import store, { reducer, initialState } from './store'
+
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  return (
+     <store.Provider value={{ state, dispatch }}>
+      <div/>
+     </store>
+  )
+}
+```
+业务组件就可以直接使用：
+
+```
+import React, { useContext } from 'react'
+import store from './store'
+
+cosnt Child = props => {
+  const { state, dispatch } = useContext(store)
+  // ...
+  return (
+    <>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    </>
+  )
+}
+```
+
+
 ## useCallback，useMemo
 
 这两个hook可用于优化react性能，在项目中经常会存在大批量的逻辑运算，其中有些函数是纯函数（没有任何副作用），相同的输入会返回相同的结果，但是如果不做处理，这些计算会在react组件重新渲染的时候会又一次的去执行，所有我们有必要将这些纯函数逻辑进行缓存，对于相同输入的
@@ -338,6 +484,8 @@ const expensiveCount = useMemo(() => {
   return sum;
 }, [count]);
 ```
+
+useCallback(fn, deps) 相当于 useMemo(() => fn, deps)。
 
 [react中useMemo的用法](<https://blog.csdn.net/hesongGG/article/details/84347484>)
 
