@@ -92,7 +92,7 @@ render() {
 ## 使用React.memo提升性能
 react性能提升，只在props属性更新了，才会触发重新渲染，功能同React.PureComponent，但是他只使用与函数组件。
 
-- 如果你的函数组件在给定相同 props 的情况下渲染相同的结果，那么你可以通过将其包装在 React.memo 中调用。
+- 如果你的**函数组件**在给定相同 props 的情况下渲染相同的结果，那么你可以通过将其包装在 React.memo 中调用。
 
 使用方式：
 ```
@@ -126,5 +126,17 @@ export default React.memo(function twentyChild(props) {
 ```
 
 **补充：** React.PureComponent在比较组件前后状态是否相等的时候使用的是一种浅比较（基础值类型比较是否相等，引用类型比较健值对）
+
+## 使用React.pureComponent提升类组价的性能
+
+React.pureComponent与React.memo功能类似(避免比必要的重新渲染，所有的生命周期都不会执行)，不过前者是针对类组件，后者是针对函数组件
+
+实现原理：对父组件的props，以及自己内部的state值，使用**shouldComponentUpdate(nextProps, nextState)**来进行浅比较，判读是否需要更新
+
+**使用条件：**
+
+- 要state, props是一个比较简单的基本类型数据（因为只会简单的比较键值是否相等）
+
+>如果数据结构太复杂可能不会监测到变化；假设数据结构就是很复杂，但是又使用到了pureComponent，我们需要在修改父组件state中那个用于子组件的props，每一次都是返回一个新的引用（新数组[]，新的对象{}）
 
 参考链接：[React中PureComponent的浅比较](<https://www.jianshu.com/p/0d0587fc33de>)
