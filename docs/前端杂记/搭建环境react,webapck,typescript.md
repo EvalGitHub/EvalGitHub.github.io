@@ -226,6 +226,7 @@ module.exports = {
       loader: 'url-loader',
       options: {
         outputPath: 'assets/',
+        publicPath:  `${config.buildtime.cdn_path}assets`,
         limit: 20024, // 20kb(20*1024)
         name: '[name].[ext]'
       }
