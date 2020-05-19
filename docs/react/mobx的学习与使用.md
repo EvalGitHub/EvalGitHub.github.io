@@ -215,13 +215,11 @@ class Store {
 
 [常用与异步处理](<https://cn.mobx.js.org/best/actions.html>)
 
-
-
-
 ## 使用mobx的理由
 
 1. 使用mobx+react项目类似与vue，可以在数据状态更新之后立即获取最新的值（不存在setState的异步问题）
 2. 如果状态值没有更新就不会触发组件的重新渲染，省去了shouldComponentUpdate/immutable.js这几个优化操作
+3. 对比redux较简单，而且不需要其他的中间件（例如react-redux， redux-saga）
 
 ## observer 函数/装饰器可以用来将 React 组件转变成响应式组件
 

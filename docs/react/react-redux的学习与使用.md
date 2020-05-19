@@ -48,8 +48,8 @@ export default connect(
 ## mapStateToProps
 
 他是一个函数，建立一个从state对象到（ui组件）props对象的映射关系；字面意思就是把state映射到props中去，其实是把redux中的数据映射到React的props中去。单纯的只使用redux，如果想获取redux中的数据，方式是store.getState()。
-```
 
+```
 const mapStateToProps = function(store) {
   return {
     temData: store.changeDataReducer

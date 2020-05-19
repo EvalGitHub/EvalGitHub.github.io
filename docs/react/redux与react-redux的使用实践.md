@@ -6,11 +6,15 @@ redix是有个状态管理工具库，可以用于很多框架(vue，angular，j
 ### 单一数据原则
 
 整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中
+
+> 控制数据涞源，便于数据维护
+
 ```
 console.log(store.getState())
 ```
 
-### state 是只读的
+### state是只读的，只能通过action来修改
+
 唯一改变 state 的方法就是触发(dispatch)一个 action去修改state，action 是一个用于描述已发生事件的普通对象，每一次都返回一个新的state
 ```
 store.dispatch({
@@ -22,14 +26,17 @@ store.dispatch({
   filter: 'SHOW_COMPLETED'
 })
 ```
+> 约定修改state的方式只能是action，便于问题追踪
 
-### 使用纯函数来执行修改
-为了描述 action 如何改变 state tree ，你需要编写 reducers
+### 使用纯函数来执行修改state
+
+为了描述 action 如何改变 state tree ，你需要编写 reducers，并且他必须是纯函数
+
 ```
 function visibilityFilter(state = 'SHOW_ALL', action) {
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
-      return action.filter
+      return { ...action.filter }
     default:
       return state
   }
@@ -37,6 +44,11 @@ function visibilityFilter(state = 'SHOW_ALL', action) {
 import { combineReducers } from 'redux';
 let reducer = combineReducers({ visibilityFilter });
 ```
+> 使用纯函数保证相同的输入得到相同的输出，保证状态的可预测性。
+
+### 如果有修改就返回一个新的对象，否则就返回初始化state
+
+因为redux在进行状态对比时候只是一个浅比较（key, value的比较）, 如果redux发现返回的值没变则返回原来的state
 
 **项目中实际运用：**
 

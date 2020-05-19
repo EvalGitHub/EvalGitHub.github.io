@@ -18,7 +18,6 @@ module.exports = {
     "/react/react中setState异步思想",
     "/react/redux与react-redux的使用实践",
     "/react/redux-saga的学习与使用",
-    "/react/redux常见问题理解与分析",
     "/react/mobx的学习与使用",
     "/react/使用errorboundary优化错误处理",
   ],
