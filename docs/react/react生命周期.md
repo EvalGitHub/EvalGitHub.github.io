@@ -215,10 +215,6 @@ componentWillUnmount
 
 [你应该知道的requestIdleCallback](<https://juejin.im/post/5ad71f39f265da239f07e862>)
 
-
-
-
-
 [生命周期示意图](<http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>)
 
 [官网描述](<https://zh-hans.reactjs.org/docs/react-component.html#mounting>)
