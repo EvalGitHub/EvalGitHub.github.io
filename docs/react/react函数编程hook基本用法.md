@@ -334,7 +334,7 @@ const Example:React.FC<InitProps> = (props:InitProps) => {
 
 ```
 export default function App() {
-  const [flag, setFlag] = React.useState(false);
+  const [flag, setValue] = React.useState(false);
   function dealClick() {
     setValue(!flag);
     timer = window.setTimeout(() => {
@@ -357,12 +357,12 @@ export default function App() {
 
 ```
 export default function App() {
-  const [flag, setFlag] = React.useState(false);
+  const [flag, setValue] = React.useState(false);
   const valueRef = React.useRef(flag); 
   valueRef.current = flag;
 
   function dealClick() {
-    setFalg(!valueRef.current); 
+    setValue(!valueRef.current); 
     timer = window.setTimeout(() => {
       setValue(!valueRef.current);
     }, 1000);

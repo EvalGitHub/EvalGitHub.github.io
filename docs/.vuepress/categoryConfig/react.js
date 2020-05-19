@@ -19,6 +19,7 @@ module.exports = {
     "/react/redux与react-redux的使用实践",
     "/react/redux-saga的学习与使用",
     "/react/mobx的学习与使用",
+    "/react/mobx-react的使用",
     "/react/使用errorboundary优化错误处理",
   ],
   sidebarDepth: 2, // 默认是1: 提取h2标题 0: 禁用headers链接 2: 提取h2, h3标题
