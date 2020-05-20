@@ -3,7 +3,7 @@
 ## 使用注意
 
 - 如果项目中存在class components就使用mobx-react@5
-- 如果项目中既有class components，hooks就使用mobx-react@6 (包含mobx-react-lite)
+- 如果项目中既有class components 和 hooks就使用mobx-react@6 (包含mobx-react-lite)
 - 如果项目中没有class components就使用mobx-react-lite
 
 **note：**
@@ -66,7 +66,7 @@ export const SmartTodo = () => {
 
 ## 区别Observer, useObserver, observer
 
-没什么本质区别，只是写法不一样
+没什么本质区别，只是写法不一样（Observer, useObserver只能在组件内部使用）
 
 ```
 import { observable } from 'mobx'
@@ -101,5 +101,61 @@ setTimeout(() => {
 }, 1000)
 ```
 
+## 实战例子
 
-https://mobx-react.js.org/recipes-migration
+1. 创建一个store [counter_store.tsx]
+
+```
+import { observable, action, computed } from 'mobx';
+export class CounterStore {
+  @observable 
+  count = 0;
+
+  @action
+  increment() {
+    this.count++:
+  }
+
+  @action 
+  decrement() {
+    this.count--;
+  }
+
+  @computed
+  get doubleCount() {
+    return this.count *2;
+  }
+}
+```
+2. 然后在全局context上注册store [store.tsx]
+
+```
+import React from 'react';
+import { CounterStore } from "./counter_store";
+
+export const storeContext = React.createContext({
+  counterStore: new CounterStore()
+})
+
+export const useStores = () => React.useContext(storeContext);
+```
+3. 然后在组件中使用这个context
+
+```
+import React from "react";
+import { observer } from "mobx-react";
+import { useStores } from "../store";
+
+export const Counter = observer(() => {
+  const { counterStore } = useStores();
+  return (
+    <>
+      <div>{counterStore.count}</div>
+      <button onClick={() => counterStore.increment()}>++</button>
+      <button onClick={() => counterStore.decrement()}>--</button>
+    </>
+  );
+});
+```
+
+[实践例子](<https://codesandbox.io/s/mobx-reactpeihecontextdeshiyongfangfa-1hol6?file=/src/component/friend_make.tsx>)，[mobx-react教程](<https://mobx-react.js.org/recipes-migration>)
