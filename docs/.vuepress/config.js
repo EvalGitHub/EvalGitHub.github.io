@@ -13,10 +13,8 @@ module.exports = {
   description: '学习总结',
   dest: './dist',
   themeConfig: {
-    // serviceWorker: {
-    //     updatePopup: true 
-    // },
-    //  repo: 'vuejs/vuepress',
+    lastUpdated: 'Last Updated',
+    logo: '../assets/logo.png',
     nav: [
       { text: 'react', link: '/react/' },
       { text: 'vue', link: '/vue/' },
