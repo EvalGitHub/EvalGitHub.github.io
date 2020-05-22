@@ -32,6 +32,9 @@
 
   > 确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。
 
+**因为react hook的内部实现是方式是使用链表来记录每个hook的执行顺序的；如果在条件语句等非react组件顶层声明的hok会导致记录顺序出错。**
+
+[react hook原理](<https://www.jianshu.com/p/b9ac8fa849f1>)
 
 ## useState
 > import React, { useState } from 'react';
