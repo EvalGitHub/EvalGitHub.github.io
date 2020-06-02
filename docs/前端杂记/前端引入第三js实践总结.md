@@ -123,3 +123,46 @@ fs.writeFileSync('./build/index.html', newHtml, 'utf8',
   });
 ```
 
+## 使用HtmlWebpackPlugin提供的hook
+
+HtmlWebpackPlugin这个插件是用于为webpack打包文件提供服务的，生成简易模板，可以挂载script标签，css link标签。
+
+他提供了些许hook，我们可以利用某些hook做动态插入script的需求。
+
+[htmlWebpackPlugin的hook](https://github.com/jantimon/html-webpack-plugin#events)
+
+### 创建一个webpack插件用于动态插入script
+
+- 创建html-alert-plugin
+
+```
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+class HtmlAlertPlugin {
+  apply(compiler) {
+    compiler.hooks.complition.tap('HtmlAlertPlugin', (compiltion) => {
+      HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync('HtmlAlertPlugin', (data, cb) => {
+        data.html = data.html.replace(/<\/head>/, '<script src="https:some.name.link.js"></script>')
+        cb(null, data)
+      })
+    })
+  }
+}
+module.exports = HtmlAlertPlugin
+```
+
+- 插件应用
+
+```
+plugins: [
+  new HtmlWebpackPlugin({
+    template: './index.html', // 文件模板
+    filename: `index.html`, // 生成的文件名
+    chunks: ['vendors', 'main'] // 需要引入的模块js
+  }),
+  new HtmlAlertPlugin(),
+]
+```
+
+
+
