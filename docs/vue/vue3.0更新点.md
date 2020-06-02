@@ -21,6 +21,12 @@
   （v2.0中对于数组的侦测需要使用vue改写的8种数组操作API push，pop，shift，unshift，splice，sort，reverse, 针对对象使用$set来处理），但是总是不优雅，
   改写Array的原生api，$set的重新添加侦测。
 
+5. 性能提升
+  重新写了虚拟dom的实现，编译模板的优化（将模板划分为静态节点，非静态节点，静态节点是不参与分析与diff的，而是直接复用） 
+
+6. tree shaking的支持
+  很多时候我们可能不需要vue的所有功能个（比如v-model, transition）,vue3将做到按需加载
+
 **setup**
 
 - 释意：这是一个新提出的组件属性，充当整个组件的入口，在组件属性初始化的时候会调用，早于beforeCreate生命周期。
@@ -244,7 +250,10 @@ DOM重新渲染。
 
 [Why remove time slicing from vue3?](https://github.com/vuejs/rfcs/issues/89)
 
-
-
 参考：
+
 https://vue-composition-api-rfc.netlify.com/api.html#setup
+
+https://juejin.im/post/5e9f6b3251882573a855cd52#heading-24
+
+[Vue3 究竟好在哪里？（和 React Hook 的详细对比）](https://juejin.im/post/5e9ce011f265da47b8450c11#heading-9)

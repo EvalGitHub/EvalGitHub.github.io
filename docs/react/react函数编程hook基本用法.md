@@ -69,12 +69,22 @@ export function Example () {
 ```
 > 如果我们想要在 state 中存储两个不同的变量，只需调用 useState() 两次即可。
 
-useState可以传入函数
+传入函数
 
 ```
 setState(prevState => { // 可以拿到上一次的 state 值
   // 也可以使用 Object.assign
   return {...prevState, ...updatedValues};
+});
+```
+**惰性的初始化**
+
+>该initialState参数是在初始渲染中使用的状态。在后续渲染中，将忽略它。如果初始状态是昂贵的计算结果，则可以提供一个函数，该函数仅在初始渲染器上执行：
+
+```
+const [state, setState] = useState(() => {
+  const initialState = someExpensiveComputation(props);
+  return initialState;
 });
 ```
 
@@ -490,7 +500,19 @@ const expensiveCount = useMemo(() => {
 
 useCallback(fn, deps) 相当于 useMemo(() => fn, deps)。
 
-[react中useMemo的用法](<https://blog.csdn.net/hesongGG/article/details/84347484>)
+[react中useMemo的用法](https://blog.csdn.net/hesongGG/article/details/84347484)
 
-https://zhuanlan.zhihu.com/p/65773322
-https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d
+
+[useEffect使用指南
+](https://zhuanlan.zhihu.com/p/65773322)
+
+[React Hooks 详解 【近 1W 字】+ 项目实战](https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d)
+
+
+[react hook进阶](https://juejin.im/post/5ec7372cf265da76de5cd0c9?utm_source=gold_browser_extension#heading-14)
+
+
+[使用 React Hooks 的心智负担](https://www.zhihu.com/question/350523308/answer/858145147)
+
+
+
