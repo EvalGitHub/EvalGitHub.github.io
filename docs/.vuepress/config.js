@@ -7,6 +7,7 @@ const FlutterConfig = require('./categoryConfig/flutter');
 const H5 = require('./categoryConfig/h5');
 const WebSafe = require('./categoryConfig/webSafe');
 const Http = require('./categoryConfig/http');
+const Node = require('./categoryConfig/node');
 const FinancialManageConfig = require('./categoryConfig/financialManage');
 module.exports = {
   title: '个人主页',
@@ -43,6 +44,7 @@ module.exports = {
       { ...H5 },
       { ...WebSafe },
       { ...Http },
+      {...Node}
       // { ...FinancialManageConfig },
     ]
 
