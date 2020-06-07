@@ -2,13 +2,15 @@
 
 ## 为什么需要base64
 
-最开始消息传递都是英文，后面随着全世界加入互联网各种字符（中文，日文，韩文）等的出现，在消息传递中不能被有效的处理会出现乱码的问题，base就是一种解决方案。
+计算机中的字节共有256个组合，对应就是ascii码，而ascii码的128～255之间的值是不可见字符。而在网络上交换数据时，比如说从A地传到B地，往往要经过多个路由设备，由于不同的设备对字符的处理方式有一些不同，这样那些不可见字符就有可能被处理错误，这是不利于传输的。所以就先把数据先做一个Base64编码，统统变成可见字符，这样出错的可能性就大降低了
 
 ## base64的使用场景
 
 网页url，cookie/token，以及文件上传，base64的格式图片
 
 ## 原理
+
+>Base64编码本质上是一种**将二进制数据转成文本数据**的方案。对于非二进制数据，是先将其转换成二进制形式，然后每连续6比特（2的6次方=64）计算其十进制值，根据该值在上面的索引表中找到对应的字符，最终得到一个文本字符串
 
 1. 先将待转化的目标字符串按照每三个字节为一组转化为二进制，不够八位的前面补零，会得到每组24个进制位
 
@@ -136,3 +138,5 @@ function strChangeToBase64Str(str) {
 
 **参考：**
 [一篇文章彻底弄懂Base64编码原理](https://blog.csdn.net/wo541075754/article/details/81734770?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase)
+
+[为什么要使用base64编码，有哪些情景需求?](https://www.zhihu.com/question/36306744)
