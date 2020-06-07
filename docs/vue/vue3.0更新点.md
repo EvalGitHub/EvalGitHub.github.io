@@ -252,8 +252,8 @@ DOM重新渲染。
 
 参考：
 
-https://vue-composition-api-rfc.netlify.com/api.html#setup
+[vue-composition-api](https://vue-composition-api-rfc.netlify.com/api.html#setup)
 
-https://juejin.im/post/5e9f6b3251882573a855cd52#heading-24
+[尤雨溪在Vue3.0 Beta直播里聊到了这些…](https://juejin.im/post/5e9f6b3251882573a855cd52#heading-24)
 
 [Vue3 究竟好在哪里？（和 React Hook 的详细对比）](https://juejin.im/post/5e9ce011f265da47b8450c11#heading-9)
