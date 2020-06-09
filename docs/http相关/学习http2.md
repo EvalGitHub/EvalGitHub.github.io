@@ -1,4 +1,4 @@
-# http2与http1.1, http3的不同
+# http2g的新特新
 
 ## http2与http1.1不同
 
@@ -56,6 +56,9 @@ Dynamic Table：
 
 HPACK不仅仅是通过索引值来降低请求头部数据量，同时还会将字符串进行**霍夫曼编码**来压缩字符串大小
 
+[哈夫曼编码的理解(Huffman Coding)](https://zhuanlan.zhihu.com/p/75048255)
+[哈夫曼压缩算法](https://www.cnblogs.com/daoluanxiaozi/archive/2011/12/26/2302464.html)
+
 ### 服务端推送（缓存推送）
 
 当一个客户端请求资源X时候，服务器知道他很有可能也需要资源Z，于是服务器可以在客户端请求之前主动将资源Z推送给客户端，客户端将其放进缓存以备将来之需。
@@ -73,8 +76,6 @@ HPACK不仅仅是通过索引值来降低请求头部数据量，同时还会将
 
 [HTTP/2 新特性浅析](http://io.upyun.com/2015/05/13/http2/)
 
-
-[HTTP/2 相比 1.0 有哪些重大改进？
-](https://www.zhihu.com/question/34074946)
+[HTTP/2 相比 1.0 有哪些重大改进？](https://www.zhihu.com/question/34074946)
 
 [http2 gitbook]https://ye11ow.gitbooks.io/http2-explained/content/part3.html
