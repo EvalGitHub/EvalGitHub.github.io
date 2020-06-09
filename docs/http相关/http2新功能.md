@@ -1,4 +1,4 @@
-# http2g的新特新
+# http2新功能
 
 ## http2与http1.1不同
 
