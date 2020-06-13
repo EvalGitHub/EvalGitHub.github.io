@@ -1,7 +1,5 @@
 # http2新功能
 
-## http2与http1.1不同
-
 http2是一个二进制协议，http1.1是文本协议
 
 ### http2多路复用 (Multiplexing)
