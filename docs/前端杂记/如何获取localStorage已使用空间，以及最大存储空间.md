@@ -6,11 +6,15 @@
 function getUsedSize() {
   let count = 0;
   Object.keys(localStorage).forEach(itmeKey => {
-    count += localStorage[itmeKey].size;
+    count += localStorage[itmeKey].length;
   })
   console.log(count / 1024 / 1024 + 'M');
 } 
 ```
+
+英文和数字占一个字节(bit)，1024bit = 1kb ，1024kb = 1G 
+中文占一个字符，也就是两个字节
+一个字节等于 8 位。所有的数据所占空间都可以用字节数来衡量。例如一个字符占 2 个字节，一个 int 占 4 个字节，一个 double 占 8 个字节 等等。
 
 ## 全部空间
 
