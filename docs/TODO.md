@@ -1,7 +1,5 @@
 3. ssr next https://juejin.im/post/5def0816f265da33aa6aa7fe
 
-5. react优化，以及redux的优化
-
 6. serverless
 
 7. docker
@@ -19,3 +17,9 @@ https://github.com/danistefanovic/build-your-own-x
 
 web -> node -> 服务器
 
+11. flutter/weex/rn
+https://www.jianshu.com/p/885f0ec32b34
+
+12. webpack执行流程
+
+service work
