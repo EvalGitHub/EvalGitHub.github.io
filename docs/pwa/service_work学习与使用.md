@@ -12,12 +12,6 @@ service_work可以很好的对**资源缓存**和**自定义网络请求**进行
 - 相比localstorage，cache而言，service_work是运行在worker上下文，因此不能访问DOM，不会造成阻塞，使用异步来完成任务
 - 只支持HTTPS，或者local本地开发（因为service_work会提供修改网络请求的能力，所以需要避免中间人攻击）
 
-### 使用场景
-TODO:
-
-## 发展历史？
-TODO:
-
 ## service的基础认知
 
 - [cache](https://developer.mozilla.org/zh-CN/docs/Web/API/Cache)
@@ -54,20 +48,45 @@ TODO:
 
 ### 生命周期
 
->下载-> 安装 -> 激活
+>解析成功，正在安装，安装成功，正在激活，激活成功，废弃
 
-1. service worker URL 通过 serviceWorkerContainer.register() 来获取和注册。
-2. 如果注册成功，service worker 就在 ServiceWorkerGlobalScope 环境中运行； 这是一个特殊类型的 woker 上下文运行环境，与主运行线程（执行脚本）相独立，同时也没有访问 DOM 的能力。
-3. 受 service worker 控制的页面打开后会尝试去安装 service worker。最先发送给 service worker 的事件是安装事件
-4. 当 oninstall 事件的处理程序执行完毕后，可以认为 service worker 安装完成了。
-5. 下一步是激活。当 service worker 安装完成后，会接收到一个激活事件(activate event)。 onactivate 主要用途是清理先前版本的service worker 脚本中使用的资源。
-6. ervice Worker 现在可以控制页面了
+- 解析
+当serviceWork.register执行成功之后，只是代表注册的service worker文件解析成功，不代表安装或者激活了
 
-**note** 如果是首次启动service work页面会首先尝试安装，安装成功之后会被激活。
+- 安装中
+注册完之后，service worker会转入installing状态，触发onInstall状态（可以在其中做些静态资源缓存的操作）
+
+- 已安装
+onInstall处理完成之后，状态变为installed，此时service worker处理等待状态，可以手动调用self.skipWating
+或者重新打开页面进行激活（第一次安装之后会自动触发激活）
+
+- 激活中
+激活状态下会触发onActivate事件，可以在其中处理一些旧版本资源删除操作，在此状态下手动调用self.client.claim()，
+相关页面会立即被新的service work线程控制。
+
+- 已激活
+onActivate事件中处理逻辑完成之后，状态变为已激活。
+
+- 废弃
+安装失败，激活失败会导致当前注册的service worker线程废弃；新的service worker线程激活成功，会导致旧的serive worker线程废弃
+
+**note:** 如果是首次启动service work页面会首先尝试安装，安装成功之后会被激活。
 如果现有的service work已经启用，新版本会在后台安装，但是不会被激活，处于woker in waiting，直到所有加载的页面不再使用旧的service work才会激活
 新的service work（active worker）。
 
-## service的项目使用
+## service work线程的退出
+
+service worker并不会一直运行，在以下条件会停止，节省系统资源
+
+- service worker文件中存在异常（js语法错误，service worker文件激活失败，线程执行存在未捕获的异常）
+
+- service worker线程监听事件函数是否处理完成，变为空闲状态，service workerh会自动退出
+
+- service worker执行时间过长，会自动退出（service workerJS执行时间超过30s，fetch请求超过5分钟）
+
+- 浏览器会周期性的检查service worker线程是否可以退出（在启动线程30s之后会检查，关闭空闲超过30s的线程）
+
+## service_work理想缓存的项目使用
 
 1. 注册你的worker
 

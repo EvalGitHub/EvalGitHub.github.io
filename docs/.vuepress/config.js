@@ -9,6 +9,7 @@ const WebSafe = require('./categoryConfig/webSafe');
 const Http = require('./categoryConfig/http');
 const Node = require('./categoryConfig/node');
 const FinancialManageConfig = require('./categoryConfig/financialManage');
+const Pwa = require('./categoryConfig/pwa');
 module.exports = {
   title: '个人主页',
   description: '学习总结',
@@ -44,7 +45,8 @@ module.exports = {
       { ...H5 },
       { ...WebSafe },
       { ...Http },
-      {...Node}
+      {...Node},
+      {...Pwa}
       // { ...FinancialManageConfig },
     ]
 
