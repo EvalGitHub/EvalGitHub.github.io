@@ -201,4 +201,11 @@ self.addEventListener("activate", function(e) {
 });
 ```
 
+**note**
+
+使用servive worker用户第一次访问页面的时候，资源请求时早与service worker安装的，所以静态资源是无法缓存的，
+只有当用户第二次访问时，这些资源才会被缓存。
+
+[service worker的使用](https://developers.google.com/web/fundamentals/primers/service-workers/registration)
+
 [如何使用service work](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers)
