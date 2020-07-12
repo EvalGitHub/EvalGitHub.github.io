@@ -1,0 +1,35 @@
+=<html>
+	<head>
+		<style type="text/css">
+			#test2 {
+				margin-top: 100px;
+				width: 100px;
+				height: 100px;
+				position: relative;
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<p> 
+			eee这是一段无用的文字，这是一段无用的文字，这是一段无用的文字，这是一段无用的文字，这是一段无用的文字，这是一段无用的文字
+		</p>
+		<div id="test2"></div>
+		<script type="text/javascript">
+			window.onload = function() {
+				const el = document.getElementById('test2');
+				let left = 0;
+        const startTimeStamp = Date.now();
+				const fn = function() {
+					left += 2;
+					if(Date.now() - startTimeStamp > 2000) {
+            return;
+          }
+					el.style.left = left + 'px';
+					return window.requestAnimationFrame(fn);
+				}
+				window.requestAnimationFrame(fn)
+			}
+		</script>
+	</body>
+</html>

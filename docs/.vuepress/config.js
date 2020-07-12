@@ -10,6 +10,7 @@ const Http = require('./categoryConfig/http');
 const Node = require('./categoryConfig/node');
 const FinancialManageConfig = require('./categoryConfig/financialManage');
 const Pwa = require('./categoryConfig/pwa');
+const Browser = require('./categoryConfig/browser');
 module.exports = {
   title: '个人主页',
   description: '学习总结',
@@ -46,7 +47,8 @@ module.exports = {
       { ...WebSafe },
       { ...Http },
       {...Node},
-      {...Pwa}
+      {...Pwa},
+      {...Browser}
       // { ...FinancialManageConfig },
     ]
 
