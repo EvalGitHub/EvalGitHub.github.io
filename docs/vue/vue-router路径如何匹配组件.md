@@ -67,7 +67,7 @@ History.prototype.updateRoute = function updateRoute (route) {
 ```
 在组件RouterView中根据current获取对应的组件信息，然后重新渲染
 
-**到目前为止我们已经能正确获取到当前路由的对应组件信息，那怎么实现，routerView的视图更新呢？？**
+### 到目前为止我们已经能正确获取到当前路由的对应组件信息，那怎么实现，routerView的视图更新呢？？
 
 先看
 ```
