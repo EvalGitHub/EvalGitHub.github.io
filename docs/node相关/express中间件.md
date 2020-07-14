@@ -59,7 +59,7 @@ app.use(cookieParser())
 
 > 中间件是一个**函数模块**，他可以修改request object, response object；结束request-response循环，调用stack中的下一个中间件。
 
-如果当前中间件没有并不打算结束整个request-response cycle，需要调用**next()**将控制权交给下一个中间件，否则将会使得请求挂起。
+如果当前中间件没有并不打算结束整个request-response cycle，需要调用 **next()** 将控制权交给下一个中间件，否则将会使得请求挂起。
 
 如果不指定路径，那么就意味着每一个请求都会触发这个中间件。
 
@@ -85,8 +85,9 @@ fn1 -> fn2 -> fn3 -> fn4 -> fn5 -> fn6；
 
 下面这个中间件来自项目中的需求，
 
-背景：在网页访问这个页面，而且在页面渲染之前需要判断某个活动的类型，对应前端返回不同的页面组件
-方案：在server层获取路径，拿到活动id调用接口判断类型，做路径处理
+**背景：**在网页访问这个页面，而且在页面渲染之前需要判断某个活动的类型，对应前端返回不同的页面组件
+
+**方案：**在server层获取路径，拿到活动id调用接口判断类型，做路径处理
 
 ```
 const app_config = require('../config')()
@@ -205,7 +206,7 @@ app.use = function use(fn) {
 ```
 app.lazyrouter = function lazyrouter() {
   if (!this._router) {
-    this._router = new Router({ // 使用Router进行示例话
+    this._router = new Router({ // 使用Router进行实例化
       caseSensitive: this.enabled('case sensitive routing'),
       strict: this.enabled('strict routing')
     });
