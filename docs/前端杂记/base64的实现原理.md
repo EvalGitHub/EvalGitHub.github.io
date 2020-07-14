@@ -52,6 +52,8 @@ let matchBaseObj = {
 
 - 将字符串转化为二进制（补全八位）
 
+1111 -> 00001111
+
 ```
 // 返回二进制str补全八位，返回目标字符串的二进制字符串
 function getTranslateVal(num, ascii=2) {
@@ -65,6 +67,8 @@ function getTranslateVal(num, ascii=2) {
 ```
 
 - 将二进制字符串%6取余，末尾补0
+
+111 -> 111000
 
 ```
 // 二进制字符串补位6位（不够就在后面补0）
