@@ -58,14 +58,56 @@ return {
 ```
 History.prototype.updateRoute = function updateRoute (route) {
   var prev = this.current;
-  this.current = route;
-  this.cb && this.cb(route);
+  this.current = route; 
+  this.cb && this.cb(route); 
   this.router.afterHooks.forEach(function (hook) {
     hook && hook(route, prev);
   });
 };
 ```
 在组件RouterView中根据current获取对应的组件信息，然后重新渲染
+
+**到目前为止我们已经能正确获取到当前路由的对应组件信息，那怎么实现，routerView的视图更新呢？？**
+
+先看
+```
+Vue.mixin({
+  beforeCreate: function beforeCreate () {
+    if (isDef(this.$options.router)) {
+      this._routerRoot = this;
+      this._router = this.$options.router;
+      this._router.init(this); 
+      Vue.util.defineReactive(this, '_route', this._router.history.current);
+    } else {
+      this._routerRoot = (this.$parent && this.$parent._routerRoot) || this;
+    }
+    registerInstance(this, this);
+  },
+  ....
+  .....
+});
+```
+
+这里可以很清楚的看到将vue的“_route”属性定义为响应式的，因此这个“_route”只要发生改变就会触发视图的的更新
+
+this.cb && this.cb(route); 的实现关键代码
+
+```
+// 定义listen
+History.prototype.listen = function listen (cb) {
+  this.cb = cb;
+};
+
+// init中调用
+
+history.listen(route => { // 
+  this.apps.forEach((app) => { // apps是vue实例
+    app._route = route
+  })
+})
+```
+
+**router-view的核心代码**
 
 ```
 // 这里这是关键代码
@@ -78,6 +120,10 @@ var component = cache[name] = matched.components[name];
 .....
 return h(component, data, children)
 ```
+
+ 
+
+
 
 ## 自己实现一个简易的vue-router
 
