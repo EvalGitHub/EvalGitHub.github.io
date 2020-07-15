@@ -22,4 +22,22 @@ https://www.jianshu.com/p/885f0ec32b34
 
 12. webpack执行流程
 
-service work
+
+angularjs脏值检查的原理，$apply实现原理
+
+vue渲染异步原理（会立即执行渲染吗）
+
+setState的实现
+
+强缓存与协商缓存的使用场景，以及与service work的区别
+接口怎么做缓存
+service worker的原理
+
+amd, cmd，umd, esmodule, commonjs模块方式
+
+为什么css不放在body底部
+
+模块懒加载的原理
+
+
+
