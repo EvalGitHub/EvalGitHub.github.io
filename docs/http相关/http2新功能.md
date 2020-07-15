@@ -40,7 +40,7 @@ Frame 由 Frame Header 和 Frame Payload 两部分组成。不论是原来的 HT
 
 随着页面资源的个数增加，cookies和请求的大小都会增加，有必要对其进行压缩。
 
-http1.1不支持http收不压缩，为此SPDY和HTTP/2应运而生，而HTTP2使用的是[HPACK](http://http2.github.io/http2-spec/compression.html)算法, SPDY使用的是[DEFLATE](https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/DEFLATE)算法
+http1.1不支持http首部压缩，为此SPDY和HTTP/2应运而生，而HTTP2使用的是[HPACK](http://http2.github.io/http2-spec/compression.html)算法, SPDY使用的是[DEFLATE](https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/DEFLATE)算法
 
 SPDY是谷歌公司开源的一个对HTTP1.1优化的项目，http2摄取了其很多优点。（首部压缩算法不同）
 
