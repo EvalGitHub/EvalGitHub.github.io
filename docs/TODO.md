@@ -35,8 +35,6 @@ service worker的原理
 
 amd, cmd，umd, esmodule, commonjs模块方式
 
-为什么css不放在body底部
-
 模块懒加载的原理
 
 
