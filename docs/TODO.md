@@ -27,16 +27,13 @@ https://www.jianshu.com/p/885f0ec32b34
 service worker持续学习
 
 
-angularjs脏值检查的原理，$apply实现原理
-
-vue渲染异步原理（会立即执行渲染吗）
+vue渲染异步原理实现（会立即执行渲染吗）
 
 setState的实现
 
 接口怎么做缓存
 nodejs怎么控制缓存时间
 
-amd, cmd，umd, esmodule, commonjs模块方式及区别
 
 模块懒加载的原理
 
