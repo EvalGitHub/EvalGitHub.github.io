@@ -39,6 +39,9 @@ nodejs怎么控制缓存时间
 
 模块懒加载的原理（import的实现原理）
 
+
+怎么解决history刷新丢失的问题
+
 react/diff与vue diff的区别，以及虚拟过程
 
 
