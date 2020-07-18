@@ -22,4 +22,29 @@ https://www.jianshu.com/p/885f0ec32b34
 
 12. webpack执行流程
 
-service work
+
+
+service worker持续学习
+
+
+vue渲染异步原理实现（会立即执行渲染吗）
+
+setState的实现
+
+接口怎么做缓存
+nodejs怎么控制缓存时间
+
+
+模块懒加载的原理
+
+模块懒加载的原理（import的实现原理）
+
+
+怎么解决history刷新丢失的问题
+
+react/diff与vue diff的区别，以及虚拟过程
+
+
+
+
+

@@ -2,7 +2,8 @@
 
 ## service_work原理？
 
-Service worker是一个**注册在指定源和路径下的事件驱动worker**。它采用JavaScript控制关联的页面或者网站，拦截并修改访问和资源请求，细粒度地缓存资源。可以完全控制应用在特定情形（最常见的情形是网络不可用）下的表现。
+Service worker是一个**注册在指定源和路径下的事件驱动worker**。它采用JavaScript控制关联的页面或者网站，拦截并修改访问和资源请求，细粒度地缓存资源。
+可以完全控制应用在特定情形（最常见的情形是网络不可用）下的表现。但是可以通过消息传递的方式（postMessage）与javascript主线程进行通信。
 
 ## 解决了什么问题及使用场景？其他方案，及对比其它方式的区别？
 
@@ -11,6 +12,7 @@ service_work可以很好的对**资源缓存**和**自定义网络请求**进行
 
 - 相比localstorage，cache而言，service_work是运行在worker上下文，因此不能访问DOM，不会造成阻塞，使用异步来完成任务
 - 只支持HTTPS，或者local本地开发（因为service_work会提供修改网络请求的能力，所以需要避免中间人攻击）
+- 相比于http缓存而言，service worker可以做到更加细粒度的缓存控制（可以指定缓存的文件），借助service worker可以实现离线访问应用
 
 ## service的基础认知
 
@@ -74,6 +76,17 @@ onActivate事件中处理逻辑完成之后，状态变为已激活。
 如果现有的service work已经启用，新版本会在后台安装，但是不会被激活，处于woker in waiting，直到所有加载的页面不再使用旧的service work才会激活
 新的service work（active worker）。
 
+## service worker的更新机制
+
+- 独立的更新进程，安装和更新都是独立的进程
+- 零客户时更新，用户关闭了所有旧版页面之后，新的worker才会被激活
+
+以下情况会导致service worker的更新
+
+- 注册了一个新的URL不同的service worker(多次 register() 同一个 Service Worker 不会触发更新)
+- 功能事件触发比如push/sync
+- 页面导航
+
 ## service work线程的退出
 
 service worker并不会一直运行，在以下条件会停止，节省系统资源
@@ -114,12 +127,13 @@ function useServiceWork() {
 
 ```
 var CACHE_NAME = 'my-site-cache_2ss003e'; // 缓存名字
-var urlsToCache = [ // 待缓存的内容
+var urlsToCache = [ // 待缓存的内容 （这个数组的内容是绝对或者相对地址）
   '/',
   '/index.js',
   '/assets/**.jpg'
 ];
 self.addEventListener('install', function(e) {
+  self.skipWaiting();
   e.waitUntil(
     caches.open(CACHE_NAME)
       .then(function(cache) {
@@ -148,7 +162,7 @@ self.addEventListener('fetch', function(e) {
       return fetch(fetchRequest).then(
         function(response) {
           if(!response || response.status !== 200 || response.type !== 'basic') { 
-            // 失败的请求，以及非自身发起的请求不进行缓存
+            // 失败的请求，以及跨域请求不进行缓存（一般指接口）
             return response;
           }
 
@@ -171,10 +185,15 @@ self.addEventListener('fetch', function(e) {
   );
 })
 ```
->caches.match(event.request) 允许我们对网络请求的资源和 cache 里可获取的资源进行匹配，
+> caches.match(event.request) 允许我们对网络请求的资源和 cache 里可获取的资源进行匹配，
 查看是否缓存中有相应的资源。这个匹配通过 url 和 vary header进行，就像正常的 http 请求一样。
 
->Response() 构造函数允许你创建一个自定义的 response
+> Response() 构造函数允许你创建一个自定义的response
+
+> response.type指的是响应类型，只读，取值包括
+ - basic: 同源响应
+ - cors: 跨域请求
+ - error: 网络错误
 
 ```
 new Response('<p>Hello from your friendly neighbourhood service worker!</p>', {
@@ -209,3 +228,5 @@ self.addEventListener("activate", function(e) {
 [service worker的使用](https://developers.google.com/web/fundamentals/primers/service-workers/registration)
 
 [如何使用service work](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+
+[w3c service worker](https://w3c.github.io/ServiceWorker/#service-worker-registration-update)

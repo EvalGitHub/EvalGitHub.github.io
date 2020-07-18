@@ -3,9 +3,19 @@
 <head> 
 <meta charset="utf-8"> 
 <title>菜鸟教程(runoob.com)</title> 
+<style>
+  .my-anim{
+      animation-duration: 5s;
+      animation-delay: 2s;
+      animation-iteration-count: infinite; 
+  }
+</style>
+
 </head>
 <body>
-
+  <h1 class="animated bounce delay-3s">animate.css怎么用？</h1>
+  <h1 class="animated infinite bounce delay-3s">animate.css怎么用？</h1>
+  <h1 class="my-anim animated bounce">animate.css怎么用？</h1>
 <form action="demo_form.php">
   First name: <input type="text" name="fname" value="John"><br>
   Last name: <input type="text" name="lname" value="Doe"><br>
@@ -28,6 +38,8 @@ function HtmlEncode(str) {
 	return '&lt;img src=@ onerror=alert(1234) /  &gt;';
 }
 </script>
+<link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.0/animate.compat.css" rel="stylesheet">
+
 </body>
 </html>
 
