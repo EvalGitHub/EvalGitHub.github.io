@@ -31,8 +31,6 @@ setState的实现
 
 接口怎么做缓存
 
-模块懒加载的原理
-
 模块懒加载的原理（import的实现原理）
 
 react/diff与vue diff的区别，以及虚拟过程
