@@ -83,17 +83,26 @@ onActivate事件中处理逻辑完成之后，状态变为已激活。
 
 以下情况会导致service worker的更新
 
-- 注册了一个新的URL不同的service worker(多次 register() 同一个 Service Worker 不会触发更新)
-- 功能事件触发比如push/sync
-- 页面导航
+如果cdn上一个资源更新了，前端使用了service_worker，该怎么做到网页更新了？？？
 
-## service work线程的退出
+- 注册一个新的service_worker
+
+  前端打包发版，使用一个新的service worker名字，注册一个新的service worker（多次注册同一个 Service Worker 不会触发更新）
+
+- 浏览器默认自己会去更新（这种情况下如果你的service worker文件没变化，仍然没反应，所以还是需前端发板）
+
+  默认情况下，Service Worker 文件必定会每24小时被下载一次，如果下载的文件是新文件，
+  那么它就会被重新注册和安装，但不会被激活，当不再有页面使用旧的 Service Worker 的时候，它就会被激活。 
+
+## service worker存储空间资源的大小
+
+## service worker线程的退出
 
 service worker并不会一直运行，在以下条件会停止，节省系统资源
 
 - service worker文件中存在异常（js语法错误，service worker文件激活失败，线程执行存在未捕获的异常）
 
-- service worker线程监听事件函数是否处理完成，变为空闲状态，service workerh会自动退出
+- service worker线程监听事件函数是否处理完成，变为空闲状态，service worker会自动退出
 
 - service worker执行时间过长，会自动退出（service workerJS执行时间超过30s，fetch请求超过5分钟）
 
