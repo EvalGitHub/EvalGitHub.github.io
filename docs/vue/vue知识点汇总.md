@@ -515,7 +515,7 @@ arr = ['jack', 'tom', 'hanson'];
 
 - 引入第三方库如果进行了初始化，在组件卸载之前（beforeDestory中）销毁初始化的实例；以及记得销毁setTimeout/setInterval实例子
 
-- 尽量使用v-show代替v-show，减少dom的重排
+- 尽量使用v-show代替v-if，减少dom的重排
 
 - 长列表数据懒加载，组件懒加载，路由分割减小文件体积
 
@@ -623,7 +623,7 @@ this.data = {
 
 ![avatar](../assets/object_defineReactive.png)
 
-# 使用proxy简单实现Object.defineProperty的数据侦测？
+## 使用proxy简单实现Object.defineProperty的数据侦测？
 
 ```
 var classInfo = {
