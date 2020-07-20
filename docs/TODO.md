@@ -38,8 +38,9 @@ nodejs怎么控制缓存时间
 
 react/diff与vue diff的区别，以及虚拟过程
 
-
 service  worker的大小，以及更新策略
+
+http2的push cache 
 
 
 
