@@ -27,17 +27,18 @@ service worker持续学习
 
 vue渲染异步原理实现（会立即执行渲染吗）
 
-setState的实现
-
 接口怎么做缓存
 
 模块懒加载的原理（import的实现原理）
 
 react/diff与vue diff的区别，以及虚拟过程
 
-service  worker的大小，以及更新策略
-
 http2的push cache 
+
+如何实现ease-in
+https://www.zhangxinxu.com/wordpress/2017/01/share-a-animation-algorithm-js/
+
+如何平滑滚动：https://juejin.im/post/5bcda4bf5188254ea0318d6a
 
 
 
