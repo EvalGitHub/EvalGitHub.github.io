@@ -38,7 +38,6 @@ http2的push cache
 如何实现ease-in
 https://www.zhangxinxu.com/wordpress/2017/01/share-a-animation-algorithm-js/
 
-如何平滑滚动：https://juejin.im/post/5bcda4bf5188254ea0318d6a
 
 
 

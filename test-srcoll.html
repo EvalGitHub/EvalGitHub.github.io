@@ -14,10 +14,15 @@
     white-space: pre-wrap;
     overflow: hidden;
   }
+  .test_btn {
+    position: absolute;
+    bottom: 0;
+  }
   </style>
   </head>
   
   <body>
+  <button class="test_btn" onclick="goToTop(document.scrollingElement, document.scrollingElement.scrollTop, 0 ,2, function() {alert('滚动成功');})">回到顶部</button>
   <div style="height:4000px;"></div>
   <div id="result" class="result"></div>
   <script>
@@ -27,7 +32,26 @@
     result.innerHTML = logs;
     result.scrollTop = 9999999;
   });
+  function goToTop(scrollEl, curPos, targetPos, rate, callback) {
+    var topFun = function() {
+      curPos = curPos + (targetPos - curPos) / rate;
+      if (curPos <= 1) {
+        scrollEl.scrollTop = 0;
+        callback && callback();
+        return;
+      }
+      scrollEl.scrollTop = curPos;
+      requestAnimationFrame(topFun);
+    }
+    topFun();
+  }
+  // topAction(
+  //   document.scrollingElement, 
+  //   document.scrollingElement.scrollTop, 
+  //   0, 2,
+  //   function () {
+  //     alert('已经到顶部了！！！');
+  //   }
+  // );
   </script>
-  
-  
-  </body></html>
+</body></html>
