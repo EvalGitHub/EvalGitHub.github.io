@@ -22,12 +22,7 @@ https://www.jianshu.com/p/885f0ec32b34
 
 12. webpack执行流程
 
-
 service worker持续学习
-
-vue渲染异步原理实现（会立即执行渲染吗）
-
-接口怎么做缓存
 
 模块懒加载的原理（import的实现原理）
 
@@ -38,6 +33,11 @@ http2的push cache
 
 如何实现ease-in
 https://www.zhangxinxu.com/wordpress/2017/01/share-a-animation-algorithm-js/
+
+
+
+
+
 
 
 
