@@ -98,8 +98,9 @@ export async function createElement () {
    console.log(_.join([1,2,4,5], "ABCD"))
  })
 ```
+[实现方式](https://webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules)
 
-<https://webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules>
+[webpack动态导入及预加载](https://evalgithub.github.io/webpack/%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5%E4%BB%A5%E5%8F%8A%E9%A2%84%E5%8A%A0%E8%BD%BD.html#import%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5%EF%BC%88%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2%EF%BC%89)
 
 ## css代码分割 MiniCssExtractPlugin
 
@@ -107,5 +108,42 @@ export async function createElement () {
 
 ## css压缩[optimize-css-assets-webpack-plugin]
 
-## tree shaking
+```
+new OptimizeCssAssetsPlugin({
+  assetNameRegExp: /\.css$/g,
+  cssProcessor: require('cssnano'),
+  cssProcessorOptions: {
+    safe: true,
+    discardComments: {
+      removeAll: true
+    }
+  },
+  canPrint: true
+}),
+```
 
+## [tree shaking](https://webpack.docschina.org/guides/tree-shaking/)
+
+打包时候去除冗余代码，去除第三方模块中没被使用到的代码
+
+依赖于ES2015的静态特性（import，export可做静态分析）
+
+- 必须满足
+  - 使用es2015模块语法
+  - 确保没有编辑器将你的ES2015模块语法转为CommonJS(将其设置为false)
+  - 在项目的 package.json 文件中，添加 "sideEffects" 属性
+  - 使用 mode 为 "production" 的配置项以启用更多优化项，包括压缩代码与 tree shaking
+
+package.json
+```
+sideEffect: false 
+// or
+"sideEffects": [
+  "**/*.css",
+  "**/*.scss",
+  "./esnext/index.js",
+  "./esnext/configure.js"
+],
+```
+如果设置为false标明所用的模块都会被treeShaking，可以使用数组
+形式指定不被treeShaking的文件
