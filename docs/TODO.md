@@ -15,9 +15,12 @@ https://www.zhihu.com/question/301860721/answer/724759264
 
 https://github.com/danistefanovic/build-your-own-x
 
+react解密
+https://react.iamkasong.com/preparation/oldConstructure.html#react15%E6%9E%B6%E6%9E%84
+
 web -> node -> 服务器
 
-11. flutter/weex/rn
+11. flutter/weex/rn 实现区别
 https://www.jianshu.com/p/885f0ec32b34
 
 12. webpack执行流程
@@ -34,6 +37,9 @@ http2的push cache
 如何实现ease-in
 https://www.zhangxinxu.com/wordpress/2017/01/share-a-animation-algorithm-js/
 
+
+
+ssr的seo问题
 
 
 
