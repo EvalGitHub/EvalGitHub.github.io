@@ -16,6 +16,11 @@ forceUpdate会导致组件重新执行render渲染，跳过shouldComponentUpdate
 
 说说结果并解析下原因
 ``  
+this.state = {
+  num: 0,
+  num2: 0,
+  value: 2
+};
 test = () => {
   for (let i = 0; i < 3; i++) {
     this.setState(prevState => {
@@ -55,13 +60,36 @@ render() {
 
   num3 2
 
-> 最终的界面显示：3 --- 1
+> 最终的界面显示：3 --- 
 
 [demo例子](https://codesandbox.io/s/setstatedeyibusixiang-b248j)
 
 - 分析：setState是异步执行的，并且test是react的合成事件，因此在不能立即获取最新的执行结果，所有num2,num都是0；而setTimeout
 是非合成事件尽管setState异步但是仍然能立即获取最新值；关于setSate的两种使用形式一种是传入函数（可以获取当前state之前的state），
 一种是传递对象。
+
+**思考拓展**
+
+```
+test = () => {
+  for (let i = 0; i < 10; i++) {
+    this.setState({
+      num: this.state.num + 1
+    });
+    this.setState(prevState => {
+      return {
+        num: prevState.num + 1
+      };
+    });
+    console.log("num", this.state.num);
+  }
+}
+```
+如果改成这样结果是什么样呢？
+
+>  2
+
+分析：因为第一个setState在执行的时候，总是会将num置为1，所以不管遍历多少次最终的返回结果都是第二个setState 加 1 返回 2
 
 ## 为什么setState要是异步？？
 
