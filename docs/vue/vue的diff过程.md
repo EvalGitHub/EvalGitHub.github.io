@@ -1,12 +1,12 @@
-# vue，react的diff
+# vue的diff过程
 
-相同点：vue和react使用虚拟dom（virtual DOM），只会在同一层级去比较，如果有变化直接删除当前虚拟dom节点，插入新的节点(而不是逐层搜索遍历的方式，所以复杂度只有O(n))
+相同点：vue和react使用虚拟dom（virtual DOM），只会在同一层级去比较，如果有变化直接删除当前虚拟dom节点，插入新的节点(而不是逐层搜索遍历的方式，所以复杂度只有O(n)，因为react.vue认为那种夸层级移动DOM的操作很少。
 
 ## vue的diff过程
 
 当时数据变化时，set方法会调用Dep.notify通知所有的订阅者Watcher，订阅者会调用patch给真实的DOM打补丁
 
-- 第一步：判断两个节点是不是相同的节点，如果不是则删除oldNode，插入新的节点
+### 第一步：判断两个节点是不是相同的节点，如果不是则删除oldNode，插入新的节点
 
 ```
 function patch (oldVnode, vnode) {
@@ -30,7 +30,7 @@ function sameVnode(oldVnode, vnode){
 }
 ```
 
-- 第二步：如果两个节点的el，以及key值相同就会去对比其字子节点
+### 第二步：如果两个节点的el，以及key值相同就会去对比其子节点
 
 具体过程如下：
 
@@ -67,10 +67,10 @@ patchVnode (oldVnode, vnode) {
 }
 ```
 
-- 第三步：非文本节点的updateChildren
+### 第三步：非文本节点的updateChildren
 
   1. 取出新旧节点的所有子节点oldCh, newCh，设置两个头尾的变量StartIndex, EndIndex，两两进行比较，如果有比较成功的就进行Vnode位置更新。
-  2. 如果设置了key值就会使用key值进行比较，在比较的过程中变量会往中间靠，一旦StartIndex > EndIx 表明oldCh和newCh至少有一个已经遍历完了，就会结束比较。
+  2. 如果设置了key值就会使用key值进行比较，在比较的过程中变量会往中间靠，一旦StartIndex > EndIx 表明oldCh和newCh至少有一个已经遍历完了，就会结束比较进行节点的删除或者直接添加。
 
 ```
 function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
@@ -165,5 +165,12 @@ function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly
   }
 }
 ```
-[vue2.0的算法](https://github.com/aooy/blog/issues/2)
+
+## 相比react diff的不同
+
+Vue diff使用的双向链表形式边对比，边更新DOM（starIndex, endIndex的使用）
+
+react 使用diff队列保存需要更新的DOM（从头到尾一一比较）得到patch树，在统一的批量更新DOM。
+
+[vue2.0的diff算法](https://github.com/aooy/blog/issues/2)，[vNode](https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown)
 
