@@ -9,24 +9,136 @@
 ### 第一步：判断两个节点是不是相同的节点，如果不是则删除oldNode，插入新的节点
 
 ```
-function patch (oldVnode, vnode) {
-	if (sameVnode(oldVnode, vnode)) {
-		patchVnode(oldVnode, vnode)
-	} else {  // 如果不是相同的父节点
-		const oEl = oldVnode.el
-		let parentEle = api.parentNode(oEl)
-		createEle(vnode)
-		if (parentEle !== null) {
-			api.insertBefore(parentEle, vnode.el, api.nextSibling(oEl)) // 插入新节点
-			api.removeChild(parentEle, oldVnode.el)   // 删除旧节点，
-			oldVnode = null
-		}
-	}
-	return vnode
+function patch (oldVnode, vnode, hydrating, removeOnly, parentElm, refElm) {
+  /*vnode不存在则直接调用销毁钩子*/
+  if (isUndef(vnode)) {
+    if (isDef(oldVnode)) invokeDestroyHook(oldVnode)
+    return
+  }
+
+  let isInitialPatch = false
+  const insertedVnodeQueue = []
+
+  if (isUndef(oldVnode)) {
+    // empty mount (likely as component), create new root element
+    /*oldVnode未定义的时候，其实也就是root节点，创建一个新的节点*/
+    isInitialPatch = true
+    createElm(vnode, insertedVnodeQueue, parentElm, refElm)
+  } else {
+    /*标记旧的VNode是否有nodeType*/
+    const isRealElement = isDef(oldVnode.nodeType)
+    if (!isRealElement && sameVnode(oldVnode, vnode)) {
+      // patch existing root node
+      /*是同一个节点的时候直接修改现有的节点*/
+      patchVnode(oldVnode, vnode, insertedVnodeQueue, removeOnly)
+    } else {
+      if (isRealElement) {
+        // mounting to a real element
+        // check if this is server-rendered content and if we can perform
+        // a successful hydration.
+        if (oldVnode.nodeType === 1 && oldVnode.hasAttribute(SSR_ATTR)) {
+          /*当旧的VNode是服务端渲染的元素，hydrating记为true*/
+          oldVnode.removeAttribute(SSR_ATTR)
+          hydrating = true
+        }
+        if (isTrue(hydrating)) {
+          /*需要合并到真实Dom上*/
+          if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
+            /*调用insert钩子*/
+            invokeInsertHook(vnode, insertedVnodeQueue, true)
+            return oldVnode
+          } else if (process.env.NODE_ENV !== 'production') {
+            warn(
+              'The client-side rendered virtual DOM tree is not matching ' +
+              'server-rendered content. This is likely caused by incorrect ' +
+              'HTML markup, for example nesting block-level elements inside ' +
+              '<p>, or missing <tbody>. Bailing hydration and performing ' +
+              'full client-side render.'
+            )
+          }
+        }
+        // either not server-rendered, or hydration failed.
+        // create an empty node and replace it
+        /*如果不是服务端渲染或者合并到真实Dom失败，则创建一个空的VNode节点替换它*/
+        oldVnode = emptyNodeAt(oldVnode)
+      }
+      // replacing existing element
+      /*取代现有元素*/
+      const oldElm = oldVnode.elm
+      const parentElm = nodeOps.parentNode(oldElm)
+      createElm(
+        vnode,
+        insertedVnodeQueue,
+        // extremely rare edge case: do not insert if old element is in a
+        // leaving transition. Only happens when combining transition +
+        // keep-alive + HOCs. (#4590)
+        oldElm._leaveCb ? null : parentElm,
+        nodeOps.nextSibling(oldElm)
+      )
+
+      if (isDef(vnode.parent)) {
+        // component root element replaced.
+        // update parent placeholder node element, recursively
+        /*组件根节点被替换，遍历更新父节点element*/
+        let ancestor = vnode.parent
+        while (ancestor) {
+          ancestor.elm = vnode.elm
+          ancestor = ancestor.parent
+        }
+        if (isPatchable(vnode)) {
+          /*调用create回调*/
+          for (let i = 0; i < cbs.create.length; ++i) {
+            cbs.create[i](emptyNode, vnode.parent)
+          }
+        }
+      }
+
+      if (isDef(parentElm)) {
+        /*移除老节点*/
+        removeVnodes(parentElm, [oldVnode], 0, 0)
+      } else if (isDef(oldVnode.tag)) {
+        /*调用destroy钩子*/
+        invokeDestroyHook(oldVnode)
+      }
+    }
+  }
+
+  /*调用insert钩子*/
+  invokeInsertHook(vnode, insertedVnodeQueue, isInitialPatch)
+  return vnode.elm
+}
+```
+```
+/*
+  判断两个VNode节点是否是同一个节点，需要满足以下条件
+  key相同
+  tag（当前节点的标签名）相同
+  isComment（是否为注释节点）相同
+  是否data（当前节点对应的对象，包含了具体的一些数据信息，是一个VNodeData类型，可以参考VNodeData类型中的数据信息）都有定义
+  当标签是<input>的时候，type必须相同
+*/
+function sameVnode (a, b) {
+  return (
+    a.key === b.key &&
+    a.tag === b.tag &&
+    a.isComment === b.isComment &&
+    isDef(a.data) === isDef(b.data) &&
+    sameInputType(a, b)
+  )
 }
 
-function sameVnode(oldVnode, vnode){
-	return vnode.key === oldVnode.key && vnode.sel === oldVnode.sel
+// Some browsers do not support dynamically changing type for <input>
+// so they need to be treated as different nodes
+/*
+  判断当标签是<input>的时候，type是否相同
+  某些浏览器不支持动态修改<input>类型，所以他们被视为不同节点
+*/
+function sameInputType (a, b) {
+  if (a.tag !== 'input') return true
+  let i
+  const typeA = isDef(i = a.data) && isDef(i = i.attrs) && i.type
+  const typeB = isDef(i = b.data) && isDef(i = i.attrs) && i.type
+  return typeA === typeB
 }
 ```
 
@@ -47,22 +159,66 @@ function sameVnode(oldVnode, vnode){
   6. 如果两者都有子节点，则执行updateChildren函数比较子节点
 
 ```
-patchVnode (oldVnode, vnode) {
-  const el = vnode.el = oldVnode.el
-  let i, oldCh = oldVnode.children, ch = vnode.children
-  if (oldVnode === vnode) return
-  // 是文本节点
-  if (oldVnode.text !== null && vnode.text !== null && oldVnode.text !== vnode.text) {
-    api.setTextContent(el, vnode.text)
-  }else { // 不是文本节点
-    updateEle(el, vnode, oldVnode)
-    if (oldCh && ch && oldCh !== ch) {
-      updateChildren(el, oldCh, ch)
-    }else if (ch){
-      createEle(vnode) //create el's children dom
-    }else if (oldCh){
-      api.removeChildren(el)
+ /*patch VNode节点*/
+function patchVnode (oldVnode, vnode, insertedVnodeQueue, removeOnly) {
+  /*两个VNode节点相同则直接返回*/
+  if (oldVnode === vnode) {
+    return
+  }
+  // reuse element for static trees.
+  // note we only do this if the vnode is cloned -
+  // if the new node is not cloned it means the render functions have been
+  // reset by the hot-reload-api and we need to do a proper re-render.
+  /*
+    如果新旧VNode都是静态的，同时它们的key相同（代表同一节点），
+    并且新的VNode是clone或者是标记了once（标记v-once属性，只渲染一次），
+    那么只需要替换elm以及componentInstance即可。
+  */
+  if (isTrue(vnode.isStatic) &&
+      isTrue(oldVnode.isStatic) &&
+      vnode.key === oldVnode.key &&
+      (isTrue(vnode.isCloned) || isTrue(vnode.isOnce))) {
+    vnode.elm = oldVnode.elm
+    vnode.componentInstance = oldVnode.componentInstance
+    return
+  }
+  let i
+  const data = vnode.data
+  if (isDef(data) && isDef(i = data.hook) && isDef(i = i.prepatch)) {
+    /*i = data.hook.prepatch，如果存在的话，见"./create-component componentVNodeHooks"。*/
+    i(oldVnode, vnode)
+  }
+  const elm = vnode.elm = oldVnode.elm
+  const oldCh = oldVnode.children
+  const ch = vnode.children
+  if (isDef(data) && isPatchable(vnode)) {
+    /*调用update回调以及update钩子*/
+    for (i = 0; i < cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
+    if (isDef(i = data.hook) && isDef(i = i.update)) i(oldVnode, vnode)
+  }
+  /*如果这个VNode节点没有text文本时*/
+  if (isUndef(vnode.text)) {
+    if (isDef(oldCh) && isDef(ch)) {
+      /*新老节点均有children子节点，则对子节点进行diff操作，调用updateChildren*/
+      if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
+    } else if (isDef(ch)) {
+      /*如果老节点没有子节点而新节点存在子节点，先清空elm的文本内容，然后为当前节点加入子节点*/
+      if (isDef(oldVnode.text)) nodeOps.setTextContent(elm, '')
+      addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)
+    } else if (isDef(oldCh)) {
+      /*当新节点没有子节点而老节点有子节点的时候，则移除所有ele的子节点*/
+      removeVnodes(elm, oldCh, 0, oldCh.length - 1)
+    } else if (isDef(oldVnode.text)) {
+      /*当新老节点都无子节点的时候，只是文本的替换，因为这个逻辑中新节点text不存在，所以直接去除ele的文本*/
+      nodeOps.setTextContent(elm, '')
     }
+  } else if (oldVnode.text !== vnode.text) {
+    /*当新老节点text不一样时，直接替换这段文本*/
+    nodeOps.setTextContent(elm, vnode.text)
+  }
+  /*调用postpatch钩子*/
+  if (isDef(data)) {
+    if (isDef(i = data.hook) && isDef(i = i.postpatch)) i(oldVnode, vnode)
   }
 }
 ```
@@ -165,6 +321,7 @@ function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly
   }
 }
 ```
+[代码来源learVue](https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown)
 
 ## 相比react diff的不同
 
@@ -173,4 +330,3 @@ Vue diff使用的双向链表形式边对比，边更新DOM（starIndex, endInde
 react 使用diff队列保存需要更新的DOM（从头到尾一一比较）得到patch树，在统一的批量更新DOM。
 
 [vue2.0的diff算法](https://github.com/aooy/blog/issues/2)，[vNode](https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown)
-
