@@ -29,9 +29,6 @@ service worker持续学习
 
 模块懒加载的原理（import的实现原理）
 
-react/diff与vue diff的区别，以及虚拟过程
-https://juejin.im/post/5ebbd9396fb9a0437b76ecdc
-
 http2的push cache 
 
 如何实现ease-in
