@@ -67,7 +67,7 @@ module.exports = function(source) {
 
 ## 区分loader与plugin的区别
 
-> loader其实是一个转换器，执行单纯的文件转换操作
+> loader其实是一个转换器，执行单纯的文件转换操作；
 plugin 是一个拓展器，他不直接操作文件本身，而是基于事件机制工作，监听webpack打包过程的某些事件，见缝插针，修改打包结果。
 
 相关示例代码：<https://git.lug.ustc.edu.cn/EvalGitHub/wepack-loader-plugin>

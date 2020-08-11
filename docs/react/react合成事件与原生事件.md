@@ -4,7 +4,7 @@
 ### 合成事件存在的原因？
 如果DOM上绑定过多事件处理函数，整个页面响应以及内存占用都会有影响，另外还有各种兼容性引起的事件差异性问题，所以react实现了一个中间层---合成事件（SyntheticEvent）。
 
-在原生js开发中如果一个元素被重复绑定相同事件，则这些事件会按绑定顺序依次执行，如果项终止，可以使用 <strong>event.stopImmediatePropagation</strong>。
+在原生js开发中如果一个元素被重复绑定相同事件，则这些事件会按绑定顺序依次执行，如果想终止，可以使用 <strong>event.stopImmediatePropagation</strong>。
 
 MDN：
 <https://developer.mozilla.org/zh-CN/docs/Web/API/Event/stopImmediatePropagation>
@@ -23,12 +23,12 @@ react并不是将事件真正的绑定在这个div元素上，而是在document�
 与合成事件相比，原生事件是真实绑定在DOM上，所以一般在componentDidMount阶段进行操作，
 在componentWillUnmount进行事件的解除避免内存泄漏。
 
-> 1）除兼容所有浏览器外，它还拥有和浏览器原生事件相同的接口，包括 stopPropagation() 和 preventDefault()
+> 1）除兼容所有浏览器外，它还拥有和浏览器原生事件相同的接口，包括 stopPropagation() 和 preventDefault()；
 你需要使用浏览器的底层事件时，只需要使用 nativeEvent 属性来获取即可。
 
 >2）如果因为某些原因，当你需要使用浏览器的底层事件时，只需要使用 nativeEvent 属性来获取即可。
 
-####事件池
+#### 事件池
 >SyntheticEvent(合成事件是合并而来)，这意味着这个对象可能会被重用，而且在事件回调函数被调用之后，所有的属性都会无效，出于性能考虑，你不能通过异步访问事件。
 
 ```
@@ -67,7 +67,7 @@ class Demo extends React.PureComponent {
 }
 
 ```
-###合成事件与原生事件的混合使用？
+### 合成事件与原生事件的混合使用？
 - 合成事件监听器是统一注册在document上，且仅有冒泡阶段。所以原生事件的监听器响应要比合成事件的监听器早。
 - 阻止原生事件的冒泡会阻止合成事件的监听执行。
 

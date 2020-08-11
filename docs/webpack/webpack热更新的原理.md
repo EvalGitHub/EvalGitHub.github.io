@@ -125,7 +125,7 @@ setFs(context, compiler);
 当监听到一次webpack编译结束（步骤二），_sendStats方法就通过websoket给浏览器发送通知，检查下是否需要热更新
 
 webpack-dev-server/client/index.js这个文件就是执行在浏览器的代码，当步骤二中监听到文件已经打包完成
-就会发送一个socket信息，如果编译通过会执行发送一些两个信息
+就会发送一个socket信息，如果编译通过会执行发送以下两个方法
 ```
 this.sockWrite(sockets, 'hash', stats.hash);
 this.sockWrite(sockets, 'ok');
