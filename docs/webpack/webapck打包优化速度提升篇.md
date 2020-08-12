@@ -1,6 +1,74 @@
 # 提升webpack打包速度
 
-## 使用webpack.dll.plugin
+## speed-measure-webpack-plugin
+
+查看每个plugin，loader的工作时间，对应做优化
+
+![avatar](../assets/speed_measure.png)
+
+可见babel-loader，url-loader，ts-loader的耗时比较长，所以每次构建时会花非很多时间。
+
+- 解决方案：使用**cache-lodader**提升二次构建速度提升
+
+cache-loader的使用比较简单，只需要在每个loader前面添加
+cache-loader即可
+
+babel-loader有自己的缓存配制项
+```
+cacheDirectory: true,
+```
+
+优化后的结果：打包时间从41804ms -> 19911ms
+
+![avatar](../assets/cache_loader.png)
+
+## cache-loader提升二次打包速度
+
+ loader 的编译结果写入硬盘缓存，再次构建如果文件没有发生变化则会直接拉取缓存。
+
+> 每一次项目变更的时候，没有必要将所有文件都重编译一遍，所以我们可像浏览器加载资源样，将没有改变的内容缓存下来。大部分loader都提供了cache配置项，比如在 babel-loader 中，可以通过设置 cacheDirectory 来开启缓存，这样，babel-loader 就会将每次的编译结果写进硬盘文件（默认是在项目根目录下的node_modules/.cache/babel-loader目录内，当然你也可以自定义）。
+
+但是也有些没有缓存配置项的，这个时候我们可以合理使用cache-loader（值得注意的是：要把它写在所有loader的最前面）
+
+> 请注意，保存和读取这些缓存文件会有一些时间开销，所以请只对性能开销较大的 loader 使用此 loader。
+
+```
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          'cache-loader',
+          'babel-loader'
+        ],
+        include: path.resolve('src')
+      }
+    ]
+  }
+}
+```
+
+[关于cache-loader的使用](https://www.webpackjs.com/loaders/cache-loader/)
+
+## 使用HardSourceWebpackPlugin提升二次构建速度
+
+```
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+....
+....
+plugins: [
+  new HardSourceWebpackPlugin(),
+  ...
+  ...
+]
+```
+使用之后的截图
+
+![avatar](../assets/hard_source.png)
+
+
+## webpack.dll.plugin避免重复打包
 
 在执行webpack打包的时候，每一次都会去重新分析项目中所有的依赖包，这是一个比较费时的工作，考虑到有些第三方包我们更 本不会去修改，因此可以想办法将这些包只打包一次。
 
@@ -129,7 +197,7 @@ files.forEach(file => {
 });
 ```
 
-## HappyPack多线程提升打包速度
+## HappyPack/thread-loader多线程提升打包速度
 
 由于运行在 Node.js 之上的 Webpack 是单线程模型的，所以Webpack 需要处理的事情需要一件一件的做，不能多件事一起做。
  我们需要Webpack 能同一时间处理多个任务，发挥多核 CPU 电脑的威力，[HappyPack](https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Famireh%2Fhappypack) 就能让 Webpack 做到这点，它把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程
@@ -163,36 +231,9 @@ module.export = {
 
 所以配置起来逻辑其实很简单，就是用 happypack 提供的 Plugin 为你的 Loaders 做一层包装就好了，向外暴露一个id ，而在你的 module.rules 里，就不需要写loader了，直接引用这个 id 即可。
 
-https://mp.weixin.qq.com/s/WmTWXoYn_CvD60nd0_biuQ
+**note: 如果项目不是很大，不到万不得已不建议使用这种多线程手段，因为多线程本生就是比较耗时的，所以对于小型项目不建议使用。**
 
-#### cache-loader：
-
- loader 的编译结果写入硬盘缓存，再次构建如果文件没有发生变化则会直接拉取缓存。
-
-> 每一次项目变更的时候，没有必要将所有文件都重编译一遍，所以我们可像浏览器加载资源样，将没有改变的内容缓存下来。大部分loader都提供了cache配置项，比如在 babel-loader 中，可以通过设置 cacheDirectory 来开启缓存，这样，babel-loader 就会将每次的编译结果写进硬盘文件（默认是在项目根目录下的node_modules/.cache/babel-loader目录内，当然你也可以自定义）。
-
-但是也有些没有缓存配置项的，这个时候我们可以合理使用cache-loader（值得注意的是：要把它写在所有loader的最前面）
-
-> 请注意，保存和读取这些缓存文件会有一些时间开销，所以请只对性能开销较大的 loader 使用此 loader。
-
-```
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: [
-          'cache-loader',
-          'babel-loader'
-        ],
-        include: path.resolve('src')
-      }
-    ]
-  }
-}
-```
-
-关于cache-loader的使用参考：https://www.webpackjs.com/loaders/cache-loader/
+[happyWebpack的使用](https://mp.weixin.qq.com/s/WmTWXoYn_CvD60nd0_biuQ)
 
 ## 使用noParse，IgnorePlugin
 
