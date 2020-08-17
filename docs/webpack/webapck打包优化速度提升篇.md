@@ -30,7 +30,7 @@ cacheDirectory: true,
 
 但是也有些没有缓存配置项的，这个时候我们可以合理使用cache-loader（值得注意的是：要把它写在所有loader的最前面）
 
-> 请注意，保存和读取这些缓存文件会有一些时间开销，所以请只对性能开销较大的 loader 使用此 loader。
+**请注意，保存和读取这些缓存文件会有一些时间开销，所以请只对性能开销较大的 loader 使用此 loader**
 
 ```
 module.exports = {
@@ -52,6 +52,8 @@ module.exports = {
 [关于cache-loader的使用](https://www.webpackjs.com/loaders/cache-loader/)
 
 ## 使用HardSourceWebpackPlugin提升二次构建速度
+
+各个模块的缓存，默认只缓存50M，可以自定义配制缓存的大小
 
 ```
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
@@ -107,7 +109,7 @@ module.exports = {
 
 ```
 
-引入的时候需要使用 **add-asset-html-webpack-plugin，**
+引入的时候需要使用 **add-asset-html-webpack-plugin**
 
 **配置webpack.common.js**
 

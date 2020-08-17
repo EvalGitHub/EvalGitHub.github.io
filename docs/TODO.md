@@ -4,11 +4,6 @@
 
 7. docker
  
-8. 前端杂技/虚拟dom以及diff的理解
-https://mp.weixin.qq.com/s/9q77WluVxmONDnlfeSWsvA
-
-9. react/vue对比
-https://www.zhihu.com/question/301860721/answer/724759264
 
 
 10. react hook的原理
@@ -39,13 +34,10 @@ ssr的seo问题
 react-native, weex ,flutter的区别
 
 
+H5优化方案： https://mp.weixin.qq.com/s/QGtFex_nN_ebbtW12p3qww
 
 
-
-
-
-
-
+工程化：https://juejin.im/post/6844903853859536903#heading-2
 
 
 

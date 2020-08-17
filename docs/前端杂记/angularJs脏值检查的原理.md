@@ -26,6 +26,6 @@ watcher中，他是一个队列（数组）。
 
 当递归流程执行结束之后，$digest会将变化后的$scope重新渲染到界面上
 
-[angular脏检查原理及伪代码实现](https://juejin.im/post/6844903617992851463#heading-0)
+[angular脏检查原理及伪代码实现](https://juejin.im/post/6844903617992851463#heading-0)，
 
-
+[理解angularJs](https://github.com/xufei/Make-Your-Own-AngularJS/blob/master/01.md)
