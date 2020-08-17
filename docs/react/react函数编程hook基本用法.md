@@ -502,15 +502,57 @@ useCallback(fn, deps) 相当于 useMemo(() => fn, deps)。
 
 [react中useMemo的用法](https://blog.csdn.net/hesongGG/article/details/84347484)
 
+## useImperativeHandle
 
-[useEffect使用指南
-](https://zhuanlan.zhihu.com/p/65773322)
+使用 ref 时自定义暴露给父组件的实例值，useImperativeHandle 应当与 forwardRef 一起使用。
+
+```
+function FancyInput(props, ref) {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    }
+  }));
+  return <input ref={inputRef} ... />;
+}
+FancyInput = forwardRef(FancyInput);
+```
+
+另外的使用场景：
+
+> 在react中函数组件是没有对应实例的，因此如果对组件使用ref，想获取组件的方法，会失败；useImperativeHandle提供了一种解决方案。
+
+```
+function OnLineModal(props:InitProps, ref:React.Ref<null>) {
+  const [modalVisible, setModalVisible] = React.useState<boolean>(false);
+  React.useImperativeHandle(ref, () : any => ({
+    setModalVisible: (flag:boolean) => setModalVisible(flag),
+  }));
+
+  return <ContainModal visible={modalVisible}/>;
+}
+export const OnLineModalCom = React.forwardRef(OnLineModal); 
+```
+
+父组件：
+
+```
+function StateList(props:InitProps) {
+  const OnLineModalRef:React.Ref<null> = React.createRef();
+  function getRefVal() {
+    console.log(this.OnLineModalRef); // {setModalVisible:f}
+  }
+  return <section>
+    <button onClick={getRefVal}>get Ref value</button>
+    <OnLineModalCom ref = {this.OnLineModalRef}/>
+  </section>
+}
+```
 
 [React Hooks 详解 【近 1W 字】+ 项目实战](https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d)
 
-
 [react hook进阶](https://juejin.im/post/5ec7372cf265da76de5cd0c9?utm_source=gold_browser_extension#heading-14)
-
 
 [使用 React Hooks 的心智负担](https://www.zhihu.com/question/350523308/answer/858145147)
 
