@@ -121,7 +121,7 @@ componentWillUnmount
 
 他是componentWillReceiveProps的替代函数，如果state没做修改返回一个null，这个返回值是必须的，所以尽量将其写到函数的末尾。
 
-此外必须了解的是getDerivedStateFromProps在父组件的re-render，以及组件的props修改之时
+此外必须了解的是getDerivedStateFromProps在父组件的re-render，以及组件的props修改之时会执行。
 
 ```
 static getDerivedStateFromProps(nextProps, prevState) {
