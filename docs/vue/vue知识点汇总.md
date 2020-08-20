@@ -674,6 +674,69 @@ var proxy = new Proxy(target, {
 未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。
 Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。
 
+## 关于proxy相对Object.defineProperty的优势与缺点
+
+在vue 实例化的时候，通过递归遍历整个对象使用Object.defineProperty对每个对象的属性进行劫持，但是有两种情况需要特殊处理：
+
+- 属性是数组
+
+解决方案：对于数组使用的是重写了Array的八种方法，每一次使用这几种方法时候会触发watcher
+
+- 对象属性的动态添加
+
+解决方案：使用$set，为对象添加属性，然后劫持这个属性
+
+使用proxy就可以不用担心上面情况二的问题了，因为proxy可以对整个对象进行劫持，即使动态添加属性也能轻松感知到；
+
+### 对于数组的操作仍然不能很好的解决
+
+对于数组的问题，如果操作数组api在每次操作完数组之后能够改变原数组，那么也可以利用proxy进行处理，否则也会有问题。
+
+```
+let hobbits = ['travel', 'reading'];
+let p = new Proxy(hobbits, {
+  get(target, key) {
+    // if(key === 'length') return true; //如果是数组长度的变化，返回。
+    console.log('读取成功');
+    return Reflect.get(target, key);
+  },
+  set(target, key, value) {
+    // if(key === 'length') return true; //如果是数组长度的变化，返回。
+    console.log('设置成功');
+    return Reflect.set([target, key, value]);
+  }
+});
+p.splice(0,1) //触发get和set，可以被劫持
+p.push('photography');//触发get和set
+p.slice(1); //触发get；因为 slice 是不会修改原数组的
+```
+
+### 对于对象嵌套对象的问题处理起来比较复杂
+
+如果外层对象的一个属性是student(他也是个对象)，在使用proxy进行劫持的时候，会出现问题。
+因为对象是一个引用类型的变量，属性名指向一个存储空间，所以当student的内部属性改变时，不会触发set, 而且会触发get，带来依赖收集的复杂性。
+
+```
+let obj = {name: 'Yvette', hobbits: ['travel', 'reading'], info: {
+  age: 20,
+  job: 'engineer'
+}};
+let p = new Proxy(obj, {
+  get(target, key) { //第三个参数是 proxy， 一般不使用
+    console.log('读取成功');
+    return Reflect.get(target, key);
+  },
+  set(target, key, value) {
+    console.log('设置成功');
+    return Reflect.set([target, key, value]);
+  }
+});
+p.name = 20; //设置成功
+p.age = 20; //设置成功; 不需要事先定义此属性
+p.hobbits.push('photography'); //读取成功;注意不会触发设置成功
+p.info.age = 18; //读取成功;不会触发设置成功
+```
+
 ## 描述组件渲染和更新的过程？
 
 ## vue父子组件生命周期调用顺序，minx与组件的生命周期顺序？
