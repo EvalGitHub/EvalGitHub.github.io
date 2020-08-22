@@ -1,4 +1,4 @@
-# 对比keep-alive 管线化，http2多路复用
+# 对比keep-alive， 管线化，http2多路复用
 
 ## 相同点
 

@@ -5,24 +5,12 @@
 7. docker
  
 
-
-10. react hook的原理
-
-https://github.com/danistefanovic/build-your-own-x
-
-react解密
-https://react.iamkasong.com/preparation/oldConstructure.html#react15%E6%9E%B6%E6%9E%84
-
 web -> node -> 服务器
 
-11. flutter/weex/rn 实现区别
-https://www.jianshu.com/p/885f0ec32b34
 
 12. webpack执行流程
 
 service worker持续学习
-
-模块懒加载的原理（import的实现原理）
 
 http2的push cache 
 
@@ -40,5 +28,14 @@ H5优化方案： https://mp.weixin.qq.com/s/QGtFex_nN_ebbtW12p3qww
 工程化：https://juejin.im/post/6844903853859536903#heading-2
 
 虚拟dom
+
+
+## http1 http1.1 http2 http3
+
+## 前端趋势， 前端工程化
+
+## flutter/weex/rn 实现区别
+https://www.jianshu.com/p/885f0ec32b34
+
 
 
