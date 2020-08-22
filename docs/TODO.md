@@ -39,6 +39,6 @@ H5优化方案： https://mp.weixin.qq.com/s/QGtFex_nN_ebbtW12p3qww
 
 工程化：https://juejin.im/post/6844903853859536903#heading-2
 
-
+虚拟dom
 
 
