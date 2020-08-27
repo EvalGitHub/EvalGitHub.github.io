@@ -149,7 +149,8 @@ class SommeComponent extends React.Component {
 但是有意思的是"我是body上的click"依旧输出。
 
 **原因分析：**
-使用e.stopPropagation()有效阻止了事件冒泡，所以"handleDivClick()"不会输出，但是这两个事件都是合成事件（且是click类型），意味着在body上会有这个这个click事件，所以通过原生事件还是能捕捉到（合成事件中的阻止事件冒泡只能影响合成事件，不能影响原生事件）; 但如果在原生事件中阻止事件冒泡，则会阻止原生/合成事件冒泡。
+使用e.stopPropagation()有效阻止了事件冒泡，所以"handleDivClick()"不会输出，但是这两个事件都是合成事件（且是click类型），意味着在body上会有这个这个click事件，
+所以通过原生事件还是能捕捉到（合成事件中的阻止事件冒泡只能影响合成事件，不能影响原生事件）; 但如果在原生事件中阻止事件冒泡，则会阻止原生/合成事件冒泡。
 
 **建议不要将原生事件与合成事件一起使用：**
 
@@ -158,6 +159,17 @@ class SommeComponent extends React.Component {
 1. 合理使用e.stopPropagation() 【两个角度原生事件中使用，合成事件中使用】
 2. 使用事件对象event.target来判断的信息来判断
 
+### 在合成事件中怎么获得原生事件对象了
+
+```
+// 阻止事件冒泡&捕获
+e.nativeEvent.stopPropagation(); 
+
+// 阻止事件冒泡&捕获 && 阻止同一事件的其他绑定执行（一个元素被绑定多个click事件，stopImmediatePropagation使得只会执行一次）
+e.nativeEvent.stopImmediatePropagation();
+```
+
+[合成事件的例子](https://mp.weixin.qq.com/s/NLJlcdhMcPPgrS8KrnmQ9A)
 
 参考：
 

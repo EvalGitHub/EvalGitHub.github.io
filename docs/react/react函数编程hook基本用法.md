@@ -541,11 +541,11 @@ export const OnLineModalCom = React.forwardRef(OnLineModal);
 function StateList(props:InitProps) {
   const OnLineModalRef:React.Ref<null> = React.createRef();
   function getRefVal() {
-    console.log(this.OnLineModalRef); // {setModalVisible:f}
+    console.log(OnLineModalRef); // {setModalVisible:f}
   }
   return <section>
     <button onClick={getRefVal}>get Ref value</button>
-    <OnLineModalCom ref = {this.OnLineModalRef}/>
+    <OnLineModalCom ref = {OnLineModalRef}/>
   </section>
 }
 ```

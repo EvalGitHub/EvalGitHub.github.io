@@ -39,3 +39,14 @@ https://www.jianshu.com/p/885f0ec32b34
 
 
 
+## 性能优化
+
+https://juejin.im/post/6844903764319535117
+
+案例：
+https://wpostats.com/ 
+
+h5秒开：
+https://mp.weixin.qq.com/s/QGtFex_nN_ebbtW12p3qww
+
+

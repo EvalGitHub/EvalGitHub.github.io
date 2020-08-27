@@ -140,3 +140,61 @@ React.pureComponent与React.memo功能类似(避免比必要的重新渲染，�
 >如果数据结构太复杂可能不会监测到变化；假设数据结构就是很复杂，但是又使用到了pureComponent，我们需要在修改父组件state中那个用于子组件的props，每一次都是返回一个新的引用（新数组[]，新的对象{}）
 
 参考链接：[React中PureComponent的浅比较](<https://www.jianshu.com/p/0d0587fc33de>)
+
+
+## React.forwardRedf
+
+利用forwardRef进行值传递
+
+```
+import React from "react";
+import "./styles.css";
+import { Pcom } from "./pCom";
+import { Ppcom } from "./ppCom";
+export default function App() {
+  let [num, setNum] = React.useState(0);
+  function addNum() {
+    setNum(++num);
+  }
+  return (
+    <div className="App">
+      <button onClick={addNum}>add num:</button>
+      <Pcom
+        content={React.forwardRef((props, ref) => (
+          // props是Pcom传递的属性值
+          <Ppcom num={num} {...props} />
+        ))}
+      />
+    </div>
+  );
+}
+```
+
+pCom.js
+
+```
+export function Pcom(props) {
+  const Content = props.content;
+  return (
+    <>
+      <Content name="name" age="age" />
+    </>
+  );
+}
+```
+
+ppCom.js
+
+```
+export function Ppcom(props) {
+  return (
+    <>
+      <p>{props.num}</p>
+      <p>{props.age}</p>
+      <p>{props.name}</p>
+    </>
+  );
+}
+```
+
+
