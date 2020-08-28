@@ -40,7 +40,6 @@ https://www.jianshu.com/p/885f0ec32b34
 
 
 ## 性能优化
-
 https://juejin.im/post/6844903764319535117
 
 案例：
@@ -49,4 +48,8 @@ https://wpostats.com/
 h5秒开：
 https://mp.weixin.qq.com/s/QGtFex_nN_ebbtW12p3qww
 
+微信h5兼容
+https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651557288&idx=2&sn=008aa0ffce4735403116ea88b02321a0&chksm=80255a69b752d37f38aa7064599939250192087c957f564673dc3d6f3598f6906944bbd124a5&scene=21#wechat_redirect
 
+
+https://shimo.im/docs/0l3NVKXzyaTGXv3R
