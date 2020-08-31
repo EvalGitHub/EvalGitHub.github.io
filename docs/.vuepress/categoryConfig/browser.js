@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const moduleTitle = "浏览器原理";
+const moduleTitle = "浏览器原理&性能优化";
 var fileArr = fileDisplay(path.join(__dirname, '../../', moduleTitle));
 
 function fileDisplay(_filePath) {

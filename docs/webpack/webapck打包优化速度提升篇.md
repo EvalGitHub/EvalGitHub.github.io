@@ -239,4 +239,13 @@ module.export = {
 
 ## 使用noParse，IgnorePlugin
 
+webpack在打包的时候会将每个js文件进行解析，这是十分耗时的；如果你能确定有些库文件
+不会依赖其他的库（不会使用import，require等形式引入其他文件），这个时候可以使用
+noParse告诉webpack去避免解析这类的文件（库），常见的有jquery，loash。
+
+```
+  noParse: '/jquery|lodash/'
+```
 <https://webpack.js.org/configuration/module/#modulenoparse>
+
+## 使用module IDs 
