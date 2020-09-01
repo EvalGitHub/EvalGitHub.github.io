@@ -51,4 +51,6 @@ https://mp.weixin.qq.com/s/QGtFex_nN_ebbtW12p3qww
 微信h5兼容
 https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651557288&idx=2&sn=008aa0ffce4735403116ea88b02321a0&chksm=80255a69b752d37f38aa7064599939250192087c957f564673dc3d6f3598f6906944bbd124a5&scene=21#wechat_redirect
 
- 
+
+## linix：操作
+https://blog.csdn.net/lykangjia/article/details/11655887
