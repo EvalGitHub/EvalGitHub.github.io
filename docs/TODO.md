@@ -28,7 +28,8 @@ H5优化方案： https://mp.weixin.qq.com/s/QGtFex_nN_ebbtW12p3qww
 工程化：https://juejin.im/post/6844903853859536903#heading-2
 
 虚拟dom
-
+https://www.infoq.cn/article/2iviqjklwa4JkF0YNQGZ
+https://www.infoq.cn/article/AiQMbjI0oXZ1UrueiBze
 
 ## http1 http1.1 http2 http3
 
@@ -44,6 +45,8 @@ https://juejin.im/post/6844903764319535117
 
 案例：
 https://wpostats.com/ 
+
+
 
 h5秒开：
 https://mp.weixin.qq.com/s/QGtFex_nN_ebbtW12p3qww
