@@ -60,3 +60,7 @@ https://blog.csdn.net/lykangjia/article/details/11655887
 
 
 exteneral https://segmentfault.com/a/1190000012113011?utm_source=tag-newest
+
+# 骨架屏
+
+https://mp.weixin.qq.com/s/X2IK5mA6HRcnl2_d9NpNOg
