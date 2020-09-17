@@ -57,3 +57,6 @@ https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651557288&idx=2&sn=008aa0
 
 ## linix：操作
 https://blog.csdn.net/lykangjia/article/details/11655887
+
+
+exteneral https://segmentfault.com/a/1190000012113011?utm_source=tag-newest
