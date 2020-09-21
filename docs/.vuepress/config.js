@@ -11,6 +11,7 @@ const Node = require('./categoryConfig/node');
 const FinancialManageConfig = require('./categoryConfig/financialManage');
 const Pwa = require('./categoryConfig/pwa');
 const Browser = require('./categoryConfig/browser');
+const Git = require('./categoryConfig/git');
 module.exports = {
   title: '个人主页',
   description: '学习总结',
@@ -48,7 +49,8 @@ module.exports = {
       { ...Http },
       {...Node},
       {...Pwa},
-      {...Browser}
+      {...Browser},
+      {...Git}
       // { ...FinancialManageConfig },
     ]
 
@@ -68,5 +70,6 @@ module.exports = {
         '@alias': '../.vuepress'
       }
     }
-  }
+  },
+  plugins: ['@vuepress/medium-zoom']
 }

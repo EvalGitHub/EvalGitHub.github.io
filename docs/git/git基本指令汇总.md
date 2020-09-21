@@ -38,6 +38,8 @@
 
 ## 分支管理
 
+
+
 ### 查看分支
 
 - 所有分支 git branch -a
@@ -45,6 +47,8 @@
 - 远程分支 git branch -r
 
 ### 分支处理
+
+![avatar](../assets/git_branch.png)
 
 - 单纯的切分支 
 
