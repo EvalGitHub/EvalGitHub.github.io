@@ -504,7 +504,7 @@ useCallback(fn, deps) 相当于 useMemo(() => fn, deps)。
 
 ## useImperativeHandle
 
-使用 ref 时自定义暴露给父组件的实例值，useImperativeHandle 应当与 forwardRef 一起使用。
+- 使用 ref 时自定义暴露给父组件的实例值，useImperativeHandle 应当与 forwardRef 一起使用。
 
 ```
 function FancyInput(props, ref) {
@@ -548,6 +548,99 @@ function StateList(props:InitProps) {
     <OnLineModalCom ref = {OnLineModalRef}/>
   </section>
 }
+```
+
+- 进阶：如果是一个列表，每个列表项都是函数组件，想获取每一个函数组件的实例？
+
+```
+const LIST = ["ce", "shi", "demo"];
+const Item: React.FC<{
+  label: string;
+  idx: number;
+  ref: Ref;
+}> = forwardRef(({ label, idx }, ref) => {
+  const innerMethod = () => {
+    console.log(`${label}-${idx}`);
+  };
+
+  useImperativeHandle(ref, {
+    [`you example-${idx}`]: innerMethod
+  });
+  return <p>{label}</p>;
+});
+
+export const MutilApp: React.FC = () => {
+  const globalRef = useRef(null);
+
+  const invokeAllMountMethod = () => {
+    const globalObject = globalRef?.current;
+    for (const [, method] of Object.entries(globalObject)) {
+      method();
+    }
+  };
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          invokeAllMountMethod();
+        }}
+      >
+        INVOKE
+      </button>
+      {LIST.map((item, idx) => (
+        <Item label={item} idx={idx} key={item} ref={globalRef} />
+      ))}
+    </>
+  );
+};
+```
+现在的代码如上，如果点击这个按钮，会发现最終的結果就是“demo-02”，
+那麽該如何获取到所有的实例呢？？
+
+>实际上，我们在前面也提到了这一点：一根垂直管道，你在上方投入了什么，下方拿到的就是什么， 我们始终只有一个globalRef，因此多次调用下最后一次的挂载覆盖掉了前面的。
+
+```
+import {Ref, useImperativeHandle, MutableRefObject } from "react";
+
+const useMultiImperativeHandle = <T, K extends object>(
+  originRef: Ref,
+  convertRefObj: K,
+  deps?:any
+): void => {
+  return useImperativeHandle(
+    originRef,
+    () => {
+      return {
+        ...originRef.current,
+        ...convertRefObj
+      };
+    },
+    deps
+  );
+};
+
+export default useMultiImperativeHandle;
+```
+
+源码中使用：
+
+```
+const Item: React.FC<{
+  label: string;
+  idx: number;
+  ref: Ref;
+}> = forwardRef(({ label, idx }, ref) => {
+  const innerMethod = () => {
+    console.log(`${label}-${idx}`);
+  };
+
+  useMultiImperativeHandle(ref, {
+    [`method-from-${idx}`]: innerMethod
+  });
+
+  return <p>{label}</p>;
+});
 ```
 
 [React Hooks 详解 【近 1W 字】+ 项目实战](https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d)
