@@ -469,7 +469,6 @@ cosnt Child = props => {
 }
 ```
 
-
 ## useCallback，useMemo
 
 这两个hook可用于优化react性能，在项目中经常会存在大批量的逻辑运算，其中有些函数是纯函数（没有任何副作用），相同的输入会返回相同的结果，但是如果不做处理，这些计算会在react组件重新渲染的时候会又一次的去执行，所有我们有必要将这些纯函数逻辑进行缓存，对于相同输入的
@@ -642,6 +641,58 @@ const Item: React.FC<{
   return <p>{label}</p>;
 });
 ```
+
+## useLayoutEffect
+
+>在所有的 DOM 变更之后同步调用effect。可以使用它来**读取 DOM 布局并同步
+触发重渲染**。**在浏览器执行绘制之前，useLayoutEffect 内部的更新计划将被同
+步刷新**，也就是说它会阻塞浏览器绘制。所以尽可能使用 useEffect 以避免阻
+塞视觉更新。
+
+如果只是大量的数据处理，建议使用useEffect来进行处理；如果设计到动画效果，在首次展示的时候需要一个很流畅的体验，可以借助useLayoutEffect来进行
+
+具体效果demo：
+
+```
+import React, { useEffect, useLayoutEffect, useRef } from "react";
+import "./styles.css";
+
+const UseEffect: React.FC<any> = () => {
+  const box = useRef();
+  useEffect(() => {
+    (box.current as any).style.marginLeft = 100 + "px";
+  }, []);
+  return (
+    <div className="box box1" ref={box}>
+      useEffect
+    </div>
+  );
+};
+const UseLayoutEffect: React.FC<any> = () => {
+  const box = useRef();
+  useLayoutEffect(() => {
+    (box.current as any).style.marginLeft = 100 + "px";
+  }, []);
+  return (
+    <div className="box box2" ref={box}>
+      UseLayoutEffect
+    </div>
+  );
+};
+
+export default function App() {
+  return (
+    <div className="App">
+      <h1>刷新浏览器看下区别效果</h1>
+      <UseEffect />
+      <UseLayoutEffect />
+    </div>
+  );
+}
+```
+可以看到使用useEffect的时候，界面动效会有点生硬；使用useLayoutEffect时候就很流畅；
+原因就是useLayoutEffect会在界面渲染之前就完成了计算更新，同步完成的，然后才会被浏览器
+渲染。
 
 [React Hooks 详解 【近 1W 字】+ 项目实战](https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d)
 
