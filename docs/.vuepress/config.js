@@ -12,6 +12,7 @@ const FinancialManageConfig = require('./categoryConfig/financialManage');
 const Pwa = require('./categoryConfig/pwa');
 const Browser = require('./categoryConfig/browser');
 const Git = require('./categoryConfig/git');
+const FrontEngerner = require('./categoryConfig/前端工程化');
 module.exports = {
   title: '个人主页',
   description: '学习总结',
@@ -50,7 +51,8 @@ module.exports = {
       {...Node},
       {...Pwa},
       {...Browser},
-      {...Git}
+      {...Git},
+      {...FrontEngerner}
       // { ...FinancialManageConfig },
     ]
 
