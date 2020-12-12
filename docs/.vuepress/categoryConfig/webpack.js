@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-const moduleTitle = 'webpack';
+const moduleTitle = '构建工具篇-webpack等';
 var fileArr = fileDisplay(path.join(__dirname, '../../', moduleTitle));
 
 function fileDisplay(_filePath) {
@@ -16,7 +16,7 @@ function fileDisplay(_filePath) {
 }
 
 module.exports =  {
-  title: 'webpack',
+  title: '构建工具篇-webpack等',
   collapsable: true,
   children: fileArr,
   sidebarDepth: 2, // 默认是1: 提取h2标题 0: 禁用headers链接 2: 提取h2, h3标题
