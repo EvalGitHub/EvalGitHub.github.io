@@ -73,5 +73,5 @@ module.exports = {
       }
     }
   },
-  plugins: ['@vuepress/medium-zoom']
+  plugins: ['@vuepress/medium-zoom', '@vuepress/back-to-top', '@vuepress/nprogress']
 }
