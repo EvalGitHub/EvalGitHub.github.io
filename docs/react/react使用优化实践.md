@@ -162,6 +162,10 @@ react使用的是虚拟DOM,diff算法去优化前端性能，其中在diff算法
 - [关于使用key的价值讨论](<https://muyiy.cn/question/frame/1.html>)
 
 
-
 参考：
+
 [react组件化原理及优化实践](<https://www.jianshu.com/p/c46e5866eaec>)
+
+[送给react开发者的八条优化建议](<https://mp.weixin.qq.com/s/JYglFA5sTnUikimfyLRbCQ>)
+
+[深入 react 细节之 - batchUpdate](<https://zhuanlan.zhihu.com/p/78516581>)

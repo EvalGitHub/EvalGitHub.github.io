@@ -44,3 +44,17 @@ var r3 = el.closest("article > div");
 
 var r4 = el.closest(":not(div)");
 ```
+
+## Window.speechSynthesis | SpeechSynthesisUtterance
+
+> 语音api
+
+```
+// speechSynthesis.getVoices() 可以获取浏览器支持的语音
+var u = new SpeechSynthesisUtterance();
+u.text = "文字播放";
+u.lang = 'zh-HK'; // ja-JP 
+u.rate = 8
+speechSynthesis.speak(u);
+```
+https://github.com/mdn/web-speech-api/
