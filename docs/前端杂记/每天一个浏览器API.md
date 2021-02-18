@@ -204,3 +204,4 @@ downloadFun() {
 
 - BlobUrl较短，它并不代表数据本身，数据存储在浏览器中，BlobUrl只是访问它的key; 但DataUrl因为直接存储图片base64编码后的数据
 
+### 分片上传
