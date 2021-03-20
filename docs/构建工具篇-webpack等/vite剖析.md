@@ -103,7 +103,6 @@ watcher.on('unlink', (file) => {
 
 - 浏览器怎么发的请求？
 
-创建一个websocket链接，浏览器监听socket信息，      
+使用import来对文件进行请求，因为import本身就是一个promise, 发送请求，然后返回读取的文件内容
 
-- 怎么根据请求读取对应的内容？
 
