@@ -192,7 +192,7 @@ downloadFun() {
 ```
 ### dataURL
 
-> 将较小的文件嵌入到文档中, 语法格式，data:[<mediatype>][;base64],data
+> 将较小的文件嵌入到文档中, 语法格式，data:mediatype[;base64],data
 
 **获取dataUrl**
 
