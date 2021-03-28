@@ -2,7 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 
-const moduleTitle = 'js';
+const moduleTitle = 'javascript基础';
 
 var fileArr = fileDisplay(path.join(__dirname, '../../', moduleTitle));
 
