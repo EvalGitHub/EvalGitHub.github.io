@@ -13,6 +13,7 @@ const Pwa = require('./categoryConfig/pwa');
 const Browser = require('./categoryConfig/browser');
 const Git = require('./categoryConfig/git');
 const FrontEngerner = require('./categoryConfig/前端工程化');
+const Babel = require('./categoryConfig/babel');
 module.exports = {
   title: '个人主页',
   description: '学习总结',
@@ -52,7 +53,8 @@ module.exports = {
       {...Pwa},
       {...Browser},
       {...Git},
-      {...FrontEngerner}
+      {...FrontEngerner},
+      {...Babel},
       // { ...FinancialManageConfig },
     ]
 

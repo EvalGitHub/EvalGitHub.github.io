@@ -165,7 +165,7 @@ createDataUrl(event) {
 ```
 downloadFun() {
   const fileName = 'download.txt';
-  const blob = new Blob(['johnYu'], { type: 'text/plain' });
+  const blob = new Blob(['test data'], { type: 'text/plain' });
   const link = document.createElement('a');
   link.href = this.getObjectUrl(blob);
   link.download = fileName;
@@ -179,7 +179,7 @@ downloadFun() {
 ```
 downloadFun() {
   const fileName = 'download.txt';
-  const blob = new Blob(['johnYu'], { type: 'text/plain' });
+  const blob = new Blob(['test data'], { type: 'text/plain' });
   const reader = new FileReader();
   const link = document.createElement('a');
   link.download = fileName;
