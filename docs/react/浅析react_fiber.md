@@ -62,3 +62,5 @@ sevlte相比react,vue而言，速度更快，体积更小，react,vue都是runti
 https://segmentfault.com/a/1190000018250127
 
 https://www.youtube.com/watch?v=ZCuYPiUIONs
+
+[走进react-fiber的世界](https://mp.weixin.qq.com/s/zjhCIUtJrSmw2icy2zkKFg)
