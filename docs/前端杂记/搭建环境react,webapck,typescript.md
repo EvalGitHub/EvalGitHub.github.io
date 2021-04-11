@@ -6,7 +6,6 @@
 npm i typescript -g  
 npm link typescript
 ```
-
 ## 修改代码之后不想重新刷新浏览器，需要热更新
 
 1. 启动webpack-devserver hot:true
@@ -20,13 +19,11 @@ if(module.hot) {
     })
 }
 ```
-
 ## 在使用ts之后提示module上没有hot属性
 
 ```
 npm install --save-dev @types/webpack-env
 ```
-
 ## css-loader 模块化（module:true）不生效？
 
 ```

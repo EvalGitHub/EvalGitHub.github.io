@@ -1,5 +1,4 @@
 # 关于meta的几点
-
 ## 禁止用户缩放屏幕
 ```
 <meta name="viewport" id="WebViewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -8,7 +7,6 @@
 
 **常见的场景：**
 开发一个pc上的网站，我们能很清楚的很清晰的展现出各种样式，假如网站没有做响应式和自适应的处理，这个时候如果在手机上去浏览这个网站，我们可能会看到网页还是那么大，出现各种滚动条，造成的原因就是设置了禁止缩放，使得布局视图pc与H5相同。这个时候应该允许用户进行缩放，删除index.html中这个meta。
-
 
 ## 指定使用chrmo内核进行渲染
 

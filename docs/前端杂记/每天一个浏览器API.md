@@ -17,7 +17,6 @@ console.log(range1.startContainer);
 
 > splitText() 方法按照指定的 offset 把文本节点分割为两个节点
 
-
 ## event.target.closet
 
 > 遍历元素和他的父级别元素，至到返回目的元素
