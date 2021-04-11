@@ -2,7 +2,7 @@
 var fs = require('fs');
 var path = require('path');
 
-const moduleTitle = 'javascript基础';
+const moduleTitle = 'js';
 
 var fileArr = fileDisplay(path.join(__dirname, '../../', moduleTitle));
 
@@ -18,7 +18,7 @@ function fileDisplay(_filePath) {
 }
 
 module.exports = {
-  title: 'javascript基础',
+  title: 'js',
   collapsable: true,
   children: fileArr,
   sidebarDepth: 2, // 默认是1: 提取h2标题 0: 禁用headers链接 2: 提取h2, h3标题
