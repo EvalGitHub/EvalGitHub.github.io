@@ -136,4 +136,5 @@ export default defineConfig({
 
 参考：
 [vite插件api hook](https://vitejs.dev/guide/api-plugin.html) 、
-[i18n实例](https://github.com/EvalGitHub/vite-vue3)
+[i18n实例](https://github.com/EvalGitHub/vite-vue3)，
+[vite插件，实现将markdown转成vue组件](https://juejin.cn/post/6948390250003562532)
