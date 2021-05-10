@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>提升webpack打包速度 | 个人主页</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="学习总结">
+    
+    <link rel="preload" href="/assets/css/0.styles.2d5138be.css" as="style"><link rel="preload" href="/assets/js/app.6fff5d6f.js" as="script"><link rel="preload" href="/assets/js/2.38388708.js" as="script"><link rel="preload" href="/assets/js/9.d8626093.js" as="script"><link rel="prefetch" href="/assets/js/10.70b9ae38.js"><link rel="prefetch" href="/assets/js/100.95d34860.js"><link rel="prefetch" href="/assets/js/101.27afa50f.js"><link rel="prefetch" href="/assets/js/102.96da8cfd.js"><link rel="prefetch" href="/assets/js/103.cac4311e.js"><link rel="prefetch" href="/assets/js/104.077acfa3.js"><link rel="prefetch" href="/assets/js/105.43a8cc0f.js"><link rel="prefetch" href="/assets/js/106.2d89e146.js"><link rel="prefetch" href="/assets/js/107.f3194f57.js"><link rel="prefetch" href="/assets/js/108.9c708e16.js"><link rel="prefetch" href="/assets/js/109.063270ce.js"><link rel="prefetch" href="/assets/js/11.cb3af52d.js"><link rel="prefetch" href="/assets/js/110.c15ec1f0.js"><link rel="prefetch" href="/assets/js/111.b05c9e27.js"><link rel="prefetch" href="/assets/js/112.8bb86251.js"><link rel="prefetch" href="/assets/js/113.3d8aa02c.js"><link rel="prefetch" href="/assets/js/114.f8c77d1c.js"><link rel="prefetch" href="/assets/js/115.4a612a64.js"><link rel="prefetch" href="/assets/js/116.af416aec.js"><link rel="prefetch" href="/assets/js/117.e9287be5.js"><link rel="prefetch" href="/assets/js/118.9f1355d5.js"><link rel="prefetch" href="/assets/js/119.dcde87c8.js"><link rel="prefetch" href="/assets/js/12.ce2f6be9.js"><link rel="prefetch" href="/assets/js/120.2603cc99.js"><link rel="prefetch" href="/assets/js/121.ce530b99.js"><link rel="prefetch" href="/assets/js/122.e0152c25.js"><link rel="prefetch" href="/assets/js/123.8a62759c.js"><link rel="prefetch" href="/assets/js/124.35b36779.js"><link rel="prefetch" href="/assets/js/125.b3643c8e.js"><link rel="prefetch" href="/assets/js/126.d82c741b.js"><link rel="prefetch" href="/assets/js/127.7578e5d4.js"><link rel="prefetch" href="/assets/js/128.d30c4620.js"><link rel="prefetch" href="/assets/js/129.9e2cc2d4.js"><link rel="prefetch" href="/assets/js/13.6cedb467.js"><link rel="prefetch" href="/assets/js/130.4729cf98.js"><link rel="prefetch" href="/assets/js/131.c113bc2f.js"><link rel="prefetch" href="/assets/js/132.24891f1f.js"><link rel="prefetch" href="/assets/js/133.db5c19b2.js"><link rel="prefetch" href="/assets/js/134.d6e65f53.js"><link rel="prefetch" href="/assets/js/135.7f4fda89.js"><link rel="prefetch" href="/assets/js/14.19e06029.js"><link rel="prefetch" href="/assets/js/15.d0878b5a.js"><link rel="prefetch" href="/assets/js/16.20f542e9.js"><link rel="prefetch" href="/assets/js/17.2f5da435.js"><link rel="prefetch" href="/assets/js/18.bddd03d6.js"><link rel="prefetch" href="/assets/js/19.f1a8ae0a.js"><link rel="prefetch" href="/assets/js/20.5acee444.js"><link rel="prefetch" href="/assets/js/21.d59c64c0.js"><link rel="prefetch" href="/assets/js/22.558230e5.js"><link rel="prefetch" href="/assets/js/23.75284ba6.js"><link rel="prefetch" href="/assets/js/24.e7b20f58.js"><link rel="prefetch" href="/assets/js/25.08e3afbb.js"><link rel="prefetch" href="/assets/js/26.9cfc8e49.js"><link rel="prefetch" href="/assets/js/27.c8d6c557.js"><link rel="prefetch" href="/assets/js/28.3194b330.js"><link rel="prefetch" href="/assets/js/29.c6c83dd7.js"><link rel="prefetch" href="/assets/js/3.9b664b32.js"><link rel="prefetch" href="/assets/js/30.f61ca62f.js"><link rel="prefetch" href="/assets/js/31.2e2f469b.js"><link rel="prefetch" href="/assets/js/32.1e72fd9d.js"><link rel="prefetch" href="/assets/js/33.354dfb01.js"><link rel="prefetch" href="/assets/js/34.671d6fc0.js"><link rel="prefetch" href="/assets/js/35.ba9398b1.js"><link rel="prefetch" href="/assets/js/36.8fb5a17f.js"><link rel="prefetch" href="/assets/js/37.112690f9.js"><link rel="prefetch" href="/assets/js/38.9f543916.js"><link rel="prefetch" href="/assets/js/39.db1c0bfa.js"><link rel="prefetch" href="/assets/js/4.5e025de2.js"><link rel="prefetch" href="/assets/js/40.244ef9c6.js"><link rel="prefetch" href="/assets/js/41.7bcb7c91.js"><link rel="prefetch" href="/assets/js/42.ab1283de.js"><link rel="prefetch" href="/assets/js/43.fdf82a89.js"><link rel="prefetch" href="/assets/js/44.db9a3817.js"><link rel="prefetch" href="/assets/js/45.b3e4b99a.js"><link rel="prefetch" href="/assets/js/46.a500756d.js"><link rel="prefetch" href="/assets/js/47.5417d886.js"><link rel="prefetch" href="/assets/js/48.181f907c.js"><link rel="prefetch" href="/assets/js/49.da80c7fb.js"><link rel="prefetch" href="/assets/js/5.b14996d9.js"><link rel="prefetch" href="/assets/js/50.83abcfca.js"><link rel="prefetch" href="/assets/js/51.3551b968.js"><link rel="prefetch" href="/assets/js/52.5d96b128.js"><link rel="prefetch" href="/assets/js/53.ac8e7819.js"><link rel="prefetch" href="/assets/js/54.45013916.js"><link rel="prefetch" href="/assets/js/55.c0f8363c.js"><link rel="prefetch" href="/assets/js/56.ad20f679.js"><link rel="prefetch" href="/assets/js/57.0f232571.js"><link rel="prefetch" href="/assets/js/58.407e211a.js"><link rel="prefetch" href="/assets/js/59.5e71ead0.js"><link rel="prefetch" href="/assets/js/6.7e52637c.js"><link rel="prefetch" href="/assets/js/60.9b2284dc.js"><link rel="prefetch" href="/assets/js/61.d0a68714.js"><link rel="prefetch" href="/assets/js/62.b0671625.js"><link rel="prefetch" href="/assets/js/63.07778e94.js"><link rel="prefetch" href="/assets/js/64.a2a042f9.js"><link rel="prefetch" href="/assets/js/65.eeb68be9.js"><link rel="prefetch" href="/assets/js/66.a4cecfa3.js"><link rel="prefetch" href="/assets/js/67.eee0363f.js"><link rel="prefetch" href="/assets/js/68.fd7b9e61.js"><link rel="prefetch" href="/assets/js/69.93b81c17.js"><link rel="prefetch" href="/assets/js/7.7179bc94.js"><link rel="prefetch" href="/assets/js/70.fe297493.js"><link rel="prefetch" href="/assets/js/71.d9c960c8.js"><link rel="prefetch" href="/assets/js/72.72045d83.js"><link rel="prefetch" href="/assets/js/73.43cd3c3f.js"><link rel="prefetch" href="/assets/js/74.2498c6cd.js"><link rel="prefetch" href="/assets/js/75.338f094a.js"><link rel="prefetch" href="/assets/js/76.e31dbdc6.js"><link rel="prefetch" href="/assets/js/77.b9379958.js"><link rel="prefetch" href="/assets/js/78.2eb9f237.js"><link rel="prefetch" href="/assets/js/79.7e75aea4.js"><link rel="prefetch" href="/assets/js/8.94e73d33.js"><link rel="prefetch" href="/assets/js/80.f65eab7b.js"><link rel="prefetch" href="/assets/js/81.ad757f55.js"><link rel="prefetch" href="/assets/js/82.a0ecfd4c.js"><link rel="prefetch" href="/assets/js/83.b010b038.js"><link rel="prefetch" href="/assets/js/84.26ed2cf8.js"><link rel="prefetch" href="/assets/js/85.82c53a58.js"><link rel="prefetch" href="/assets/js/86.65951509.js"><link rel="prefetch" href="/assets/js/87.1d719d74.js"><link rel="prefetch" href="/assets/js/88.9d2f97b9.js"><link rel="prefetch" href="/assets/js/89.602b3677.js"><link rel="prefetch" href="/assets/js/90.b96ccf84.js"><link rel="prefetch" href="/assets/js/91.fd1fda01.js"><link rel="prefetch" href="/assets/js/92.5504508e.js"><link rel="prefetch" href="/assets/js/93.f10d5418.js"><link rel="prefetch" href="/assets/js/94.0b7ceff4.js"><link rel="prefetch" href="/assets/js/95.8b174039.js"><link rel="prefetch" href="/assets/js/96.c855d6aa.js"><link rel="prefetch" href="/assets/js/97.45ffc678.js"><link rel="prefetch" href="/assets/js/98.72329026.js"><link rel="prefetch" href="/assets/js/99.955f9e5c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.2d5138be.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="../assets/logo.png" alt="个人主页" class="logo"> <span class="site-name can-hide">个人主页</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>文档介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端杂记</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>构建工具篇-webpack等</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/构建工具篇-webpack等/hash、chunkhash、contenthash三者区别.html" class="sidebar-link">hash、chunkhash、contenthash三者区别</a></li><li><a href="/构建工具篇-webpack等/rollup入门教程.html" class="sidebar-link">rollup入门教程</a></li><li><a href="/构建工具篇-webpack等/vite剖析.html" class="sidebar-link">vite剖析</a></li><li><a href="/构建工具篇-webpack等/webapck打包优化速度提升篇.html" class="active sidebar-link">提升webpack打包速度</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/构建工具篇-webpack等/webapck打包优化速度提升篇.html#speed-measure-webpack-plugin" class="sidebar-link">speed-measure-webpack-plugin</a></li><li class="sidebar-sub-header"><a href="/构建工具篇-webpack等/webapck打包优化速度提升篇.html#cache-loader提升二次打包速度" class="sidebar-link">cache-loader提升二次打包速度</a></li><li class="sidebar-sub-header"><a href="/构建工具篇-webpack等/webapck打包优化速度提升篇.html#使用hardsourcewebpackplugin提升二次构建速度" class="sidebar-link">使用HardSourceWebpackPlugin提升二次构建速度</a></li><li class="sidebar-sub-header"><a href="/构建工具篇-webpack等/webapck打包优化速度提升篇.html#webpack-dll-plugin避免重复打包" class="sidebar-link">webpack.dll.plugin避免重复打包</a></li><li class="sidebar-sub-header"><a href="/构建工具篇-webpack等/webapck打包优化速度提升篇.html#happypack-thread-loader多线程提升打包速度" class="sidebar-link">HappyPack/thread-loader多线程提升打包速度</a></li><li class="sidebar-sub-header"><a href="/构建工具篇-webpack等/webapck打包优化速度提升篇.html#使用noparse-ignoreplugin" class="sidebar-link">使用noParse，IgnorePlugin</a></li><li class="sidebar-sub-header"><a href="/构建工具篇-webpack等/webapck打包优化速度提升篇.html#使用module-ids" class="sidebar-link">使用module IDs</a></li></ul></li><li><a href="/构建工具篇-webpack等/webpack多页应用打包.html" class="sidebar-link">webpack多页打包实现,以及多配置同时运行</a></li><li><a href="/构建工具篇-webpack等/webpack热更新的原理.html" class="sidebar-link">webpack热更新的原理</a></li><li><a href="/构建工具篇-webpack等/webpack的PWA打包配置.html" class="sidebar-link">/构建工具篇-webpack等/webpack的PWA打包配置.html</a></li><li><a href="/构建工具篇-webpack等/webpack的include，exclude的使用.html" class="sidebar-link">webpack的include，exclude的使用</a></li><li><a href="/构建工具篇-webpack等/webpack项目优化篇.html" class="sidebar-link">webpack打包插件篇</a></li><li><a href="/构建工具篇-webpack等/一个简易版的vite.html" class="sidebar-link">一个简易版的vite</a></li><li><a href="/构建工具篇-webpack等/关于externals.html" class="sidebar-link">/构建工具篇-webpack等/关于externals.html</a></li><li><a href="/构建工具篇-webpack等/动态导入以及预加载.html" class="sidebar-link">webpack动态导入及预加载</a></li><li><a href="/构建工具篇-webpack等/如何写一个vite插件.html" class="sidebar-link">如何写一个vite插件</a></li><li><a href="/构建工具篇-webpack等/实现一个简易的打包工具.html" class="sidebar-link">实现一个简易的模块打包工具</a></li><li><a href="/构建工具篇-webpack等/编写一个webpack的loader.html" class="sidebar-link">编写一个简单的loader</a></li><li><a href="/构建工具篇-webpack等/编写一个webpack的插件.html" class="sidebar-link">编写一个webpack的插件（plugin）</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>flutter</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>H5开发汇总</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>web 安全</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>http 协议</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>pwa</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>浏览器原理&amp;性能优化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>babel</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="提升webpack打包速度"><a href="#提升webpack打包速度" class="header-anchor">#</a> 提升webpack打包速度</h1> <h2 id="speed-measure-webpack-plugin"><a href="#speed-measure-webpack-plugin" class="header-anchor">#</a> speed-measure-webpack-plugin</h2> <p>查看每个plugin，loader的工作时间，对应做优化</p> <p><img src="/assets/img/speed_measure.d421c4f4.png" alt="avatar"></p> <p>可见babel-loader，url-loader，ts-loader的耗时比较长，所以每次构建时会花非很多时间。</p> <ul><li>解决方案：使用<strong>cache-lodader</strong>提升二次构建速度提升</li></ul> <p>cache-loader的使用比较简单，只需要在每个loader前面添加
+cache-loader即可</p> <p>babel-loader有自己的缓存配制项</p> <div class="language- extra-class"><pre class="language-text"><code>cacheDirectory: true,
+</code></pre></div><p>优化后的结果：打包时间从41804ms -&gt; 19911ms</p> <p><img src="/assets/img/cache_loader.ccd24d33.png" alt="avatar"></p> <h2 id="cache-loader提升二次打包速度"><a href="#cache-loader提升二次打包速度" class="header-anchor">#</a> cache-loader提升二次打包速度</h2> <p>loader 的编译结果写入硬盘缓存，再次构建如果文件没有发生变化则会直接拉取缓存。</p> <blockquote><p>每一次项目变更的时候，没有必要将所有文件都重编译一遍，所以我们可像浏览器加载资源样，将没有改变的内容缓存下来。大部分loader都提供了cache配置项，比如在 babel-loader 中，可以通过设置 cacheDirectory 来开启缓存，这样，babel-loader 就会将每次的编译结果写进硬盘文件（默认是在项目根目录下的node_modules/.cache/babel-loader目录内，当然你也可以自定义）。</p></blockquote> <p>但是也有些没有缓存配置项的，这个时候我们可以合理使用cache-loader（值得注意的是：要把它写在所有loader的最前面）</p> <p><strong>请注意，保存和读取这些缓存文件会有一些时间开销，所以请只对性能开销较大的 loader 使用此 loader</strong></p> <div class="language- extra-class"><pre class="language-text"><code>module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          'cache-loader',
+          'babel-loader'
+        ],
+        include: path.resolve('src')
+      }
+    ]
+  }
+}
+</code></pre></div><p><a href="https://www.webpackjs.com/loaders/cache-loader/" target="_blank" rel="noopener noreferrer">关于cache-loader的使用<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="使用hardsourcewebpackplugin提升二次构建速度"><a href="#使用hardsourcewebpackplugin提升二次构建速度" class="header-anchor">#</a> 使用HardSourceWebpackPlugin提升二次构建速度</h2> <p>各个模块的缓存，默认只缓存50M，可以自定义配制缓存的大小</p> <div class="language- extra-class"><pre class="language-text"><code>const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+....
+....
+plugins: [
+  new HardSourceWebpackPlugin(),
+  ...
+  ...
+]
+</code></pre></div><p>使用之后的截图</p> <p><img src="/assets/img/hard_source.ec172812.png" alt="avatar"></p> <h2 id="webpack-dll-plugin避免重复打包"><a href="#webpack-dll-plugin避免重复打包" class="header-anchor">#</a> webpack.dll.plugin避免重复打包</h2> <p>在执行webpack打包的时候，每一次都会去重新分析项目中所有的依赖包，这是一个比较费时的工作，考虑到有些第三方包我们更 本不会去修改，因此可以想办法将这些包只打包一次。</p> <blockquote><p>webpack.DllPlugin：将第三方包单独打包到某个文件，然后只需直接引入即可</p></blockquote> <p><strong>首先你需要创建一个webpack.dll.config.js</strong></p> <div class="language- extra-class"><pre class="language-text"><code>// 对于长久不变的第三方库，使用dll打包，优化打包速度
+const path = require('path');
+const webpack = require('webpack');
+
+module.exports = {
+  mode: 'production',
+  entry: {
+    // 定义程序中打包公共文件的入口文件thirdlibrary.js
+    'thirdlibrary': ['react', 'react-router', 'react-dom', 'react-router-dom']
+  },
+
+  output: {
+    path: path.resolve(__dirname, '..', 'dll'),
+    filename: '[name].dll.js',
+    library: '[name]_[hash]', // 暴露这个库全局可用,
+    libraryTarget: 'this'
+  },
+
+  plugins: [
+    new webpack.DllPlugin({
+      context: process.cwd(),
+      // 分析库文件的映射关系（可以为webpack避免直接使用node_module中的库提供依据）
+      path: path.resolve(__dirname, '..', 'dll/[name]-manifest.json'),
+      name: '[name]_[hash]' // 与output的library同名
+    })
+  ]
+}
+
+</code></pre></div><p>引入的时候需要使用 <strong>add-asset-html-webpack-plugin</strong></p> <p><strong>配置webpack.common.js</strong></p> <div class="language- extra-class"><pre class="language-text"><code>const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+
+plugins: [
+	// 将打包好的第三方插件加到html，静态资源上
+	new AddAssetHtmlPlugin(
+      // 对应的 dll 文件路径
+      { 
+        filepath: path.resolve(__dirname, '../dll/thirdlibrary.dll.js'),
+        includeSourcemap: false,
+        hash: true
+      },
+    ),
+    // 使用生成的thirdlibrary-manifest.json来分析包的引用情况，避免重复打包，会在全局变量中直接引用
+    new webpack.DllReferencePlugin(
+      {
+        manifest: path.resolve(__dirname, '..', 'dll/thirdlibrary-manifest.json')
+      }
+    )
+]
+</code></pre></div><p><strong>存在的问题：</strong> 如果我们将所有的第三方包都放在一个thirdlibrary.dll.js中，就会使得这个文件变得很大，这样下载的速度就很慢，如果我们能按分开打包为多个文件，这样在首次加载的时候可以并行下载，提升速度。</p> <p><strong>修改webpack.dll.config.js</strong></p> <div class="language- extra-class"><pre class="language-text"><code>module.exports = {
+  mode: 'production',
+  entry: {
+    // 定义程序中打包公共文件的入口文件vendor.js
+    'react': ['react', 'react-dom'],
+    'react-router': ['react-router', 'react-router-dom']
+  },
+  .....
+</code></pre></div><p>重新执行npm run build:dll 【  &quot;build:dll&quot;: &quot;webpack --config webpack/webpack.dll.config.js&quot;】</p> <p><strong>修改webpack.common.config.js</strong></p> <p>将plugins抽离出去，变成动态生成的</p> <div class="language- extra-class"><pre class="language-text"><code>// 基础plugins
+const plugins = [
+  new WebpackBuildNotifierPlugin({
+    title: &quot;My Project Webpack Build&quot;,
+    // logo: path.resolve(&quot;./img/favicon.png&quot;),
+    suppressSuccess: true
+  }),
+  new HtmlWebpackPlugin({
+    template: '../index.html'
+  }),
+  new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[name].[chunkhash:8].css',
+  }),
+];
+/* 动态生成plugin [根据dll文件下的文件个数动态添加AddAssetHtmlPlugin， **webpack.DllReferencePlugin]
+*/
+const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
+files.forEach(file =&gt; {
+  if (/.*\.dll.js/.test(file)) {
+    plugins.push(
+      new AddAssetHtmlPlugin(
+        { 
+          filepath: path.resolve(__dirname, '../dll', file),
+          includeSourcemap: false,
+          hash: true
+        },
+      )
+    )
+  };
+  if (/.*\.manifest.json/.test(file)) {
+    plugins.push(
+      new webpack.DllReferencePlugin(
+        { 
+          manifest: path.resolve(__dirname, '../dll', file)
+        },
+      )
+    )
+  }
+});
+</code></pre></div><h2 id="happypack-thread-loader多线程提升打包速度"><a href="#happypack-thread-loader多线程提升打包速度" class="header-anchor">#</a> HappyPack/thread-loader多线程提升打包速度</h2> <p>由于运行在 Node.js 之上的 Webpack 是单线程模型的，所以Webpack 需要处理的事情需要一件一件的做，不能多件事一起做。
+我们需要Webpack 能同一时间处理多个任务，发挥多核 CPU 电脑的威力，<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2Famireh%2Fhappypack" target="_blank" rel="noopener noreferrer">HappyPack<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 就能让 Webpack 做到这点，它把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程</p> <div class="language- extra-class"><pre class="language-text"><code>const HappyPack = require ('happypack')
+const os = require('os')
+// 获取系统cpu的最大核数
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+module.export = {
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /(node_modules|bower_components)/,
+                use: 'happypack/loader?id=js',
+            }
+        ]
+    },
+    plugins: [
+        new HappyPack({
+      		id: 'js',
+			threadPool: happyThreadPool,
+     		loaders: [{
+          		loader: 'babel-loader',
+        	}],
+        }),
+    ]
+}
+</code></pre></div><p>所以配置起来逻辑其实很简单，就是用 happypack 提供的 Plugin 为你的 Loaders 做一层包装就好了，向外暴露一个id ，而在你的 module.rules 里，就不需要写loader了，直接引用这个 id 即可。</p> <p><strong>note: 如果项目不是很大，不到万不得已不建议使用这种多线程手段，因为多线程本生就是比较耗时的，所以对于小型项目不建议使用。</strong></p> <p><a href="https://mp.weixin.qq.com/s/WmTWXoYn_CvD60nd0_biuQ" target="_blank" rel="noopener noreferrer">happyWebpack的使用<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="使用noparse-ignoreplugin"><a href="#使用noparse-ignoreplugin" class="header-anchor">#</a> 使用noParse，IgnorePlugin</h2> <p>webpack在打包的时候会将每个js文件进行解析，这是十分耗时的；如果你能确定有些库文件
+不会依赖其他的库（不会使用import，require等形式引入其他文件），这个时候可以使用
+noParse告诉webpack去避免解析这类的文件（库），常见的有jquery，loash。</p> <div class="language- extra-class"><pre class="language-text"><code>  noParse: '/jquery|lodash/'
+</code></pre></div><p><a href="https://webpack.js.org/configuration/module/#modulenoparse" target="_blank" rel="noopener noreferrer">https://webpack.js.org/configuration/module/#modulenoparse<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="使用module-ids"><a href="#使用module-ids" class="header-anchor">#</a> 使用module IDs</h2></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">12/12/2020, 2:58:08 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/构建工具篇-webpack等/vite剖析.html" class="prev">
+        vite剖析
+      </a></span> <span class="next"><a href="/构建工具篇-webpack等/webpack多页应用打包.html">
+        webpack多页打包实现,以及多配置同时运行
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.6fff5d6f.js" defer></script><script src="/assets/js/2.38388708.js" defer></script><script src="/assets/js/9.d8626093.js" defer></script>
+  </body>
+</html>

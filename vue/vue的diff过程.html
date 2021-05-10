@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue的diff过程 | 个人主页</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="学习总结">
+    
+    <link rel="preload" href="/assets/css/0.styles.2d5138be.css" as="style"><link rel="preload" href="/assets/js/app.6fff5d6f.js" as="script"><link rel="preload" href="/assets/js/2.38388708.js" as="script"><link rel="preload" href="/assets/js/86.65951509.js" as="script"><link rel="prefetch" href="/assets/js/10.70b9ae38.js"><link rel="prefetch" href="/assets/js/100.95d34860.js"><link rel="prefetch" href="/assets/js/101.27afa50f.js"><link rel="prefetch" href="/assets/js/102.96da8cfd.js"><link rel="prefetch" href="/assets/js/103.cac4311e.js"><link rel="prefetch" href="/assets/js/104.077acfa3.js"><link rel="prefetch" href="/assets/js/105.43a8cc0f.js"><link rel="prefetch" href="/assets/js/106.2d89e146.js"><link rel="prefetch" href="/assets/js/107.f3194f57.js"><link rel="prefetch" href="/assets/js/108.9c708e16.js"><link rel="prefetch" href="/assets/js/109.063270ce.js"><link rel="prefetch" href="/assets/js/11.cb3af52d.js"><link rel="prefetch" href="/assets/js/110.c15ec1f0.js"><link rel="prefetch" href="/assets/js/111.b05c9e27.js"><link rel="prefetch" href="/assets/js/112.8bb86251.js"><link rel="prefetch" href="/assets/js/113.3d8aa02c.js"><link rel="prefetch" href="/assets/js/114.f8c77d1c.js"><link rel="prefetch" href="/assets/js/115.4a612a64.js"><link rel="prefetch" href="/assets/js/116.af416aec.js"><link rel="prefetch" href="/assets/js/117.e9287be5.js"><link rel="prefetch" href="/assets/js/118.9f1355d5.js"><link rel="prefetch" href="/assets/js/119.dcde87c8.js"><link rel="prefetch" href="/assets/js/12.ce2f6be9.js"><link rel="prefetch" href="/assets/js/120.2603cc99.js"><link rel="prefetch" href="/assets/js/121.ce530b99.js"><link rel="prefetch" href="/assets/js/122.e0152c25.js"><link rel="prefetch" href="/assets/js/123.8a62759c.js"><link rel="prefetch" href="/assets/js/124.35b36779.js"><link rel="prefetch" href="/assets/js/125.b3643c8e.js"><link rel="prefetch" href="/assets/js/126.d82c741b.js"><link rel="prefetch" href="/assets/js/127.7578e5d4.js"><link rel="prefetch" href="/assets/js/128.d30c4620.js"><link rel="prefetch" href="/assets/js/129.9e2cc2d4.js"><link rel="prefetch" href="/assets/js/13.6cedb467.js"><link rel="prefetch" href="/assets/js/130.4729cf98.js"><link rel="prefetch" href="/assets/js/131.c113bc2f.js"><link rel="prefetch" href="/assets/js/132.24891f1f.js"><link rel="prefetch" href="/assets/js/133.db5c19b2.js"><link rel="prefetch" href="/assets/js/134.d6e65f53.js"><link rel="prefetch" href="/assets/js/135.7f4fda89.js"><link rel="prefetch" href="/assets/js/14.19e06029.js"><link rel="prefetch" href="/assets/js/15.d0878b5a.js"><link rel="prefetch" href="/assets/js/16.20f542e9.js"><link rel="prefetch" href="/assets/js/17.2f5da435.js"><link rel="prefetch" href="/assets/js/18.bddd03d6.js"><link rel="prefetch" href="/assets/js/19.f1a8ae0a.js"><link rel="prefetch" href="/assets/js/20.5acee444.js"><link rel="prefetch" href="/assets/js/21.d59c64c0.js"><link rel="prefetch" href="/assets/js/22.558230e5.js"><link rel="prefetch" href="/assets/js/23.75284ba6.js"><link rel="prefetch" href="/assets/js/24.e7b20f58.js"><link rel="prefetch" href="/assets/js/25.08e3afbb.js"><link rel="prefetch" href="/assets/js/26.9cfc8e49.js"><link rel="prefetch" href="/assets/js/27.c8d6c557.js"><link rel="prefetch" href="/assets/js/28.3194b330.js"><link rel="prefetch" href="/assets/js/29.c6c83dd7.js"><link rel="prefetch" href="/assets/js/3.9b664b32.js"><link rel="prefetch" href="/assets/js/30.f61ca62f.js"><link rel="prefetch" href="/assets/js/31.2e2f469b.js"><link rel="prefetch" href="/assets/js/32.1e72fd9d.js"><link rel="prefetch" href="/assets/js/33.354dfb01.js"><link rel="prefetch" href="/assets/js/34.671d6fc0.js"><link rel="prefetch" href="/assets/js/35.ba9398b1.js"><link rel="prefetch" href="/assets/js/36.8fb5a17f.js"><link rel="prefetch" href="/assets/js/37.112690f9.js"><link rel="prefetch" href="/assets/js/38.9f543916.js"><link rel="prefetch" href="/assets/js/39.db1c0bfa.js"><link rel="prefetch" href="/assets/js/4.5e025de2.js"><link rel="prefetch" href="/assets/js/40.244ef9c6.js"><link rel="prefetch" href="/assets/js/41.7bcb7c91.js"><link rel="prefetch" href="/assets/js/42.ab1283de.js"><link rel="prefetch" href="/assets/js/43.fdf82a89.js"><link rel="prefetch" href="/assets/js/44.db9a3817.js"><link rel="prefetch" href="/assets/js/45.b3e4b99a.js"><link rel="prefetch" href="/assets/js/46.a500756d.js"><link rel="prefetch" href="/assets/js/47.5417d886.js"><link rel="prefetch" href="/assets/js/48.181f907c.js"><link rel="prefetch" href="/assets/js/49.da80c7fb.js"><link rel="prefetch" href="/assets/js/5.b14996d9.js"><link rel="prefetch" href="/assets/js/50.83abcfca.js"><link rel="prefetch" href="/assets/js/51.3551b968.js"><link rel="prefetch" href="/assets/js/52.5d96b128.js"><link rel="prefetch" href="/assets/js/53.ac8e7819.js"><link rel="prefetch" href="/assets/js/54.45013916.js"><link rel="prefetch" href="/assets/js/55.c0f8363c.js"><link rel="prefetch" href="/assets/js/56.ad20f679.js"><link rel="prefetch" href="/assets/js/57.0f232571.js"><link rel="prefetch" href="/assets/js/58.407e211a.js"><link rel="prefetch" href="/assets/js/59.5e71ead0.js"><link rel="prefetch" href="/assets/js/6.7e52637c.js"><link rel="prefetch" href="/assets/js/60.9b2284dc.js"><link rel="prefetch" href="/assets/js/61.d0a68714.js"><link rel="prefetch" href="/assets/js/62.b0671625.js"><link rel="prefetch" href="/assets/js/63.07778e94.js"><link rel="prefetch" href="/assets/js/64.a2a042f9.js"><link rel="prefetch" href="/assets/js/65.eeb68be9.js"><link rel="prefetch" href="/assets/js/66.a4cecfa3.js"><link rel="prefetch" href="/assets/js/67.eee0363f.js"><link rel="prefetch" href="/assets/js/68.fd7b9e61.js"><link rel="prefetch" href="/assets/js/69.93b81c17.js"><link rel="prefetch" href="/assets/js/7.7179bc94.js"><link rel="prefetch" href="/assets/js/70.fe297493.js"><link rel="prefetch" href="/assets/js/71.d9c960c8.js"><link rel="prefetch" href="/assets/js/72.72045d83.js"><link rel="prefetch" href="/assets/js/73.43cd3c3f.js"><link rel="prefetch" href="/assets/js/74.2498c6cd.js"><link rel="prefetch" href="/assets/js/75.338f094a.js"><link rel="prefetch" href="/assets/js/76.e31dbdc6.js"><link rel="prefetch" href="/assets/js/77.b9379958.js"><link rel="prefetch" href="/assets/js/78.2eb9f237.js"><link rel="prefetch" href="/assets/js/79.7e75aea4.js"><link rel="prefetch" href="/assets/js/8.94e73d33.js"><link rel="prefetch" href="/assets/js/80.f65eab7b.js"><link rel="prefetch" href="/assets/js/81.ad757f55.js"><link rel="prefetch" href="/assets/js/82.a0ecfd4c.js"><link rel="prefetch" href="/assets/js/83.b010b038.js"><link rel="prefetch" href="/assets/js/84.26ed2cf8.js"><link rel="prefetch" href="/assets/js/85.82c53a58.js"><link rel="prefetch" href="/assets/js/87.1d719d74.js"><link rel="prefetch" href="/assets/js/88.9d2f97b9.js"><link rel="prefetch" href="/assets/js/89.602b3677.js"><link rel="prefetch" href="/assets/js/9.d8626093.js"><link rel="prefetch" href="/assets/js/90.b96ccf84.js"><link rel="prefetch" href="/assets/js/91.fd1fda01.js"><link rel="prefetch" href="/assets/js/92.5504508e.js"><link rel="prefetch" href="/assets/js/93.f10d5418.js"><link rel="prefetch" href="/assets/js/94.0b7ceff4.js"><link rel="prefetch" href="/assets/js/95.8b174039.js"><link rel="prefetch" href="/assets/js/96.c855d6aa.js"><link rel="prefetch" href="/assets/js/97.45ffc678.js"><link rel="prefetch" href="/assets/js/98.72329026.js"><link rel="prefetch" href="/assets/js/99.955f9e5c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.2d5138be.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="../assets/logo.png" alt="个人主页" class="logo"> <span class="site-name can-hide">个人主页</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link router-link-active">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link router-link-active">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>文档介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>vue</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue/" aria-current="page" class="sidebar-link">vue</a></li><li><a href="/vue/hash模式与history模式的区别.html" class="sidebar-link">路由hash模式与history</a></li><li><a href="/vue/vue-router路径如何匹配组件.html" class="sidebar-link">vue router参数解析，以及怎么匹配组件</a></li><li><a href="/vue/vue3.0更新点.html" class="sidebar-link">vue3.0更新点以及新特性</a></li><li><a href="/vue/vue对比react的区别.html" class="sidebar-link">react 对比 vue 的区别</a></li><li><a href="/vue/vue的diff过程.html" class="active sidebar-link">vue的diff过程</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/vue的diff过程.html#vue的diff过程-2" class="sidebar-link">vue的diff过程</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/vue的diff过程.html#第一步-判断两个节点是不是相同的节点-如果不是则删除oldnode-插入新的节点" class="sidebar-link">第一步：判断两个节点是不是相同的节点，如果不是则删除oldNode，插入新的节点</a></li><li class="sidebar-sub-header"><a href="/vue/vue的diff过程.html#第二步-如果两个节点的el-以及key值相同就会去对比其子节点" class="sidebar-link">第二步：如果两个节点的el，以及key值相同就会去对比其子节点</a></li><li class="sidebar-sub-header"><a href="/vue/vue的diff过程.html#第三步-非文本节点的updatechildren" class="sidebar-link">第三步：非文本节点的updateChildren</a></li></ul></li><li class="sidebar-sub-header"><a href="/vue/vue的diff过程.html#相比react-diff的不同" class="sidebar-link">相比react diff的不同</a></li></ul></li><li><a href="/vue/vue知识点汇总.html" class="sidebar-link">vue知识点</a></li><li><a href="/vue/自定义一个全局组件.html" class="sidebar-link">自定义一个全局组件</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端杂记</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>构建工具篇-webpack等</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>flutter</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>H5开发汇总</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>web 安全</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>http 协议</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>pwa</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>浏览器原理&amp;性能优化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>babel</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue的diff过程"><a href="#vue的diff过程" class="header-anchor">#</a> vue的diff过程</h1> <p>相同点：vue和react使用虚拟dom（virtual DOM），只会在同一层级去比较，如果有变化直接删除当前虚拟dom节点，插入新的节点(而不是逐层搜索遍历的方式，所以复杂度只有O(n)，因为react.vue认为那种夸层级移动DOM的操作很少。</p> <h2 id="vue的diff过程-2"><a href="#vue的diff过程-2" class="header-anchor">#</a> vue的diff过程</h2> <p>当时数据变化时，set方法会调用Dep.notify通知所有的订阅者Watcher，订阅者会调用patch给真实的DOM打补丁</p> <h3 id="第一步-判断两个节点是不是相同的节点-如果不是则删除oldnode-插入新的节点"><a href="#第一步-判断两个节点是不是相同的节点-如果不是则删除oldnode-插入新的节点" class="header-anchor">#</a> 第一步：判断两个节点是不是相同的节点，如果不是则删除oldNode，插入新的节点</h3> <div class="language- extra-class"><pre class="language-text"><code>function patch (oldVnode, vnode, hydrating, removeOnly, parentElm, refElm) {
+  /*vnode不存在则直接调用销毁钩子*/
+  if (isUndef(vnode)) {
+    if (isDef(oldVnode)) invokeDestroyHook(oldVnode)
+    return
+  }
+
+  let isInitialPatch = false
+  const insertedVnodeQueue = []
+
+  if (isUndef(oldVnode)) {
+    // empty mount (likely as component), create new root element
+    /*oldVnode未定义的时候，其实也就是root节点，创建一个新的节点*/
+    isInitialPatch = true
+    createElm(vnode, insertedVnodeQueue, parentElm, refElm)
+  } else {
+    /*标记旧的VNode是否有nodeType*/
+    const isRealElement = isDef(oldVnode.nodeType)
+    if (!isRealElement &amp;&amp; sameVnode(oldVnode, vnode)) {
+      // patch existing root node
+      /*是同一个节点的时候直接修改现有的节点*/
+      patchVnode(oldVnode, vnode, insertedVnodeQueue, removeOnly)
+    } else {
+      if (isRealElement) {
+        // mounting to a real element
+        // check if this is server-rendered content and if we can perform
+        // a successful hydration.
+        if (oldVnode.nodeType === 1 &amp;&amp; oldVnode.hasAttribute(SSR_ATTR)) {
+          /*当旧的VNode是服务端渲染的元素，hydrating记为true*/
+          oldVnode.removeAttribute(SSR_ATTR)
+          hydrating = true
+        }
+        if (isTrue(hydrating)) {
+          /*需要合并到真实Dom上*/
+          if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
+            /*调用insert钩子*/
+            invokeInsertHook(vnode, insertedVnodeQueue, true)
+            return oldVnode
+          } else if (process.env.NODE_ENV !== 'production') {
+            warn(
+              'The client-side rendered virtual DOM tree is not matching ' +
+              'server-rendered content. This is likely caused by incorrect ' +
+              'HTML markup, for example nesting block-level elements inside ' +
+              '&lt;p&gt;, or missing &lt;tbody&gt;. Bailing hydration and performing ' +
+              'full client-side render.'
+            )
+          }
+        }
+        // either not server-rendered, or hydration failed.
+        // create an empty node and replace it
+        /*如果不是服务端渲染或者合并到真实Dom失败，则创建一个空的VNode节点替换它*/
+        oldVnode = emptyNodeAt(oldVnode)
+      }
+      // replacing existing element
+      /*取代现有元素*/
+      const oldElm = oldVnode.elm
+      const parentElm = nodeOps.parentNode(oldElm)
+      createElm(
+        vnode,
+        insertedVnodeQueue,
+        // extremely rare edge case: do not insert if old element is in a
+        // leaving transition. Only happens when combining transition +
+        // keep-alive + HOCs. (#4590)
+        oldElm._leaveCb ? null : parentElm,
+        nodeOps.nextSibling(oldElm)
+      )
+
+      if (isDef(vnode.parent)) {
+        // component root element replaced.
+        // update parent placeholder node element, recursively
+        /*组件根节点被替换，遍历更新父节点element*/
+        let ancestor = vnode.parent
+        while (ancestor) {
+          ancestor.elm = vnode.elm
+          ancestor = ancestor.parent
+        }
+        if (isPatchable(vnode)) {
+          /*调用create回调*/
+          for (let i = 0; i &lt; cbs.create.length; ++i) {
+            cbs.create[i](emptyNode, vnode.parent)
+          }
+        }
+      }
+
+      if (isDef(parentElm)) {
+        /*移除老节点*/
+        removeVnodes(parentElm, [oldVnode], 0, 0)
+      } else if (isDef(oldVnode.tag)) {
+        /*调用destroy钩子*/
+        invokeDestroyHook(oldVnode)
+      }
+    }
+  }
+
+  /*调用insert钩子*/
+  invokeInsertHook(vnode, insertedVnodeQueue, isInitialPatch)
+  return vnode.elm
+}
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>/*
+  判断两个VNode节点是否是同一个节点，需要满足以下条件
+  key相同
+  tag（当前节点的标签名）相同
+  isComment（是否为注释节点）相同
+  是否data（当前节点对应的对象，包含了具体的一些数据信息，是一个VNodeData类型，可以参考VNodeData类型中的数据信息）都有定义
+  当标签是&lt;input&gt;的时候，type必须相同
+*/
+function sameVnode (a, b) {
+  return (
+    a.key === b.key &amp;&amp;
+    a.tag === b.tag &amp;&amp;
+    a.isComment === b.isComment &amp;&amp;
+    isDef(a.data) === isDef(b.data) &amp;&amp;
+    sameInputType(a, b)
+  )
+}
+
+// Some browsers do not support dynamically changing type for &lt;input&gt;
+// so they need to be treated as different nodes
+/*
+  判断当标签是&lt;input&gt;的时候，type是否相同
+  某些浏览器不支持动态修改&lt;input&gt;类型，所以他们被视为不同节点
+*/
+function sameInputType (a, b) {
+  if (a.tag !== 'input') return true
+  let i
+  const typeA = isDef(i = a.data) &amp;&amp; isDef(i = i.attrs) &amp;&amp; i.type
+  const typeB = isDef(i = b.data) &amp;&amp; isDef(i = i.attrs) &amp;&amp; i.type
+  return typeA === typeB
+}
+</code></pre></div><h3 id="第二步-如果两个节点的el-以及key值相同就会去对比其子节点"><a href="#第二步-如果两个节点的el-以及key值相同就会去对比其子节点" class="header-anchor">#</a> 第二步：如果两个节点的el，以及key值相同就会去对比其子节点</h3> <p>具体过程如下：</p> <ol><li><p>找到真实的DOM称为el</p></li> <li><p>判断Vnode, oldVnode是否为同一个对象，如果是直接结束</p></li> <li><p>如果子节点是文本节点且不相等，那么将el的文本节点设置为Vnode的文本节点</p></li> <li><p>如果不是文本节点，oldVnode有子节点而Vnode没有，则删除el的子节点</p></li> <li><p>如果oldVnode没有子节点而Vnode有，则将Vnode的子节点真实化之后添加到el</p></li> <li><p>如果两者都有子节点，则执行updateChildren函数比较子节点</p></li></ol> <div class="language- extra-class"><pre class="language-text"><code> /*patch VNode节点*/
+function patchVnode (oldVnode, vnode, insertedVnodeQueue, removeOnly) {
+  /*两个VNode节点相同则直接返回*/
+  if (oldVnode === vnode) {
+    return
+  }
+  // reuse element for static trees.
+  // note we only do this if the vnode is cloned -
+  // if the new node is not cloned it means the render functions have been
+  // reset by the hot-reload-api and we need to do a proper re-render.
+  /*
+    如果新旧VNode都是静态的，同时它们的key相同（代表同一节点），
+    并且新的VNode是clone或者是标记了once（标记v-once属性，只渲染一次），
+    那么只需要替换elm以及componentInstance即可。
+  */
+  if (isTrue(vnode.isStatic) &amp;&amp;
+      isTrue(oldVnode.isStatic) &amp;&amp;
+      vnode.key === oldVnode.key &amp;&amp;
+      (isTrue(vnode.isCloned) || isTrue(vnode.isOnce))) {
+    vnode.elm = oldVnode.elm
+    vnode.componentInstance = oldVnode.componentInstance
+    return
+  }
+  let i
+  const data = vnode.data
+  if (isDef(data) &amp;&amp; isDef(i = data.hook) &amp;&amp; isDef(i = i.prepatch)) {
+    /*i = data.hook.prepatch，如果存在的话，见&quot;./create-component componentVNodeHooks&quot;。*/
+    i(oldVnode, vnode)
+  }
+  const elm = vnode.elm = oldVnode.elm
+  const oldCh = oldVnode.children
+  const ch = vnode.children
+  if (isDef(data) &amp;&amp; isPatchable(vnode)) {
+    /*调用update回调以及update钩子*/
+    for (i = 0; i &lt; cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
+    if (isDef(i = data.hook) &amp;&amp; isDef(i = i.update)) i(oldVnode, vnode)
+  }
+  /*如果这个VNode节点没有text文本时*/
+  if (isUndef(vnode.text)) {
+    if (isDef(oldCh) &amp;&amp; isDef(ch)) {
+      /*新老节点均有children子节点，则对子节点进行diff操作，调用updateChildren*/
+      if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
+    } else if (isDef(ch)) {
+      /*如果老节点没有子节点而新节点存在子节点，先清空elm的文本内容，然后为当前节点加入子节点*/
+      if (isDef(oldVnode.text)) nodeOps.setTextContent(elm, '')
+      addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)
+    } else if (isDef(oldCh)) {
+      /*当新节点没有子节点而老节点有子节点的时候，则移除所有ele的子节点*/
+      removeVnodes(elm, oldCh, 0, oldCh.length - 1)
+    } else if (isDef(oldVnode.text)) {
+      /*当新老节点都无子节点的时候，只是文本的替换，因为这个逻辑中新节点text不存在，所以直接去除ele的文本*/
+      nodeOps.setTextContent(elm, '')
+    }
+  } else if (oldVnode.text !== vnode.text) {
+    /*当新老节点text不一样时，直接替换这段文本*/
+    nodeOps.setTextContent(elm, vnode.text)
+  }
+  /*调用postpatch钩子*/
+  if (isDef(data)) {
+    if (isDef(i = data.hook) &amp;&amp; isDef(i = i.postpatch)) i(oldVnode, vnode)
+  }
+}
+</code></pre></div><h3 id="第三步-非文本节点的updatechildren"><a href="#第三步-非文本节点的updatechildren" class="header-anchor">#</a> 第三步：非文本节点的updateChildren</h3> <ol><li>取出新旧节点的所有子节点oldCh, newCh，设置两个头尾的变量StartIndex, EndIndex，两两进行比较，如果有比较成功的就进行Vnode位置更新。</li> <li>如果设置了key值就会使用key值进行比较，在比较的过程中变量会往中间靠，一旦StartIndex &gt; EndIx 表明oldCh和newCh至少有一个已经遍历完了，就会结束比较进行节点的删除或者直接添加。</li></ol> <div class="language- extra-class"><pre class="language-text"><code>function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
+  let oldStartIdx = 0
+  let newStartIdx = 0
+  let oldEndIdx = oldCh.length - 1
+  let oldStartVnode = oldCh[0]
+  let oldEndVnode = oldCh[oldEndIdx]
+  let newEndIdx = newCh.length - 1
+  let newStartVnode = newCh[0]
+  let newEndVnode = newCh[newEndIdx]
+  let oldKeyToIdx, idxInOld, elmToMove, refElm
+
+  // removeOnly is a special flag used only by &lt;transition-group&gt;
+  // to ensure removed elements stay in correct relative positions
+  // during leaving transitions
+  const canMove = !removeOnly
+
+  while (oldStartIdx &lt;= oldEndIdx &amp;&amp; newStartIdx &lt;= newEndIdx) {
+    if (isUndef(oldStartVnode)) {
+      oldStartVnode = oldCh[++oldStartIdx] // Vnode has been moved left
+    } else if (isUndef(oldEndVnode)) {
+      oldEndVnode = oldCh[--oldEndIdx]
+    } else if (sameVnode(oldStartVnode, newStartVnode)) { // ** 第一种比较方式 **
+      /*前四种情况其实是指定key的时候，判定为同一个VNode，则直接patchVnode即可，分别比较oldCh以及newCh的两头节点2*2=4种情况*/
+      patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue)
+      oldStartVnode = oldCh[++oldStartIdx]
+      newStartVnode = newCh[++newStartIdx]
+    } else if (sameVnode(oldEndVnode, newEndVnode)) { // ** 第二种比较方式 **
+      patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue)
+      oldEndVnode = oldCh[--oldEndIdx]
+      newEndVnode = newCh[--newEndIdx]
+    } else if (sameVnode(oldStartVnode, newEndVnode)) { // Vnode moved right  ** 第三种比较方式 **
+      patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue)
+      canMove &amp;&amp; nodeOps.insertBefore(parentElm, oldStartVnode.elm, nodeOps.nextSibling(oldEndVnode.elm))
+      oldStartVnode = oldCh[++oldStartIdx]
+      newEndVnode = newCh[--newEndIdx]
+    } else if (sameVnode(oldEndVnode, newStartVnode)) { // Vnode moved left  ** 第四种比较方式 **
+      patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue)
+      canMove &amp;&amp; nodeOps.insertBefore(parentElm, oldEndVnode.elm, oldStartVnode.elm)
+      oldEndVnode = oldCh[--oldEndIdx]
+      newStartVnode = newCh[++newStartIdx]
+    } else {
+      /*
+        生成一个key与旧VNode的key对应的哈希表（只有第一次进来undefined的时候会生成，也为后面检测重复的key值做铺垫）
+        比如childre是这样的 [{xx: xx, key: 'key0'}, {xx: xx, key: 'key1'}, {xx: xx, key: 'key2'}]  beginIdx = 0   endIdx = 2  
+        结果生成{key0: 0, key1: 1, key2: 2}
+      */
+      if (isUndef(oldKeyToIdx)) oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx)
+      /*如果newStartVnode新的VNode节点存在key并且这个key在oldVnode中能找到则返回这个节点的idxInOld（即第几个节点，下标）*/
+      idxInOld = isDef(newStartVnode.key) ? oldKeyToIdx[newStartVnode.key] : null
+      if (isUndef(idxInOld)) { // New element
+        /*newStartVnode没有key或者是该key没有在老节点中找到则创建一个新的节点*/
+        createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm)
+        newStartVnode = newCh[++newStartIdx]
+      } else {
+        /*获取同key的老节点*/
+        elmToMove = oldCh[idxInOld]
+        /* istanbul ignore if */
+        if (process.env.NODE_ENV !== 'production' &amp;&amp; !elmToMove) {
+          /*如果elmToMove不存在说明之前已经有新节点放入过这个key的DOM中，提示可能存在重复的key，确保v-for的时候item有唯一的key值*/
+          warn(
+            'It seems there are duplicate keys that is causing an update error. ' +
+            'Make sure each v-for item has a unique key.'
+          )
+        }
+        if (sameVnode(elmToMove, newStartVnode)) {
+          /*Github:https://github.com/answershuto*/
+          /*如果新VNode与得到的有相同key的节点是同一个VNode则进行patchVnode*/
+          patchVnode(elmToMove, newStartVnode, insertedVnodeQueue)
+          /*因为已经patchVnode进去了，所以将这个老节点赋值undefined，之后如果还有新节点与该节点key相同可以检测出来提示已有重复的key*/
+          oldCh[idxInOld] = undefined
+          /*当有标识位canMove实可以直接插入oldStartVnode对应的真实DOM节点前面*/
+          canMove &amp;&amp; nodeOps.insertBefore(parentElm, newStartVnode.elm, oldStartVnode.elm)
+          newStartVnode = newCh[++newStartIdx]
+        } else {
+          // same key but different element. treat as new element
+          /*当新的VNode与找到的同样key的VNode不是sameVNode的时候（比如说tag不一样或者是有不一样type的input标签），创建一个新的节点*/
+          createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm)
+          newStartVnode = newCh[++newStartIdx]
+        }
+      }
+    }
+  }
+  if (oldStartIdx &gt; oldEndIdx) {
+    /*全部比较完成以后，发现oldStartIdx &gt; oldEndIdx的话，说明老节点已经遍历完了，新节点比老节点多，所以这时候多出来的新节点需要一个一个创建出来加入到真实DOM中*/
+    refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm
+    addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue)
+  } else if (newStartIdx &gt; newEndIdx) {
+    /*如果全部比较完成以后发现newStartIdx &gt; newEndIdx，则说明新节点已经遍历完了，老节点多余新节点，这个时候需要将多余的老节点从真实DOM中移除*/
+    removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx)
+  }
+}
+</code></pre></div><p><a href="https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown" target="_blank" rel="noopener noreferrer">代码来源learVue<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="相比react-diff的不同"><a href="#相比react-diff的不同" class="header-anchor">#</a> 相比react diff的不同</h2> <p>Vue diff使用的双向链表形式边对比，边更新DOM（starIndex, endIndex的使用）</p> <p>react 使用diff队列保存需要更新的DOM（从头到尾一一比较）得到patch树，在统一的批量更新DOM。</p> <p><a href="https://github.com/aooy/blog/issues/2" target="_blank" rel="noopener noreferrer">vue2.0的diff算法<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，<a href="https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown" target="_blank" rel="noopener noreferrer">vNode<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8/9/2020, 11:22:32 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue/vue对比react的区别.html" class="prev">
+        react 对比 vue 的区别
+      </a></span> <span class="next"><a href="/vue/vue知识点汇总.html">
+        vue知识点
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.6fff5d6f.js" defer></script><script src="/assets/js/2.38388708.js" defer></script><script src="/assets/js/86.65951509.js" defer></script>
+  </body>
+</html>
