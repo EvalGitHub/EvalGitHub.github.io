@@ -29,3 +29,17 @@ optimization: {
 <https://juejin.im/post/5bc5a4cb5188255c90320002>
 
 <https://hughfenghen.github.io/fe/bug1-safari10.html>
+
+## ant-design , element-ui 表格锁列导致不对齐
+
+如果锁定某一列，会导致各种不对齐的问题，原因就是组件动态计算问题
+
+- 方案
+
+手动触发resize事件
+
+```
+setTimeout(() => {
+  window.dispatchEvent(new Event('resize'));
+}, 500);
+```
