@@ -147,6 +147,8 @@ async/await是promise的语法糖（对promise做的二次封装）。
     - MutationObserver
     - process.nextTick (Node.js)
 
+[Event Loop和js引擎，渲染引擎的关系](https://mp.weixin.qq.com/s/g_-blGV4CVF5EogYZaPMzQ)
+
 **关于执行顺序总体来说就是： 同步任务 >  微任务 > 宏任务**
 
 ```
