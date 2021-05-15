@@ -39,7 +39,8 @@ export class CreateEle extends React.Component {
 ```
 ## React.cloneElement
 
-以 element 元素为样板克隆并返回新的 React 元素。返回元素的 props 是将新的 props 与原始元素的 props 浅层合并后的结果。新的子元素将取代现有的子元素，而来自原始元素的 key 和 ref 将被保留
+以 element 元素为样板克隆并返回新的 React 元素。**返回元素的 props 是将新的 props 与原始元素的 props 浅层合并后的结果**。新的子元素将取代现有的子元素，而来自原始元素的 key 和 ref 将被保留
+
 ```
 React.cloneElement(
   element,
@@ -48,8 +49,31 @@ React.cloneElement(
 )
 ```
 
-[参考官网](<https://zh-hans.reactjs.org/docs/react-api.html#cloneelement>)
+- demo: 
 
+```
+function FatherComponent({ children }){
+    const newChildren = React.cloneElement(children, { age: 18})
+    return <div> { newChildren } </div>
+}
+
+function SonComponent(props){
+    console.log(props)
+    return <div>hello,world</div>
+}
+
+class Index extends React.Component{    
+    render(){      
+        return <div className="box" >
+            <FatherComponent>
+                <SonComponent name="alien"  />
+            </FatherComponent>
+        </div>   
+    }
+}
+```
+
+[参考官网](<https://zh-hans.reactjs.org/docs/react-api.html#cloneelement>)
 
 ## ReactDOM.createPortal
 
@@ -142,9 +166,9 @@ React.pureComponent与React.memo功能类似(避免比必要的重新渲染，�
 参考链接：[React中PureComponent的浅比较](<https://www.jianshu.com/p/0d0587fc33de>)
 
 
-## React.forwardRedf
+## React.forwardRef
 
-利用forwardRef进行值传递
+- 利用forwardRef进行值传递
 
 ```
 import React from "react";
@@ -197,4 +221,238 @@ export function Ppcom(props) {
 }
 ```
 
+- 利用forwardRef转发Ref
+
+如果父组件想获取孙组件的某一个dom, 这种隔代ref的获取引用
+
+```
+function Son (props){
+    const { grandRef } = props
+    return <div>
+        <div> i am alien </div>
+        <span ref={grandRef} >这个是想要获取元素</span>
+    </div>
+}
+
+class Father extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return <div>
+            <Son grandRef={this.props.grandRef}  />
+        </div>
+    }
+}
+
+const NewFather = React.forwardRef((props,ref)=><Father grandRef={ref}  {...props} />  )
+
+class GrandFather extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    node = null 
+    componentDidMount(){
+        console.log(this.node)
+    }
+    render(){
+        return <div>
+            <NewFather ref={(node)=> this.node = node } />
+        </div>
+    }
+}
+```
+
+
+## React.Lazy && React.Suspense
+
+> React.lazy 和 Suspense 技术还不支持服务端渲染。如果你想要在使用服务端渲染的应用中使用，我们推荐 Loadable Components 这个库
+
+- React.Lazy和React.Suspense可以达到组件动加载的效果
+
+**React.lazy 接受一个函数，这个函数需要动态调用 import()。它必须返回一个 Promise ，该 Promise 需要 resolve 一个 default export 的 React 组件。**
+
+```
+import Test from './comTest'
+const LazyComponent =  React.lazy(()=> new Promise((resolve)=>{
+  setTimeout(()=>{ // 两秒之后才返回组件
+    resolve({
+      default: ()=> <Test />
+    })
+  },2000)
+}));
+
+class index extends React.Component{   
+  render(){
+    return <div className="context_box" style={ { marginTop :'50px' } }   >
+      <React.Suspense fallback={ <div className="icon"><SyncOutlined spin /></div>}>
+        <LazyComponent />
+      </React.Suspense>
+    </div>
+  }
+}
+```
+
+## React.Fragment 
+
+- 常用于render函数返回多个标签的情况下，进行包裹。
+
+```
+<React.Fragment>
+  <div>1</div> 
+  <div>1</div> 
+  <div>1</div> 
+</React.Fragment>
+```
+
+## React.StrictMode
+
+>严格模式，用于检测react项目中的潜在的问题; 与Fragment一样， StrictMode不会渲染任何可见的UI 。它为其后代元素触发额外的检查和警告;
+严格模式检查仅在开发模式下运行；它们不会影响生产构建
+
+- 实践:识别不安全的生命周期
+
+## React.createContext
+
+[见《react函数编程hook基本用法》]
+
+## ReactDOM.unstable_batchedUpdates
+
+解决多次render问题
+
+在react 合成事件中如果多次连续使用setState改变一个state的值，他只会执行一次；一次常见的解决方式就是在react合成事件之外去处理，
+例如使用setTimeout, promise简单包裹下
+
+```
+this.state = { number: 1}
+handleChangeNum =()=>{
+  Promise.resolve().then(()=>{
+      this.setState({ number : this.state.number + 1 })
+      console.log(this.state.number)
+      this.setState({ number : this.state.number + 1 })
+      console.log(this.state.number)
+      this.setState({ number : this.state.number + 1 })
+      console.log(this.state.number)
+  })
+}
+```
+
+> 2, 3, 4
+
+但是这存在另一个问题，回重复渲染三次，那么该如何优化呢？？
+
+```
+this.state = { number: 1}
+handleChangeNum =()=>{
+  ReactDOM.unstable_batchedUpdates(() => {
+    Promise.resolve().then(()=>{
+        this.setState({ number : this.state.number + 1 })
+        console.log(this.state.number)
+        this.setState({ number : this.state.number + 1 })
+        console.log(this.state.number)
+        this.setState({ number : this.state.number + 1 })
+        console.log(this.state.number)
+    })
+  })
+}
+```
+
+## ReactDOM.flushSync
+
+>可以将回调函数中的更新任务，放在一个较高的优先级中。我们知道react设定了很多不同优先级的更新任务。
+如果一次更新任务在flushSync回调函数内部，那么将获得一个较高优先级的更新。
+
+```
+import ReactDOM from 'react-dom'
+class Index extends React.Component{
+  state={ number:0 }
+  handerClick=()=>{
+    setTimeout(()=>{
+      this.setState({ number: 1  });
+      console.log(this.state.number);
+    })
+    this.setState({ number: 2  })
+    ReactDOM.flushSync(()=>{
+      this.setState({ number: 3  })
+    })
+    this.setState({ number: 4  })
+  }
+  render(){
+    const { number } = this.state
+    console.log(number) // 打印什么？？
+    return <div>
+      <div>{ number }</div>
+      <button onClick={this.handerClick} >测试flushSync</button>
+    </div>
+  }
+}
+```
+
+> 3, 4, 1, 1
+
+结果分析：ReactDOM.flushSync中的优先执行， 2， 4批量更新只会执行后面的一个，setTimeout延时执行最慢,但是他是同步,因为处于非react函数，合成事件中，他就是同步执行，所以能立马获取到number的值。
+
+## ReactDOM.findDOMNode
+
+>ReactDOM.findDOMNode(component)
+
+用于访问组件DOM元素节点，react推荐使用ref模式
+
+- findDOMNode只能用在已经挂载的组件上。
+
+- 如果组件渲染内容为 null 或者是 false，那么 findDOMNode返回值也是 null。
+
+- findDOMNode 不能用于函数组件。
+
+```
+class Index extends React.Component{
+    handerFindDom=()=>{
+        console.log(ReactDOM.findDOMNode(this))
+    }
+    render(){
+        return <div style={{ marginTop:'100px' }} >
+            <div>hello,world</div>
+            <button onClick={ this.handerFindDom } >获取容器dom</button>
+        </div>
+    }
+}
+```
+
+## React.unmountComponentAtNode
+
+从 DOM 中卸载组件，会将其事件处理器和 state 一并清除。如果指定容器上没有对应已挂载的组件，这个函数什么也不会做。如果组件被移除将会返回 true ，如果没有组件可被移除将会返回  false 。
+
+```
+function Text(){
+  return <div>hello,world</div>
+}
+
+class Index extends React.Component{
+  node = null
+  constructor(props){
+    super(props)
+    this.state={
+      number:1,
+    }
+  }
+
+  componentDidMount(){
+    /*  组件初始化的时候，创建一个 container 容器 */
+    ReactDOM.render(<Text/> , this.node )
+  }
+
+  handerClick=()=>{
+    /* 点击卸载容器 */ 
+    const state =  ReactDOM.unmountComponentAtNode(this.node)
+    console.log(state)
+  }
+
+  render(){
+    return <div  style={{ marginTop:'50px' }}  > 
+      <div ref={ ( node ) => this.node = node  }  ></div>  
+      <button onClick={ this.handerClick } >click me</button>
+    </div>
+  }
+}
+```
 
