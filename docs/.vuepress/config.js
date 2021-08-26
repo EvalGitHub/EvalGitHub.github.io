@@ -14,6 +14,7 @@ const Browser = require('./categoryConfig/browser');
 const Git = require('./categoryConfig/git');
 const FrontEngerner = require('./categoryConfig/前端工程化');
 const Babel = require('./categoryConfig/babel');
+const threeDesign = require('./categoryConfig/3d探索');
 module.exports = {
   title: '个人主页',
   description: '学习总结',
@@ -55,6 +56,7 @@ module.exports = {
       {...Git},
       {...FrontEngerner},
       {...Babel},
+      {...threeDesign},
       // { ...FinancialManageConfig },
     ]
 
