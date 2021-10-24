@@ -24,8 +24,8 @@ cache:
 
 deploy_project:
   script:
-    - git config --global user.name 'evel'
-    - git config --global user.email '957010831@qq.com'
+    - git config --global user.name evel
+    - git config --global user.email 957010831@qq.com
     - npm install
     - npm run build
     - cd dist
