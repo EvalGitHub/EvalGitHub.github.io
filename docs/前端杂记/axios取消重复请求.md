@@ -32,18 +32,18 @@ function addPendingRequest(config) {
 function removePendingRequest(config) {
     const requestKey = generateReqKey(config);
     if (pendingRequest.has(requestKey)) {
-        const cancel = pendingRequest.get(requestKey);
-        cancel(requestKey);
+        <!-- const cancel = pendingRequest.get(requestKey);
+        cancel(requestKey); -->
         pendingRequest.delete(requestKey);
     }
 }
 
 axios.interceptors.request.use(
     function (config) {
-        removePendingRequest(config); 
         // 检查是否存在重复请求，若存在则取消已发的请求
-        addPendingRequest(config); 
+        removePendingRequest(config); 
         // 把当前请求添加到pendingRequest对象中
+        addPendingRequest(config); 
         return config;
     },
     (error) => {
@@ -53,13 +53,13 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
     (response) => {
-        removePendingRequest(response.config); 
         // 从pendingRequest对象中移除请求
+        removePendingRequest(response.config); 
         return response;
     },
     (error) => {
-        removePendingRequest(error.config || {}); 
         // 从pendingRequest对象中移除请求
+        removePendingRequest(error.config || {}); 
         if (axios.isCancel(error)) {
             console.log("已取消的重复请求：" + error.message);
         } else {
