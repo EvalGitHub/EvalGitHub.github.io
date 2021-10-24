@@ -14,7 +14,7 @@ const Browser = require('./categoryConfig/browser');
 const Git = require('./categoryConfig/git');
 const FrontEngerner = require('./categoryConfig/前端工程化');
 const Babel = require('./categoryConfig/babel');
-const threeDesign = require('./categoryConfig/3d探索');
+const threeDesign = require('./categoryConfig/3D探索');
 module.exports = {
   base: '/evel-blog/',
   title: '个人主页',
