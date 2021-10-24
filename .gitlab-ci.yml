@@ -24,6 +24,7 @@ cache:
 
 deploy_project:
   script:
+    - npm install
     - npm run build
     - cd dist
     - git init
