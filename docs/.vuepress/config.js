@@ -16,6 +16,7 @@ const FrontEngerner = require('./categoryConfig/前端工程化');
 const Babel = require('./categoryConfig/babel');
 const threeDesign = require('./categoryConfig/3d探索');
 module.exports = {
+  base: '/evel-blog/',
   title: '个人主页',
   description: '学习总结',
   dest: './dist',
