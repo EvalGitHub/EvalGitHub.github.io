@@ -27,10 +27,5 @@ deploy_project:
     - git config --global user.name evel
     - git config --global user.email 957010831@qq.com
     - npm install
-    - npm run build
-    - cd dist
-    - git init
-    - git add -A
-    - git commit -m 'deploy'
-    - git push -f git@github.com:EvalGitHub/EvalGitHub.github.io.git master
+    - bash deploy.sh  
 
