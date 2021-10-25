@@ -36,7 +36,5 @@ deploy_project:
   only:
     - master # 只对 master 的改动做处理
   script:
-    - git add -A
-    - git commit -m 'deploy'
-    - git push -f git@github.com:EvalGitHub/EvalGitHub.github.io.git master
+    - bash deploy.sh 
 
