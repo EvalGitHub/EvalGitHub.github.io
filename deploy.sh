@@ -11,9 +11,6 @@ cd dist
 # 如果你是要部署到自定义域名
 # echo 'www.example.com' > CNAME
 
-git config --global user.name "evel"
-git config --global user.email "957010831@qq.com"
-
 git init
 git add -A
 git commit -m 'deploy'
