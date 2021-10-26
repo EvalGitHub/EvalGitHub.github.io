@@ -14,18 +14,18 @@ cache:
     - node_modules/
 
 stages: 
-  - config
+  # - config
   # - install
   # - build
   - deploy
 
-config:
-  stage: config
-  only:
-    - master  # 只对 master 的改动做处理
-  script:
-    - git config user.name "evel"
-    - git config user.email "957010831@qq.com"
+# config:
+#   stage: config
+#   only:
+#     - master  # 只对 master 的改动做处理
+#   script:
+#     - git config user.name "evel"
+#     - git config user.email "957010831@qq.com"
 
 # install: 
 #   stage: install
