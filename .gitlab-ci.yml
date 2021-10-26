@@ -4,7 +4,7 @@ cache:
 
 stages: 
   - config
-  - install
+  # - install
   - build
   - deploy
 
@@ -16,23 +16,26 @@ config:
     - git config --global user.name evel
     - git config --global user.email 957010831@qq.com
 
-install: 
-  stage: install
-  only:
-    - master # 只对 master 的改动做处理
-  script:
-    - echo '安装依赖阶段'
-    - npm install 
+# install: 
+#   stage: install
+#   only:
+#     - master # 只对 master 的改动做处理
+#   script:
+#     - echo '安装依赖阶段'
+#     - npm install 
 
 build:
   stage: build
   only:
     - master # 只对 master 的改动做处理
   script: 
+    - echo '打包阶段'
     - npm run build
 
 deploy_project:
   stage: deploy
+  script: 
+    - echo '部署阶段'
   only:
     - master # 只对 master 的改动做处理
   script:
