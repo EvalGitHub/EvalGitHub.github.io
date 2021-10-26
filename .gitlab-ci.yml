@@ -1,0 +1,40 @@
+cache:
+  paths:
+    - node_modules/
+
+stages: 
+  - config
+  - install
+  - build
+  - deploy
+
+config:
+  stage: config
+  only:
+    - master # 只对 master 的改动做处理
+  script:
+    - git config --global user.name evel
+    - git config --global user.email 957010831@qq.com
+
+install: 
+  stage: install
+  only:
+    - master # 只对 master 的改动做处理
+  script:
+    - echo '安装依赖阶段'
+    - npm install 
+
+build:
+  stage: build
+  only:
+    - master # 只对 master 的改动做处理
+  script: 
+    - npm run build
+
+deploy_project:
+  stage: deploy
+  only:
+    - master # 只对 master 的改动做处理
+  script:
+    - bash deploy.sh 
+
