@@ -6,31 +6,31 @@
 
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/node/tags/
-image: node:latest
+# image: node:latest
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
 # Check out: http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
-services:
-  - mysql:latest
-  - redis:latest
-  - postgres:latest
+# services:
+#   - mysql:latest
+#   - redis:latest
+#   - postgres:latest
 
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
-cache:
-  paths:
-    - node_modules/
+# cache:
+#   paths:
+#     - node_modules/
 
-deploy_project:
-  script:
-    - git config --global user.name evel
-    - git config --global user.email 957010831@qq.com
-    - npm install
-    - npm run build
-    - cd dist
-    - git init
-    - git add -A
-    - git commit -m 'deploy'
-    - git push -f git@github.com:EvalGitHub/EvalGitHub.github.io.git master
+# deploy_project:
+#   script:
+#     - git config --global user.name evel
+#     - git config --global user.email 957010831@qq.com
+#     - npm install
+#     - npm run build
+#     - cd dist
+#     - git init
+#     - git add -A
+#     - git commit -m 'deploy'
+#     - git push -f git@github.com:EvalGitHub/EvalGitHub.github.io.git master
 
