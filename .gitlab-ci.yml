@@ -1,3 +1,14 @@
+# https://hub.docker.com/r/library/node/tags/
+image: node:latest
+
+# Pick zero or more services to be used on all builds.
+# Only needed when using a docker container to run your tests in.
+# Check out: http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
+services:
+  - mysql:latest
+  - redis:latest
+  - postgres:latest
+
 cache:
   paths:
     - node_modules/
@@ -16,13 +27,13 @@ config:
     - git config --global user.name evel
     - git config --global user.email 957010831@qq.com
 
-# install: 
-#   stage: install
-#   only:
-#     - master # 只对 master 的改动做处理
-#   script:
-#     - echo '安装依赖阶段'
-#     - npm install 
+install: 
+  stage: install
+  only:
+    - master # 只对 master 的改动做处理
+  script:
+    - echo '安装依赖阶段'
+    - npm install 
 
 build:
   stage: build
