@@ -15,7 +15,7 @@ cache:
 
 stages: 
   - config
-  # - install
+  - install
   - build
   - deploy
 
