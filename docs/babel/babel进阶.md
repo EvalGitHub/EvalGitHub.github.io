@@ -218,3 +218,5 @@ module.exports = {
 - [Babel是什么？我们为什么要了解它?](https://blog.csdn.net/qiwoo_weekly/article/details/114909047)
 
 - [用JS解释JS！详解AST及其应用](https://mp.weixin.qq.com/s/j8_8QwFnyOr66m9aekor1g)
+
+- [你所需要知道的最新的babel兼容性实现方案](https://mp.weixin.qq.com/s/DlFg0_BMP_VfL9Yn2k-m-w?forceh5=1)
