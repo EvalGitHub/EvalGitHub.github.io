@@ -22,6 +22,7 @@
   },
   // 图标 浏览器上
   "browser_action": {
+    // 插件的操作面板
     "default_popup": "popup.html",
     "default_title": "屏幕截图",
     "default_icon": {
@@ -38,6 +39,43 @@
 		"128": "images/icon.png"
 	}
 }
+```
+## 用法技巧总结
+
+- 引入外部资源
+由于chrome的安全限制，是不允许通过src，href属性直接引入cdn资源，但是可以直接将资源下载下来，通过相对地址引入。
+例如下面我们通过script引入jquery，就可以直接使用$来使用jquery对应的api了
+```
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+```
+
+- 怎么通过操作面板新开页面
+
+```
+chrome.tabs.create({
+  "./html/json_formate.html",
+});
+```
+- 如何在popup.js中使用background.js的方法
+
+```
+var bg = chrome.extension.getBackgroundPage();
+var bgScreenCapture = bg.screenshot;
+$("#capture-pic").on('click', function () {
+  bgScreenCapture.captureVisible();
+});
+```
+- 如何截取当前可页面可见区域
+
+```
+chrome.tabs.captureVisibleTab(null, {format: 'jpeg', quality: 100}, function(img) {
+  // img: dataUrl
+  ....
+  ......
+  ......
+})
 ```
 
 ## 实现的实际案例
