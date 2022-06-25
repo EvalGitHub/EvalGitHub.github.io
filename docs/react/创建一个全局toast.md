@@ -2,7 +2,7 @@
 
 - 需求
 
-1、具有函数open并且可以以函数的形式调用传递参数 
+1、具有函数open并且可以以函数的形式调用传递参数
 
 2、具有函数close，用于关闭销毁弹窗组件
 
@@ -87,7 +87,7 @@ export default {
     getLoadingInstance(tip, infoType);
     if (selfCloseConfig && selfCloseConfig.flag) {
       setTimeout(() => {
-        this.close(); 
+        this.close();
         if (callback) {
             callback();
         };
