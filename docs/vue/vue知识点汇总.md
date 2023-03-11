@@ -745,3 +745,5 @@ p.info.age = 18; //读取成功;不会触发设置成功
 
 
 [vue.js技术揭秘](https://ustbhuangyi.github.io/vue-analysis/v2/extend/keep-alive.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+
+[vue知识点](https://vue3js.cn/interview/vue3/proxy.html#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93)
