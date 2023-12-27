@@ -19,5 +19,6 @@
     "@vuepress/plugin-medium-zoom": "^1.5.4",
     "@vuepress/plugin-nprogress": "^1.7.1",
     "vuepress": "^1.7.1"
-  }
+  },
+  "repository": "https://gitlab.com/EvalGitHub/evel-blog.git"
 }

@@ -43,7 +43,7 @@ build:
     - echo '打包阶段'
     - npm run build
 
-deploy_project:
+deploy:
   stage: deploy
   only:
     - master  # 只对 master 的改动做处理
