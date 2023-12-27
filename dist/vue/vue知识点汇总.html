@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue知识点 | 个人主页</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="学习总结">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4f255b1.css" as="style"><link rel="preload" href="/assets/js/app.57db4ba8.js" as="script"><link rel="preload" href="/assets/js/2.32b4f8de.js" as="script"><link rel="preload" href="/assets/js/4.7d86887d.js" as="script"><link rel="prefetch" href="/assets/js/10.fc41ba40.js"><link rel="prefetch" href="/assets/js/100.b92137c9.js"><link rel="prefetch" href="/assets/js/101.65418d74.js"><link rel="prefetch" href="/assets/js/102.bfa39e14.js"><link rel="prefetch" href="/assets/js/103.73b19d4b.js"><link rel="prefetch" href="/assets/js/104.3352cbff.js"><link rel="prefetch" href="/assets/js/105.2e0204ae.js"><link rel="prefetch" href="/assets/js/106.9f449c38.js"><link rel="prefetch" href="/assets/js/107.fd98af35.js"><link rel="prefetch" href="/assets/js/108.0b5ff5fd.js"><link rel="prefetch" href="/assets/js/109.9d09a23a.js"><link rel="prefetch" href="/assets/js/11.8eb18d9e.js"><link rel="prefetch" href="/assets/js/110.10ccf485.js"><link rel="prefetch" href="/assets/js/111.7132a3b3.js"><link rel="prefetch" href="/assets/js/112.fca7f7e6.js"><link rel="prefetch" href="/assets/js/113.7d620747.js"><link rel="prefetch" href="/assets/js/114.466c6b6a.js"><link rel="prefetch" href="/assets/js/115.ca76f80d.js"><link rel="prefetch" href="/assets/js/116.be069044.js"><link rel="prefetch" href="/assets/js/117.f2cb4bc8.js"><link rel="prefetch" href="/assets/js/118.cfeeee98.js"><link rel="prefetch" href="/assets/js/119.6f3553d9.js"><link rel="prefetch" href="/assets/js/12.25654e15.js"><link rel="prefetch" href="/assets/js/120.6acdfbdf.js"><link rel="prefetch" href="/assets/js/121.aac12bd4.js"><link rel="prefetch" href="/assets/js/122.ab9762e0.js"><link rel="prefetch" href="/assets/js/123.db9d4614.js"><link rel="prefetch" href="/assets/js/124.b927b2b0.js"><link rel="prefetch" href="/assets/js/125.a317a883.js"><link rel="prefetch" href="/assets/js/126.88e40ae5.js"><link rel="prefetch" href="/assets/js/127.cb7addf7.js"><link rel="prefetch" href="/assets/js/128.1cc6fac1.js"><link rel="prefetch" href="/assets/js/129.98d08b1e.js"><link rel="prefetch" href="/assets/js/13.dd6c5a8a.js"><link rel="prefetch" href="/assets/js/130.cace1e67.js"><link rel="prefetch" href="/assets/js/131.c5417e28.js"><link rel="prefetch" href="/assets/js/132.4ac26fa3.js"><link rel="prefetch" href="/assets/js/133.31474270.js"><link rel="prefetch" href="/assets/js/134.36271d6d.js"><link rel="prefetch" href="/assets/js/135.7fc24970.js"><link rel="prefetch" href="/assets/js/136.17877c2e.js"><link rel="prefetch" href="/assets/js/137.df61f5c2.js"><link rel="prefetch" href="/assets/js/138.6a17716e.js"><link rel="prefetch" href="/assets/js/139.608b39ca.js"><link rel="prefetch" href="/assets/js/14.1e13830e.js"><link rel="prefetch" href="/assets/js/140.d356eb3d.js"><link rel="prefetch" href="/assets/js/141.5c142706.js"><link rel="prefetch" href="/assets/js/142.b58c8575.js"><link rel="prefetch" href="/assets/js/143.455e9851.js"><link rel="prefetch" href="/assets/js/144.16641598.js"><link rel="prefetch" href="/assets/js/145.8987a2b7.js"><link rel="prefetch" href="/assets/js/146.fa956501.js"><link rel="prefetch" href="/assets/js/147.3e96a623.js"><link rel="prefetch" href="/assets/js/148.040f618d.js"><link rel="prefetch" href="/assets/js/149.346530eb.js"><link rel="prefetch" href="/assets/js/15.dcac7eea.js"><link rel="prefetch" href="/assets/js/150.78b24e2a.js"><link rel="prefetch" href="/assets/js/16.2dc5dd1f.js"><link rel="prefetch" href="/assets/js/17.3bfb5625.js"><link rel="prefetch" href="/assets/js/18.89432a01.js"><link rel="prefetch" href="/assets/js/19.ab4be550.js"><link rel="prefetch" href="/assets/js/20.0bba240e.js"><link rel="prefetch" href="/assets/js/21.70ff07ed.js"><link rel="prefetch" href="/assets/js/22.fb8fbf79.js"><link rel="prefetch" href="/assets/js/23.90910794.js"><link rel="prefetch" href="/assets/js/24.20ddc420.js"><link rel="prefetch" href="/assets/js/25.eeaf3174.js"><link rel="prefetch" href="/assets/js/26.e4023b07.js"><link rel="prefetch" href="/assets/js/27.c0c22cde.js"><link rel="prefetch" href="/assets/js/28.9db7b4e6.js"><link rel="prefetch" href="/assets/js/29.3e53a81c.js"><link rel="prefetch" href="/assets/js/3.0569c9c4.js"><link rel="prefetch" href="/assets/js/30.46fd214a.js"><link rel="prefetch" href="/assets/js/31.211fcc8b.js"><link rel="prefetch" href="/assets/js/32.ae640ccc.js"><link rel="prefetch" href="/assets/js/33.8044271e.js"><link rel="prefetch" href="/assets/js/34.939a099d.js"><link rel="prefetch" href="/assets/js/35.cdb5a625.js"><link rel="prefetch" href="/assets/js/36.be44a88b.js"><link rel="prefetch" href="/assets/js/37.51541bfb.js"><link rel="prefetch" href="/assets/js/38.b229150b.js"><link rel="prefetch" href="/assets/js/39.da4d1cba.js"><link rel="prefetch" href="/assets/js/40.065f1d7f.js"><link rel="prefetch" href="/assets/js/41.cf8d97fe.js"><link rel="prefetch" href="/assets/js/42.2e70f5d0.js"><link rel="prefetch" href="/assets/js/43.7765aaa3.js"><link rel="prefetch" href="/assets/js/44.633bb2cb.js"><link rel="prefetch" href="/assets/js/45.547c2900.js"><link rel="prefetch" href="/assets/js/46.68dd7ebc.js"><link rel="prefetch" href="/assets/js/47.6ddba031.js"><link rel="prefetch" href="/assets/js/48.8b1c26a4.js"><link rel="prefetch" href="/assets/js/49.309af78e.js"><link rel="prefetch" href="/assets/js/5.f46e4b1c.js"><link rel="prefetch" href="/assets/js/50.9093ca4f.js"><link rel="prefetch" href="/assets/js/51.64932645.js"><link rel="prefetch" href="/assets/js/52.d8b9be33.js"><link rel="prefetch" href="/assets/js/53.411022ff.js"><link rel="prefetch" href="/assets/js/54.1c44aebd.js"><link rel="prefetch" href="/assets/js/55.ba8a3e23.js"><link rel="prefetch" href="/assets/js/56.fec93d22.js"><link rel="prefetch" href="/assets/js/57.3276db5d.js"><link rel="prefetch" href="/assets/js/58.c21bcf0b.js"><link rel="prefetch" href="/assets/js/59.ed37c4f6.js"><link rel="prefetch" href="/assets/js/6.f2ff6c63.js"><link rel="prefetch" href="/assets/js/60.4e3dcd03.js"><link rel="prefetch" href="/assets/js/61.6639b2f1.js"><link rel="prefetch" href="/assets/js/62.6709514a.js"><link rel="prefetch" href="/assets/js/63.4035cbde.js"><link rel="prefetch" href="/assets/js/64.c9e23ba2.js"><link rel="prefetch" href="/assets/js/65.536936dc.js"><link rel="prefetch" href="/assets/js/66.5666e8e6.js"><link rel="prefetch" href="/assets/js/67.5a48fd12.js"><link rel="prefetch" href="/assets/js/68.75d372c6.js"><link rel="prefetch" href="/assets/js/69.6e7c9dee.js"><link rel="prefetch" href="/assets/js/7.fb23a202.js"><link rel="prefetch" href="/assets/js/70.1b68a1ef.js"><link rel="prefetch" href="/assets/js/71.7725449e.js"><link rel="prefetch" href="/assets/js/72.6d2a100d.js"><link rel="prefetch" href="/assets/js/73.834d3032.js"><link rel="prefetch" href="/assets/js/74.ab59ea7b.js"><link rel="prefetch" href="/assets/js/75.db97f0d7.js"><link rel="prefetch" href="/assets/js/76.878e916a.js"><link rel="prefetch" href="/assets/js/77.8c9b5242.js"><link rel="prefetch" href="/assets/js/78.9010df7b.js"><link rel="prefetch" href="/assets/js/79.1d9f4ab3.js"><link rel="prefetch" href="/assets/js/8.9d26f0bc.js"><link rel="prefetch" href="/assets/js/80.569eb310.js"><link rel="prefetch" href="/assets/js/81.45fd6a95.js"><link rel="prefetch" href="/assets/js/82.ce48eb4d.js"><link rel="prefetch" href="/assets/js/83.15f2e7cb.js"><link rel="prefetch" href="/assets/js/84.685e7d48.js"><link rel="prefetch" href="/assets/js/85.230d4496.js"><link rel="prefetch" href="/assets/js/86.e35b10ea.js"><link rel="prefetch" href="/assets/js/87.5c1d4ec8.js"><link rel="prefetch" href="/assets/js/88.96beca6c.js"><link rel="prefetch" href="/assets/js/89.7f3eb3ef.js"><link rel="prefetch" href="/assets/js/9.da67dd48.js"><link rel="prefetch" href="/assets/js/90.51ea733b.js"><link rel="prefetch" href="/assets/js/91.80aca0c1.js"><link rel="prefetch" href="/assets/js/92.08877701.js"><link rel="prefetch" href="/assets/js/93.4aeda11d.js"><link rel="prefetch" href="/assets/js/94.6922121f.js"><link rel="prefetch" href="/assets/js/95.85d8a929.js"><link rel="prefetch" href="/assets/js/96.5fbb283c.js"><link rel="prefetch" href="/assets/js/97.ae6605c5.js"><link rel="prefetch" href="/assets/js/98.2f51a1b2.js"><link rel="prefetch" href="/assets/js/99.35709ce2.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4f255b1.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="../assets/logo.png" alt="个人主页" class="logo"> <span class="site-name can-hide">个人主页</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link router-link-active">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link router-link-active">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>文档介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>vue</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue/" aria-current="page" class="sidebar-link">vue</a></li><li><a href="/vue/hash模式与history模式的区别.html" class="sidebar-link">路由hash模式与history</a></li><li><a href="/vue/vue-router路径如何匹配组件.html" class="sidebar-link">vue router参数解析，以及怎么匹配组件</a></li><li><a href="/vue/vue3.0更新点.html" class="sidebar-link">vue3.0更新点以及新特性</a></li><li><a href="/vue/vue对比react的区别.html" class="sidebar-link">react 对比 vue 的区别</a></li><li><a href="/vue/vue的diff过程.html" class="sidebar-link">vue的diff过程</a></li><li><a href="/vue/vue知识点汇总.html" class="active sidebar-link">vue知识点</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#简单说下mvc-mvvm" class="sidebar-link">简单说下mvc, mvvm</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue响应式数据原理" class="sidebar-link">vue响应式数据原理</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue如何检测数组的变化" class="sidebar-link">vue如何检测数组的变化</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue中异步渲染-以及异步渲染的原因" class="sidebar-link">vue中异步渲染，以及异步渲染的原因</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#nexttick的作用" class="sidebar-link">nextTick的作用</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue组件生命周期-以及各做了什么事情" class="sidebar-link">vue组件生命周期，以及各做了什么事情</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#ajax请求应该放在哪个生命周期中" class="sidebar-link">ajax请求应该放在哪个生命周期中？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue的computed与函数的区别-实现原理" class="sidebar-link">vue的computed与函数的区别，实现原理？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#watch中的deep-true作用-及实现原理" class="sidebar-link">watch中的deep:true作用，及实现原理？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue事件绑定的原理" class="sidebar-link">vue事件绑定的原理？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue组件如何通信" class="sidebar-link">vue组件如何通信？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#什么是作用域插槽" class="sidebar-link">什么是作用域插槽？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#为哈v-if和v-for不能一起使用" class="sidebar-link">为哈v-if和v-for不能一起使用？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#v-for中为什么要用key" class="sidebar-link">v-for中为什么要用key？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue常见的性能优化" class="sidebar-link">vue常见的性能优化？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#谈谈你对keep-alive的理解" class="sidebar-link">谈谈你对keep-alive的理解？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#节点更新的过程" class="sidebar-link">节点更新的过程？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#模版编译原理" class="sidebar-link">模版编译原理</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#用vnode描述一个dom结构" class="sidebar-link">用vnode描述一个DOM结构？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue-set的作用及实现原理" class="sidebar-link">vue.$set的作用及实现原理</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#使用proxy简单实现object-defineproperty的数据侦测" class="sidebar-link">使用proxy简单实现Object.defineProperty的数据侦测？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#关于proxy相对object-defineproperty的优势与缺点" class="sidebar-link">关于proxy相对Object.defineProperty的优势与缺点</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#对于数组的操作仍然不能很好的解决" class="sidebar-link">对于数组的操作仍然不能很好的解决</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#对于对象嵌套对象的问题处理起来比较复杂" class="sidebar-link">对于对象嵌套对象的问题处理起来比较复杂</a></li></ul></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#描述组件渲染和更新的过程" class="sidebar-link">描述组件渲染和更新的过程？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#vue父子组件生命周期调用顺序-minx与组件的生命周期顺序" class="sidebar-link">vue父子组件生命周期调用顺序，minx与组件的生命周期顺序？</a></li><li class="sidebar-sub-header"><a href="/vue/vue知识点汇总.html#讲讲vue观察者模式和发布订阅者模式的具体实现" class="sidebar-link">讲讲vue观察者模式和发布订阅者模式的具体实现</a></li></ul></li><li><a href="/vue/自定义一个全局组件.html" class="sidebar-link">自定义一个全局组件</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端杂记</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>构建工具篇-webpack等</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>flutter</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>H5开发汇总</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>web 安全</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>http 协议</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>pwa</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>浏览器原理&amp;性能优化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>babel</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>3D探索</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue知识点"><a href="#vue知识点" class="header-anchor">#</a> vue知识点</h1> <h2 id="简单说下mvc-mvvm"><a href="#简单说下mvc-mvvm" class="header-anchor">#</a> 简单说下mvc, mvvm</h2> <ul><li>mvc</li></ul> <p>mvc这种设计模式来源于后端开发，v（view）用于控制视图结构展示，c（controller）用于对接视图的响应,业务逻辑处理，m（model）用于数据库数据处理；对应到前端m的作用发生了改变，在前端m主要负责数据模型变化响应到view；
+mvc的所有通信都是单向的。</p> <ul><li>mvvm</li></ul> <p>v（view）视图的变更会触发vm（viewModel）的监听事件去修改数据模型model；model的数据更改会触发vm的数据绑定进而驱动v的更新。</p> <p><img src="/assets/img/mvvm.21e07b46.png" alt="avatar"></p> <h2 id="vue响应式数据原理"><a href="#vue响应式数据原理" class="header-anchor">#</a> vue响应式数据原理</h2> <p>组件data中定义的属性，在组件初始化的时候会对data进行深层遍历，对每一个属性使用Object.defineProperty执行getter/setter转化，
+每一个属性都有一个watcher实例，会在渲染过程中为数据属性记录依赖，如果属性值发生改变则会触发setter函数，依赖数组执行notify函数通知watcher，watcher会执行相关compiler函数进而触发关联组件的重新渲染。</p> <p><a href="https://cn.vuejs.org/v2/guide/reactivity.html#ad" target="_blank" rel="noopener noreferrer">深入理解vue响应式原理<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://github.com/Arrayeval/evel-vue/tree/master/vue-coding" target="_blank" rel="noopener noreferrer">我的第一个vue实现-evel-vue<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>使用Object.defineProperty写一个简单的双向绑定</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;input type=&quot;text&quot; id='nameEl'&gt;
+&lt;span id='nameShow'&gt;&lt;/span&gt;  
+&lt;script&gt;
+  var obj = {};
+  Object.defineProperty(obj, 'name', {
+    set: function(newVal) {
+      document.getElementById('nameEl').value = newVal;
+      document.getElementById('nameShow').innerHTML = newVal;
+    }
+  });
+
+  document.addEventListener('keyup', function(e) {
+    obj.name = e.target.value;
+  })
+&lt;/script&gt;
+</code></pre></div><p>使用proxy实现一个简单的双向绑定</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;input type=&quot;text&quot; id='nameEl'&gt;
+&lt;span id='nameShow'&gt;&lt;/span&gt;  
+&lt;script&gt;
+  var obj = {};
+  
+  let infoData = new Proxy(obj, {
+    set: function(obj, prop, value) {
+      document.getElementById('nameEl').value = newVal;
+      document.getElementById('nameShow').innerHTML = newVal;
+    }
+  })
+
+  document.addEventListener('keyup', function(e) {
+    obj.name =  e.target.value;
+  })
+&lt;/script&gt;
+</code></pre></div><h2 id="vue如何检测数组的变化"><a href="#vue如何检测数组的变化" class="header-anchor">#</a> vue如何检测数组的变化</h2> <p>上面已经讲解了vue使用Object.defineProperty对对象属性进行了数据劫持添加setter方法，实现响应式是数据的过程；对于数组这种特殊的数据类型是不能通过上面的方法实现的。</p> <p><strong>具体实现思路：</strong></p> <ol><li>对数组的每个元素添加数据依赖</li></ol> <p><img src="/assets/img/arrary_depend.2355a2c4.jpg" alt="avatar"></p> <p><img src="/assets/img/arrary_depend02.21e4acc8.jpg" alt="avatar"></p> <p>因此vue提供了几个数组的编译方法：</p> <blockquote><p>push(), pop(), shift(), unshift(), splice(), sort(), reverse()</p></blockquote> <p>在vue中对这几个方法做了特殊处理，</p> <div class="language- extra-class"><pre class="language-text"><code>const methodsToPatch = [
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+];
+methodsToPatch.forEach(function (method) {
+  // cache original method
+  const original = arrayProto[method]
+  def(arrayMethods, method, function mutator (...args) {
+    const result = original.apply(this, args)
+    const ob = this.__ob__
+    let inserted
+    switch (method) {
+      case 'push':
+      case 'unshift':
+        inserted = args
+        break
+      case 'splice':
+        inserted = args.slice(2)
+        break
+    }
+    if (inserted) ob.observeArray(inserted)
+    // notify change
+    ob.dep.notify()
+    return result
+  })
+})
+</code></pre></div><p><a href="https://github.com/vuejs/vue/blob/52719ccab8fccffbdf497b96d3731dc86f04c1ce/src/core/observer/array.js" target="_blank" rel="noopener noreferrer">vue重新定义数组变异方法的源码<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>对比与对象处理过程的不同点，只是在数据劫持处理这点有所不同，对象属性改变会触发setter方法进而触发依赖数组的notify方法，再触发watcher去执行complile函数更新对应的组件视图；对于数组是通过变异方法去更新数组，进而触发依赖数组的notify方法，再触发watcher去执行complile函数更新对应的组件视图。</p> <p><strong>data是一个返回对象的函数，为什么要这样设计？</strong></p> <ul><li><p>每一次都返回一个新的data对象，避免同一个组件多次使用时数据相互影响。(同一个页面使用某个组件多次)</p></li> <li><p>如果是是一个对象也方便vue去做数据劫持</p></li></ul> <p><strong>为什么改变数组length，或者通过下标增加新值，或者为已经初始化的对象通过&quot;.value&quot;形式增加一个新属性不会触发视图的更新？</strong></p> <p>原因就是没有触发dep.notify()，不能通知到watcher去执行更新视图相关操作。因此为了能使得数据更新驱动视图的更新我们必须要触发对象属性的setter方法，或者对数组使用变异方法。</p> <div class="language- extra-class"><pre class="language-text"><code>// 重新赋值触发setter方法
+vm.userProfile = Object.assign({}, vm.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+
+// 重新赋值触发setter方法
+arr = [1,2,3,4]; 
+// 或者 使用变异方法
+arr.push(4);
+</code></pre></div><h2 id="vue中异步渲染-以及异步渲染的原因"><a href="#vue中异步渲染-以及异步渲染的原因" class="header-anchor">#</a> vue中异步渲染，以及异步渲染的原因</h2> <blockquote><p>vue在更新dom的时候是异步执行的，只要监听到数据变化，vue将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更，如果同一个watcher被触发多次只会推入到队列一次；如果数据没有发生改变是不会触发watcher的；这样做的目的是为了减少不必要的计算和DOM操作；当刷新队列时组件会在下一个事件循环“tick”中更新。</p></blockquote> <p>一个帮助分析的例子：</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;template&gt;
+ &lt;div&gt;
+   &lt;div ref=&quot;message&quot;&gt;{{message}}&lt;/div&gt;
+   &lt;button @click=&quot;fn&quot;&gt;点击&lt;/button&gt;
+ &lt;/div&gt;
+&lt;/template&gt;
+
+export default {
+  data () {
+    return {
+      message: 123
+    };
+  },
+  methods () {
+    fn () {
+      this.message = 456;
+      console.log(this.$refs.message.innerHTML);
+      this.$nextTick(function(){ //或者Vue.nextTick
+        console.log(this.$refs.message.innerHTML);
+      });
+    }
+  }
+}
+</code></pre></div><blockquote><p>结果分析：123， 456</p></blockquote> <p>产生以上的原因vue异步渲染导致的</p> <h2 id="nexttick的作用"><a href="#nexttick的作用" class="header-anchor">#</a> nextTick的作用</h2> <p>用法：在下次DOM更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的DOM。</p> <p>使用场景：常见与数据更新之后立即获取DOM的案例，created中获取dom节点。</p> <blockquote><p>Vue 在内部尝试对异步队列使用原生的Promise.then 和MutationObserver，如果执行环境不支持，会采用setTimeout(fn, 0)代替。</p></blockquote> <p><a href="https://github.com/vuejs/vue/blob/d7d8ff06b70cf1a2345e3839c503fdb08d75ba49/src/core/util/next-tick.js" target="_blank" rel="noopener noreferrer">nextTick的源码<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="vue组件生命周期-以及各做了什么事情"><a href="#vue组件生命周期-以及各做了什么事情" class="header-anchor">#</a> vue组件生命周期，以及各做了什么事情</h2> <p><img src="/assets/img/vue_listcircle.e3ba7d7c.png" alt="avatar"></p> <p><strong>new vue</strong></p> <p>生成vue实例</p> <p><strong>beforeCreate</strong></p> <p>生成$options选项，给实例添加生命周期相关属性</p> <p><strong>created</strong></p> <p>从$options获取数据选项，遍历methods选项，给数据添加依赖，定义getter，setter属性；这个阶段可以访问到data属性，使用methods。</p> <p><strong>beforeMount</strong></p> <p>将HTML解析成AST节点，根据AST节点生成渲染树，render函数首次被调用。</p> <p><strong>mounted</strong></p> <p>执行render函数生成虚拟DOM，创建真实dom替换虚拟dom并挂载实例，此时可以操作dom。</p> <p><strong>beforeUpdate</strong></p> <p>data数据更新之后，虚拟dom重新渲染之前被调用，此时修改data不会附加渲染过程。</p> <p><strong>updated</strong></p> <p>虚拟dom重新渲染之后被调用，此时修改data会触发死循环。</p> <p><strong>beforeDestory</strong></p> <p>组件实例销毁之前被调用，常用于开发者手动释放内存，清除事件监听，例如setTimeout, setInterval, 以及其第三方库的释放。</p> <p><strong>destroyed</strong></p> <p>实例销毁之后调用，清除事件监听，释放变量内存。</p> <p>分别在每个生命beforeCreate, created, beforeMount, mounted阶段执行下面的输出</p> <div class="language- extra-class"><pre class="language-text"><code>console.log(this)
+console.log(this.$data)
+console.log(this.$el)
+</code></pre></div><p><img src="data:image/png;base64,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" alt="avatar"></p> <p><a href="https://github.com/vuejs/vue/blob/dev/src/core/instance/lifecycle.js" target="_blank" rel="noopener noreferrer">源码<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://blog.csdn.net/weixin_34050005/article/details/87964047" target="_blank" rel="noopener noreferrer">每个生命周期做了什么<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="ajax请求应该放在哪个生命周期中"><a href="#ajax请求应该放在哪个生命周期中" class="header-anchor">#</a> ajax请求应该放在哪个生命周期中？</h2> <p>数据请求回来会之后会使用到data对象，只有在created生命周期之后才可以拿到data对象，因此可以放在data中，
+不能放在beforeCreate中；如果在异步请求中会涉及到DOM操作，那么建议放在mounted生命周期中；但是不要放在
+updated中，因为会造成死循环。</p> <h2 id="vue的computed与函数的区别-实现原理"><a href="#vue的computed与函数的区别-实现原理" class="header-anchor">#</a> vue的computed与函数的区别，实现原理？</h2> <blockquote><p>计算属性会依据他的响应式依赖进行缓存，只要响应式依赖发生了改变才会重新求新值。</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>computed: {
+  now: function () {
+    return Date.now()
+  }
+}
+</code></pre></div><p>上面的例子不会触发更新，因为他的依赖不是响应式的。</p> <p><strong>相比函数的优点：</strong> 不需要手动调用，并且计算属性是有缓存的。</p> <p><strong>计算属性的setter</strong></p> <p>计算属性的默认只有一个getter，如果你需要手动修改计算属性必须提供一个setter方法。</p> <p><a href="https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84-setter" target="_blank" rel="noopener noreferrer">计算属性的setter<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><strong>computed的实现以及缓存原理</strong></p> <p>关于computed的实现，<strong>源码如下</strong></p> <p>在初始化的时候使用的是initComputed方法进行初始化</p> <p><img src="/assets/img/initComputed.4a593726.png" alt="avatar"></p> <p>从上图可以看出：</p> <ul><li>不支持服务器渲染</li> <li>computed中定义的属性不能在data中出现</li></ul> <p>另外从上面可以看到，是为computed的每一个属性添加了监听，进而可通知模版编译</p> <div class="language- extra-class"><pre class="language-text"><code> watchers[key] = new Watcher(
+    vm,
+    getter || noop,
+    noop,
+    computedWatcherOptions
+  )
+</code></pre></div><p>让我们接着看<strong>defineComputed</strong></p> <p><img src="/assets/img/definComputed.d19ae324.png" alt="avatar"></p> <p>定义了每一个变量的sharedPropertyDefinition.get(及在获取值的时候会触发)，在其中使用createComputedGetter</p> <p><img src="/assets/img/createComputedGetter.ccfbe9a8.png" alt="avatar"></p> <p>如果watcher.dirty===true，则最终是调用watcher的evaluate方法返回值，而不会去触发依赖更新，这就是computed的缓存机制。</p> <h2 id="watch中的deep-true作用-及实现原理"><a href="#watch中的deep-true作用-及实现原理" class="header-anchor">#</a> watch中的deep:true作用，及实现原理？</h2> <blockquote><p>用于观察vue实例上的一个表达式或者函数计算结果的变化，回调函数返回新值或者旧值。</p></blockquote> <p><strong>选项：</strong></p> <ul><li><p>deep：表示是否深度监听</p></li> <li><p>immediate：表示是否立即触发回调</p></li></ul> <div class="language- extra-class"><pre class="language-text"><code>watch: {
+  firstName: {
+    handler(newName, oldName) {
+      this.fullName = newName + ' ' + this.lastName;
+    },
+    // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
+    immediate: true,
+    deep: true,
+  }
+}
+</code></pre></div><p><strong>deep:true的实现原理</strong></p> <p>如果检测到deep:true，则会对当前监听的值进行遍历处理为每个值添加依赖。</p> <div class="language- extra-class"><pre class="language-text"><code>const seenObjects = new Set()
+// 内部递归时会传入seen参数，用于保存seen中已经存在的数据
+function traverse (val, seen) {
+  let i, keys
+  if (!seen) {
+    // 如果没有配饰seen，把它指向seenObjects，并清空内容
+    seen = seenObjects
+    seen.clear()
+  }
+  const isA = isArray(val)
+  const isO = isObject(val)
+  if (isA || isO) {
+    // 如果当前值有Observer
+    if (val.__ob__) {
+      // 拿到当前值的Observer的订阅者管理员的id
+      var depId = val.__ob__.dep.id
+      // 如果seen中已经有这个id了，直接返回
+      if (seen.has(depId)) {
+        return
+      } else {
+        // 否则添加到seen中
+        seen.add(depId)
+      }
+    }
+    // 递归数组
+    if (isA) {
+      i = val.length
+      // 触发数组内部元素的get，因为此时Dep.target依然引用了当前Watcher，因此数组内部元素的Observer的订阅者管理员中也会被加入当前订阅者从而达到深度监听的目的
+      while (i--) traverse(val[i], seen)
+    // 递归对象
+    } else if (isO) {
+      keys = Object.keys(val)
+      i = keys.length
+      while (i--) traverse(val[keys[i]], seen)
+    }
+  }
+}
+</code></pre></div><p><a href="https://github.com/vuejs/vue/blob/4f111f9225f938f7a2456d341626dbdfd210ff0c/src/core/observer/watcher.js" target="_blank" rel="noopener noreferrer">watch源码<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="vue事件绑定的原理"><a href="#vue事件绑定的原理" class="header-anchor">#</a> vue事件绑定的原理？</h2> <p>vue中通过v-on指令绑定的Dom事件都是最终都是通过el.addEventListener(event, cb, useCapture)进行绑定的。</p> <p>对于v-on自定义事件，以及通过$emit，$on派发的事件都是同事事件订阅的方式实现的。</p> <p><a href="https://defed.github.io/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB-%E6%96%B9%E6%B3%95%E4%B8%8E%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A/" target="_blank" rel="noopener noreferrer">Vue源码解读-方法与事件绑定<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><strong>关于事件订阅的简单实现：</strong></p> <p>定义一个事件对象，存储形式就是事件名为key，事件函数组成的数组为值。</p> <div class="language- extra-class"><pre class="language-text"><code>let eventsList = {
+  'shift': [fun1(), fun2()],
+  'getData': [fun2(), fun3()],
+};
+</code></pre></div><p>$on作用就是向这个对象中添加事件</p> <div class="language- extra-class"><pre class="language-text"><code>function $on(type, fn) {
+  if (!eventList[type]) {
+    eventList[type] = [];
+  }
+  eventList[type].push(fn);
+}
+</code></pre></div><p>$emit做用就是触发这个事件</p> <div class="language- extra-class"><pre class="language-text"><code>function $emit() {
+  let type = Array.prototype.shift.call(arguments);
+  let onFunctions = eventList[type];
+  if (onFunctions &amp;&amp; onFunctions.length &gt; 0) {
+    for(let i = 0, fn; fn = onFunctions[i++];) {
+      fn.apply(this, arguments);
+    }
+  }
+}
+</code></pre></div><p><a href="https://www.jianshu.com/p/3046f663e45f" target="_blank" rel="noopener noreferrer">$emit, $on的实现思路<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="vue组件如何通信"><a href="#vue组件如何通信" class="header-anchor">#</a> vue组件如何通信？</h2> <ul><li>父子组件的通信：props传递属性，自定事件，$emit,$on订阅，通过$ref,$parent,$children获取组件实例获取属性。</li></ul> <p><a href="https://www.cnblogs.com/evaling/p/7242567.html" target="_blank" rel="noopener noreferrer">组件之间通信<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <ul><li>兄弟之间的通信：中央事件总线。</li></ul> <p><a href="https://www.cnblogs.com/evaling/p/9192728.html" target="_blank" rel="noopener noreferrer">中央事件总线<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <ul><li>全局：vuex状态管理</li></ul> <p><a href="https://www.cnblogs.com/evaling/p/7291573.html" target="_blank" rel="noopener noreferrer">vux状态管理<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <ul><li>如果是跨组件之间的相互通信，例如高阶组件，可以使用$attrs获取祖组件的属性, $listeners触发祖组件的事件</li></ul> <p><a href="https://github.com/EvalGitHub/vue-study/blob/master/src/components/child.vue" target="_blank" rel="noopener noreferrer">listeners, attrs的使用<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="什么是作用域插槽"><a href="#什么是作用域插槽" class="header-anchor">#</a> 什么是作用域插槽？</h2> <p>插槽使用与扩充组件内容，使用形式是在父组件中使用子组件，在子组件开始结束标签之前传递内容，只是一种父组件定义子组件内容的行为，但是有时候我们需要在父组件中使用到这个子组件的内容，一般来说如果不通过组件之间的通信是无法做的的，但是我们可以使用作用域插槽。</p> <p>子组件：baseLayout.vue</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;template&gt;
+  &lt;article&gt;
+    &lt;main&gt;
+      &lt;slot name=&quot;default&quot; v-bind:userInfo=&quot;userInfo&quot;&gt;
+        {{userInfo.defaultSlot.name}}
+      &lt;/slot&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+      &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;
+    &lt;/footer&gt;
+  &lt;/article&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+  name: 'BaseLayout',
+  data () {
+    return {
+      userInfo: {
+        defaultSlot: {
+          name: 'default Name',
+          comment: 'this is show for default name'
+        }
+      }
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre></div><p>父组件：slot.vue</p> <div class="language- extra-class"><pre class="language-text"><code> &lt;base-layout&gt;
+  &lt;template v-slot:header&gt;
+    &lt;h1 style=&quot;color: red&quot;&gt; header here might be a page title&lt;/h1&gt;
+  &lt;/template&gt;
+  &lt;template v-slot:default&gt;
+    &lt;div style=&quot;color: green&quot;&gt;
+      // 作用域插槽内容
+      &lt;span&gt;name: {{userInfo.defaultSlot.name}}&lt;/span&gt; 
+      &lt;span&gt;comment: {{userInfo.defaultSlot.comment}}&lt;/span&gt; 
+    &lt;/div&gt;
+  &lt;/template&gt;
+  &lt;template v-slot:footer&gt;
+    &lt;p style=&quot;color: orange;font-size:20px&quot;&gt;footer Here's some contact info&lt;/p&gt;
+  &lt;/template&gt;
+&lt;/base-layout&gt;
+</code></pre></div><p><a href="https://github.com/EvalGitHub/vue-study/blob/master/src/views/VueSlot.vue" target="_blank" rel="noopener noreferrer">slot的使用<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="为哈v-if和v-for不能一起使用"><a href="#为哈v-if和v-for不能一起使用" class="header-anchor">#</a> 为哈v-if和v-for不能一起使用？</h2> <p>性能损耗，v-if会真正的删减dom,如果数据量较大这种操作对页面性能的影响很大，建议先处理好数据在进行数据渲染。</p> <h2 id="v-for中为什么要用key"><a href="#v-for中为什么要用key" class="header-anchor">#</a> v-for中为什么要用key？</h2> <blockquote><p>在v-for渲染列表数据时候，默认使用的是“就地更新策略”，如果数据项顺序被改动，vue将不会移动DOM元素来匹配数据项的顺序，而是就地更新每个元素，并确保他们的每个索引位置正确渲染，如果数据状态比较简单这确实有利益性能提升。<strong>但只适用于不依赖子组件状态或临时DOM状态 (例如：表单输入值) 的列表渲染输出</strong></p></blockquote> <p>对于复杂的情况如果有v-for遍历形成的每个代码片段都有自己的状态且需要维护，这个时候如果不提供key会导致状态错乱的问题。</p> <p><strong>使用key的作用：</strong></p> <ul><li>用于vue虚拟DOM算法，在新旧nodes对比辨识VNodes，如果有提供key，他会基于key的变化顺序排列元素，移除key不存在的元素。这个时候就不会发生状态错乱的问题，另外如果强制替换的是元素/组件，他会完全触发组件的生命周期，以及元素的过渡动画效果。</li></ul> <p><strong>另外个问题为什么不建议用数组的index做为key？</strong></p> <p>因为数组遍历产生的index并不能唯一标示每个数组元素。</p> <div class="language- extra-class"><pre class="language-text"><code>let arr = ['tom', 'jack', 'hanson'];
+....数组处理
+arr = ['jack', 'tom', 'hanson'];
+</code></pre></div><p>就上面例子来说在 index = 0时，之前 arr[0] = 'tom'，经过处理之后 arr[0] = 'jack'；因此使用index作为key在diff时就很容易出现问题。</p> <p><a href="https://muyiy.cn/question/frame/1.html" target="_blank" rel="noopener noreferrer">react/vue数组循环为哈需要key?<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="vue常见的性能优化"><a href="#vue常见的性能优化" class="header-anchor">#</a> vue常见的性能优化？</h2> <ul><li><p>对于数据的处理，如果不是响应式数据则不需要放在data或者computed中定义，因为这里定义的数据会被Observer
+给层层遍历增加getter，setter属性，这是个比较损耗性能的过程</p></li> <li><p>引入第三方库如果进行了初始化，在组件卸载之前（beforeDestory中）销毁初始化的实例；以及记得销毁setTimeout/setInterval实例子</p></li> <li><p>尽量使用v-show代替v-if，减少dom的重排</p></li> <li><p>长列表数据懒加载，组件懒加载，路由分割减小文件体积</p></li></ul> <h2 id="谈谈你对keep-alive的理解"><a href="#谈谈你对keep-alive的理解" class="header-anchor">#</a> 谈谈你对keep-alive的理解？</h2> <p>切换的组件会被销毁，新加载的组件会执行完整的生命周期；例如从A -&gt; B, A页面会被销毁，丢失所有的状态，但是有时候我们希望从B页面返回的时候，A页面仍然保存之前的状态 (表单数据，页面滚动位置)，这个时候就可以使用keep-alive来进行操作。如果使用keep-alive进行包裹，被切换的组件不会触发beforeDestory，destoryed生命周期，会触发disactived，被呈现的组件会触发actived。</p> <p>在与vue-router配合使用的时候，会使用到路由的meta属性来有有条件控制组件的状态保存。</p> <p><a href="https://juejin.im/post/5d5a534351882568916523b7" target="_blank" rel="noopener noreferrer">keep-alive的使用讲解<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="节点更新的过程"><a href="#节点更新的过程" class="header-anchor">#</a> 节点更新的过程？</h2> <ol><li><p>判断新旧虚拟节点是否是静态节点，如果是就不需要进行更新操作；静态节点指的是那些一旦渲染到界面之后，无论状态怎么变更都不会变化的节点。</p></li> <li><p>如果新旧节点不是静态节点，并且有不同属性，要以新的虚拟节点更新视图。
+如果新生成的虚拟节点是text属性，则会使用setTextContent方法直接更正虚拟节点的text属性所保存的文字。</p></li> <li><p>新虚拟节点不是文本属性（text），那么就是元素节点</p></li></ol> <ul><li>如果有子节点（children）属性。
+<ul><li>如果旧的节点有元素节点，则需要将两者的children进行一个详细的对比更新，具体包括子节点的移动，删除，新增。</li> <li>如果旧的节点没有chilren属性，说明旧的虚拟节点是一个空标签，或者是文本节点，使用新的虚拟节点中的children挨个创建成真实的DOM元素节点插入到视图的DOM节点下面。</li></ul></li> <li>如果新节点无children属性，那么就直接更新视图与新节点相同。</li></ul> <p><img src="/assets/img/update_dom.f3b9e700.jpeg" alt="avatar"></p> <h2 id="模版编译原理"><a href="#模版编译原理" class="header-anchor">#</a> 模版编译原理</h2> <p>模版编译的主要目的是生成渲染函数，具体包括三个部分</p> <ul><li>将模板编译为AST；对应解析器</li></ul> <p>解析器内部有很多小的解析器，其中包括过滤器解析器（解析过滤器），文本解析器（解析带变量的文本），HTML解析器，</p> <ul><li>遍历AST标记静态节点；对应优化器</li></ul> <p>遍历AST检测出所有的静态子树，并给打上标签，避免不必要的更新，用于提升性能。</p> <ul><li>使AST生成渲染函数；代码生成器</li></ul> <p>AST指的是js对象对节点的描述组成的树形结构。</p> <h2 id="用vnode描述一个dom结构"><a href="#用vnode描述一个dom结构" class="header-anchor">#</a> 用vnode描述一个DOM结构？</h2> <div class="language- extra-class"><pre class="language-text"><code>&lt;div&gt;
+  &lt;p&gt;{{name}}&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></div><p>使用js对象对其的描述</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  tag: 'div',
+  type: 1,
+  attrsList: [],
+  attrsMap: {},
+  children: [
+    {
+      tag: 'p',
+      type: 1,
+      parent: {
+        tag: 'div'
+      },
+      attrsList: [],
+      attrsMap: {},
+      children: [
+        {
+          type: 2,
+          text: &quot;{{name}}&quot;,
+          static: false,
+          expression: '_s(name)'
+        }
+      ]
+    }
+  ]
+}
+</code></pre></div><h2 id="vue-set的作用及实现原理"><a href="#vue-set的作用及实现原理" class="header-anchor">#</a> vue.$set的作用及实现原理</h2> <p>vue只能侦测到初始化的data对象中的属性变更（添加）</p> <div class="language- extra-class"><pre class="language-text"><code>data () {
+  return {
+    obj: '12445'
+  }
+}
+在后续的代码中先是
+this.data = {
+  name: 'tom',
+  age: 23
+}
+首次变化也是能监听到的，但是如果我们改变this.data.name = 'jack'，这个时候就不能监听到了
+常见的解决方法使用vue.$set(this.data, name, 1234)
+</code></pre></div><p><strong>分析源码：</strong></p> <p><img src="/assets/img/vue_$set.aa4341ee.png" alt="avatar"></p> <p>会发现<strong>defineReactive(ob.value, key, val)</strong>，就是将这个属性添加到这个对象的监听中，</p> <p><img src="/assets/img/object_defineReactive.79214c0d.png" alt="avatar"></p> <h2 id="使用proxy简单实现object-defineproperty的数据侦测"><a href="#使用proxy简单实现object-defineproperty的数据侦测" class="header-anchor">#</a> 使用proxy简单实现Object.defineProperty的数据侦测？</h2> <div class="language- extra-class"><pre class="language-text"><code>var classInfo = {
+  count: 4,
+  student: {
+    age: 20,
+    name: 'tom'
+  }
+}
+
+let observer = (data) =&gt; {
+  if (!data || Object.prototype.toString.call(data) !== '[object Object]') {
+    return;
+  }
+  Object.keys(data).forEach((itemKey) =&gt; {
+    let currentValue = classInfo['itemKey'];
+    if (typeof currentValue === 'object') {
+      observer(currentValue);
+      data[itemKey] = new Proxy(currentValue, {
+        set(target, property, value, receiver) {
+          return Reflect.set(target, property, value, receiver);
+        };
+      })
+    } else {
+      Object.defineproperty(data, itemKey, {
+        get() {
+          return currentValue;
+        },
+        set (newVal) {
+          currentValue = value;
+        }
+      });
+    }
+  });
+}
+observer(classInfo);
+</code></pre></div><p><strong>补充：</strong></p> <ul><li>Proxy是对对象的一个代理，重塑了点运算符，基本套路是</li></ul> <div class="language- extra-class"><pre class="language-text"><code>// target是目标对象，第二个参数是处理手段
+var proxy = new Proxy(target, {
+  .....
+});
+</code></pre></div><ul><li>Reflect是Object.defineProperty的替代，现阶段，某些方法同时在Object和Reflect对象上部署，
+未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。
+Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。</li></ul> <h2 id="关于proxy相对object-defineproperty的优势与缺点"><a href="#关于proxy相对object-defineproperty的优势与缺点" class="header-anchor">#</a> 关于proxy相对Object.defineProperty的优势与缺点</h2> <p>在vue 实例化的时候，通过递归遍历整个对象使用Object.defineProperty对每个对象的属性进行劫持，但是有两种情况需要特殊处理：</p> <ul><li>属性是数组</li></ul> <p>解决方案：对于数组使用的是重写了Array的八种方法，每一次使用这几种方法时候会触发watcher</p> <ul><li>对象属性的动态添加</li></ul> <p>解决方案：使用$set，为对象添加属性，然后劫持这个属性</p> <p>使用proxy就可以不用担心上面情况二的问题了，因为proxy可以对整个对象进行劫持，即使动态添加属性也能轻松感知到；</p> <h3 id="对于数组的操作仍然不能很好的解决"><a href="#对于数组的操作仍然不能很好的解决" class="header-anchor">#</a> 对于数组的操作仍然不能很好的解决</h3> <p>对于数组的问题，如果操作数组api在每次操作完数组之后能够改变原数组，那么也可以利用proxy进行处理，否则也会有问题。</p> <div class="language- extra-class"><pre class="language-text"><code>let hobbits = ['travel', 'reading'];
+let p = new Proxy(hobbits, {
+  get(target, key) {
+    // if(key === 'length') return true; //如果是数组长度的变化，返回。
+    console.log('读取成功');
+    return Reflect.get(target, key);
+  },
+  set(target, key, value) {
+    // if(key === 'length') return true; //如果是数组长度的变化，返回。
+    console.log('设置成功');
+    return Reflect.set([target, key, value]);
+  }
+});
+p.splice(0,1) //触发get和set，可以被劫持
+p.push('photography');//触发get和set
+p.slice(1); //触发get；因为 slice 是不会修改原数组的
+</code></pre></div><h3 id="对于对象嵌套对象的问题处理起来比较复杂"><a href="#对于对象嵌套对象的问题处理起来比较复杂" class="header-anchor">#</a> 对于对象嵌套对象的问题处理起来比较复杂</h3> <p>如果外层对象的一个属性是student(他也是个对象)，在使用proxy进行劫持的时候，会出现问题。
+因为对象是一个引用类型的变量，属性名指向一个存储空间，所以当student的内部属性改变时，不会触发set, 而且会触发get，带来依赖收集的复杂性。</p> <div class="language- extra-class"><pre class="language-text"><code>let obj = {name: 'Yvette', hobbits: ['travel', 'reading'], info: {
+  age: 20,
+  job: 'engineer'
+}};
+let p = new Proxy(obj, {
+  get(target, key) { //第三个参数是 proxy， 一般不使用
+    console.log('读取成功');
+    return Reflect.get(target, key);
+  },
+  set(target, key, value) {
+    console.log('设置成功');
+    return Reflect.set([target, key, value]);
+  }
+});
+p.name = 20; //设置成功
+p.age = 20; //设置成功; 不需要事先定义此属性
+p.hobbits.push('photography'); //读取成功;注意不会触发设置成功
+p.info.age = 18; //读取成功;不会触发设置成功
+</code></pre></div><h2 id="描述组件渲染和更新的过程"><a href="#描述组件渲染和更新的过程" class="header-anchor">#</a> 描述组件渲染和更新的过程？</h2> <h2 id="vue父子组件生命周期调用顺序-minx与组件的生命周期顺序"><a href="#vue父子组件生命周期调用顺序-minx与组件的生命周期顺序" class="header-anchor">#</a> vue父子组件生命周期调用顺序，minx与组件的生命周期顺序？</h2> <h2 id="讲讲vue观察者模式和发布订阅者模式的具体实现"><a href="#讲讲vue观察者模式和发布订阅者模式的具体实现" class="header-anchor">#</a> 讲讲vue观察者模式和发布订阅者模式的具体实现</h2> <p><a href="https://ustbhuangyi.github.io/vue-analysis/v2/extend/keep-alive.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" target="_blank" rel="noopener noreferrer">vue.js技术揭秘<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://vue3js.cn/interview/vue3/proxy.html#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93" target="_blank" rel="noopener noreferrer">vue知识点<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/11/2023, 7:18:03 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue/vue的diff过程.html" class="prev">
+        vue的diff过程
+      </a></span> <span class="next"><a href="/vue/自定义一个全局组件.html">
+        自定义一个全局组件
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.57db4ba8.js" defer></script><script src="/assets/js/2.32b4f8de.js" defer></script><script src="/assets/js/4.7d86887d.js" defer></script>
+  </body>
+</html>

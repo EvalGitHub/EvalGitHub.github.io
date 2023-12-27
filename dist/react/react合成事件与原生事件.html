@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>react合成事件与原生事件 | 个人主页</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="学习总结">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4f255b1.css" as="style"><link rel="preload" href="/assets/js/app.57db4ba8.js" as="script"><link rel="preload" href="/assets/js/2.32b4f8de.js" as="script"><link rel="preload" href="/assets/js/83.15f2e7cb.js" as="script"><link rel="prefetch" href="/assets/js/10.fc41ba40.js"><link rel="prefetch" href="/assets/js/100.b92137c9.js"><link rel="prefetch" href="/assets/js/101.65418d74.js"><link rel="prefetch" href="/assets/js/102.bfa39e14.js"><link rel="prefetch" href="/assets/js/103.73b19d4b.js"><link rel="prefetch" href="/assets/js/104.3352cbff.js"><link rel="prefetch" href="/assets/js/105.2e0204ae.js"><link rel="prefetch" href="/assets/js/106.9f449c38.js"><link rel="prefetch" href="/assets/js/107.fd98af35.js"><link rel="prefetch" href="/assets/js/108.0b5ff5fd.js"><link rel="prefetch" href="/assets/js/109.9d09a23a.js"><link rel="prefetch" href="/assets/js/11.8eb18d9e.js"><link rel="prefetch" href="/assets/js/110.10ccf485.js"><link rel="prefetch" href="/assets/js/111.7132a3b3.js"><link rel="prefetch" href="/assets/js/112.fca7f7e6.js"><link rel="prefetch" href="/assets/js/113.7d620747.js"><link rel="prefetch" href="/assets/js/114.466c6b6a.js"><link rel="prefetch" href="/assets/js/115.ca76f80d.js"><link rel="prefetch" href="/assets/js/116.be069044.js"><link rel="prefetch" href="/assets/js/117.f2cb4bc8.js"><link rel="prefetch" href="/assets/js/118.cfeeee98.js"><link rel="prefetch" href="/assets/js/119.6f3553d9.js"><link rel="prefetch" href="/assets/js/12.25654e15.js"><link rel="prefetch" href="/assets/js/120.6acdfbdf.js"><link rel="prefetch" href="/assets/js/121.aac12bd4.js"><link rel="prefetch" href="/assets/js/122.ab9762e0.js"><link rel="prefetch" href="/assets/js/123.db9d4614.js"><link rel="prefetch" href="/assets/js/124.b927b2b0.js"><link rel="prefetch" href="/assets/js/125.a317a883.js"><link rel="prefetch" href="/assets/js/126.88e40ae5.js"><link rel="prefetch" href="/assets/js/127.cb7addf7.js"><link rel="prefetch" href="/assets/js/128.1cc6fac1.js"><link rel="prefetch" href="/assets/js/129.98d08b1e.js"><link rel="prefetch" href="/assets/js/13.dd6c5a8a.js"><link rel="prefetch" href="/assets/js/130.cace1e67.js"><link rel="prefetch" href="/assets/js/131.c5417e28.js"><link rel="prefetch" href="/assets/js/132.4ac26fa3.js"><link rel="prefetch" href="/assets/js/133.31474270.js"><link rel="prefetch" href="/assets/js/134.36271d6d.js"><link rel="prefetch" href="/assets/js/135.7fc24970.js"><link rel="prefetch" href="/assets/js/136.17877c2e.js"><link rel="prefetch" href="/assets/js/137.df61f5c2.js"><link rel="prefetch" href="/assets/js/138.6a17716e.js"><link rel="prefetch" href="/assets/js/139.608b39ca.js"><link rel="prefetch" href="/assets/js/14.1e13830e.js"><link rel="prefetch" href="/assets/js/140.d356eb3d.js"><link rel="prefetch" href="/assets/js/141.5c142706.js"><link rel="prefetch" href="/assets/js/142.b58c8575.js"><link rel="prefetch" href="/assets/js/143.455e9851.js"><link rel="prefetch" href="/assets/js/144.16641598.js"><link rel="prefetch" href="/assets/js/145.8987a2b7.js"><link rel="prefetch" href="/assets/js/146.fa956501.js"><link rel="prefetch" href="/assets/js/147.3e96a623.js"><link rel="prefetch" href="/assets/js/148.040f618d.js"><link rel="prefetch" href="/assets/js/149.346530eb.js"><link rel="prefetch" href="/assets/js/15.dcac7eea.js"><link rel="prefetch" href="/assets/js/150.78b24e2a.js"><link rel="prefetch" href="/assets/js/16.2dc5dd1f.js"><link rel="prefetch" href="/assets/js/17.3bfb5625.js"><link rel="prefetch" href="/assets/js/18.89432a01.js"><link rel="prefetch" href="/assets/js/19.ab4be550.js"><link rel="prefetch" href="/assets/js/20.0bba240e.js"><link rel="prefetch" href="/assets/js/21.70ff07ed.js"><link rel="prefetch" href="/assets/js/22.fb8fbf79.js"><link rel="prefetch" href="/assets/js/23.90910794.js"><link rel="prefetch" href="/assets/js/24.20ddc420.js"><link rel="prefetch" href="/assets/js/25.eeaf3174.js"><link rel="prefetch" href="/assets/js/26.e4023b07.js"><link rel="prefetch" href="/assets/js/27.c0c22cde.js"><link rel="prefetch" href="/assets/js/28.9db7b4e6.js"><link rel="prefetch" href="/assets/js/29.3e53a81c.js"><link rel="prefetch" href="/assets/js/3.0569c9c4.js"><link rel="prefetch" href="/assets/js/30.46fd214a.js"><link rel="prefetch" href="/assets/js/31.211fcc8b.js"><link rel="prefetch" href="/assets/js/32.ae640ccc.js"><link rel="prefetch" href="/assets/js/33.8044271e.js"><link rel="prefetch" href="/assets/js/34.939a099d.js"><link rel="prefetch" href="/assets/js/35.cdb5a625.js"><link rel="prefetch" href="/assets/js/36.be44a88b.js"><link rel="prefetch" href="/assets/js/37.51541bfb.js"><link rel="prefetch" href="/assets/js/38.b229150b.js"><link rel="prefetch" href="/assets/js/39.da4d1cba.js"><link rel="prefetch" href="/assets/js/4.7d86887d.js"><link rel="prefetch" href="/assets/js/40.065f1d7f.js"><link rel="prefetch" href="/assets/js/41.cf8d97fe.js"><link rel="prefetch" href="/assets/js/42.2e70f5d0.js"><link rel="prefetch" href="/assets/js/43.7765aaa3.js"><link rel="prefetch" href="/assets/js/44.633bb2cb.js"><link rel="prefetch" href="/assets/js/45.547c2900.js"><link rel="prefetch" href="/assets/js/46.68dd7ebc.js"><link rel="prefetch" href="/assets/js/47.6ddba031.js"><link rel="prefetch" href="/assets/js/48.8b1c26a4.js"><link rel="prefetch" href="/assets/js/49.309af78e.js"><link rel="prefetch" href="/assets/js/5.f46e4b1c.js"><link rel="prefetch" href="/assets/js/50.9093ca4f.js"><link rel="prefetch" href="/assets/js/51.64932645.js"><link rel="prefetch" href="/assets/js/52.d8b9be33.js"><link rel="prefetch" href="/assets/js/53.411022ff.js"><link rel="prefetch" href="/assets/js/54.1c44aebd.js"><link rel="prefetch" href="/assets/js/55.ba8a3e23.js"><link rel="prefetch" href="/assets/js/56.fec93d22.js"><link rel="prefetch" href="/assets/js/57.3276db5d.js"><link rel="prefetch" href="/assets/js/58.c21bcf0b.js"><link rel="prefetch" href="/assets/js/59.ed37c4f6.js"><link rel="prefetch" href="/assets/js/6.f2ff6c63.js"><link rel="prefetch" href="/assets/js/60.4e3dcd03.js"><link rel="prefetch" href="/assets/js/61.6639b2f1.js"><link rel="prefetch" href="/assets/js/62.6709514a.js"><link rel="prefetch" href="/assets/js/63.4035cbde.js"><link rel="prefetch" href="/assets/js/64.c9e23ba2.js"><link rel="prefetch" href="/assets/js/65.536936dc.js"><link rel="prefetch" href="/assets/js/66.5666e8e6.js"><link rel="prefetch" href="/assets/js/67.5a48fd12.js"><link rel="prefetch" href="/assets/js/68.75d372c6.js"><link rel="prefetch" href="/assets/js/69.6e7c9dee.js"><link rel="prefetch" href="/assets/js/7.fb23a202.js"><link rel="prefetch" href="/assets/js/70.1b68a1ef.js"><link rel="prefetch" href="/assets/js/71.7725449e.js"><link rel="prefetch" href="/assets/js/72.6d2a100d.js"><link rel="prefetch" href="/assets/js/73.834d3032.js"><link rel="prefetch" href="/assets/js/74.ab59ea7b.js"><link rel="prefetch" href="/assets/js/75.db97f0d7.js"><link rel="prefetch" href="/assets/js/76.878e916a.js"><link rel="prefetch" href="/assets/js/77.8c9b5242.js"><link rel="prefetch" href="/assets/js/78.9010df7b.js"><link rel="prefetch" href="/assets/js/79.1d9f4ab3.js"><link rel="prefetch" href="/assets/js/8.9d26f0bc.js"><link rel="prefetch" href="/assets/js/80.569eb310.js"><link rel="prefetch" href="/assets/js/81.45fd6a95.js"><link rel="prefetch" href="/assets/js/82.ce48eb4d.js"><link rel="prefetch" href="/assets/js/84.685e7d48.js"><link rel="prefetch" href="/assets/js/85.230d4496.js"><link rel="prefetch" href="/assets/js/86.e35b10ea.js"><link rel="prefetch" href="/assets/js/87.5c1d4ec8.js"><link rel="prefetch" href="/assets/js/88.96beca6c.js"><link rel="prefetch" href="/assets/js/89.7f3eb3ef.js"><link rel="prefetch" href="/assets/js/9.da67dd48.js"><link rel="prefetch" href="/assets/js/90.51ea733b.js"><link rel="prefetch" href="/assets/js/91.80aca0c1.js"><link rel="prefetch" href="/assets/js/92.08877701.js"><link rel="prefetch" href="/assets/js/93.4aeda11d.js"><link rel="prefetch" href="/assets/js/94.6922121f.js"><link rel="prefetch" href="/assets/js/95.85d8a929.js"><link rel="prefetch" href="/assets/js/96.5fbb283c.js"><link rel="prefetch" href="/assets/js/97.ae6605c5.js"><link rel="prefetch" href="/assets/js/98.2f51a1b2.js"><link rel="prefetch" href="/assets/js/99.35709ce2.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4f255b1.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="../assets/logo.png" alt="个人主页" class="logo"> <span class="site-name can-hide">个人主页</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/react/" class="nav-link router-link-active">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/react/" class="nav-link router-link-active">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>文档介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>react</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/react/" aria-current="page" class="sidebar-link">REACT 篇</a></li><li><a href="/react/mobx-react的使用.html" class="sidebar-link">mob-react的使用</a></li><li><a href="/react/mobx的学习与使用.html" class="sidebar-link">mobx的学习与使用</a></li><li><a href="/react/react-redux的学习与使用.html" class="sidebar-link">react-redux的学习与使用</a></li><li><a href="/react/react中关于state的不常用技巧.html" class="sidebar-link">react中关于state的不常用技巧</a></li><li><a href="/react/react中抽离公共逻辑复用的方式.html" class="sidebar-link">react中优雅抽离公共逻辑的方式</a></li><li><a href="/react/react中组件之间的相互通信.html" class="sidebar-link">react中组件相互通信的方式</a></li><li><a href="/react/react使用优化实践.html" class="sidebar-link">react使用优化实践</a></li><li><a href="/react/react全局方法使用.html" class="sidebar-link">react全局方法的使用</a></li><li><a href="/react/react函数编程hook基本用法.html" class="sidebar-link">react函数编程hook</a></li><li><a href="/react/react合成事件与原生事件.html" class="active sidebar-link">react合成事件与原生事件</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/react/react生命周期.html" class="sidebar-link">react生命周期</a></li><li><a href="/react/react的diff过程.html" class="sidebar-link">react的diff过程</a></li><li><a href="/react/redux-saga的学习与使用.html" class="sidebar-link">react-saga的使用实践</a></li><li><a href="/react/redux与react-redux的使用实践.html" class="sidebar-link">redux与react-redux的使用实践</a></li><li><a href="/react/setState的实现原理.html" class="sidebar-link">setState的异步分析及实现原理</a></li><li><a href="/react/使用errorboundary优化错误处理.html" class="sidebar-link">关于errorboundary的使用</a></li><li><a href="/react/创建一个全局toast.html" class="sidebar-link">创建一个全局toast</a></li><li><a href="/react/对setState的理解.html" class="sidebar-link">对setState的理解</a></li><li><a href="/react/浅析react_fiber.html" class="sidebar-link">浅谈react-fiber</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端杂记</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>构建工具篇-webpack等</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>flutter</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>H5开发汇总</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>web 安全</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>http 协议</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>pwa</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>浏览器原理&amp;性能优化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>babel</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>3D探索</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="react合成事件与原生事件"><a href="#react合成事件与原生事件" class="header-anchor">#</a> react合成事件与原生事件</h1> <h3 id="合成事件存在的原因"><a href="#合成事件存在的原因" class="header-anchor">#</a> 合成事件存在的原因？</h3> <p>如果DOM上绑定过多事件处理函数，整个页面响应以及内存占用都会有影响，另外还有各种兼容性引起的事件差异性问题，所以react实现了一个中间层---合成事件（SyntheticEvent）。</p> <p>在原生js开发中如果一个元素被重复绑定相同事件，则这些事件会按绑定顺序依次执行，如果想终止，可以使用 <strong>event.stopImmediatePropagation</strong>。</p> <p>MDN：
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event/stopImmediatePropagation" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/zh-CN/docs/Web/API/Event/stopImmediatePropagation<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="合成事件的原理"><a href="#合成事件的原理" class="header-anchor">#</a> 合成事件的原理？</h3> <p>react中，如果需要绑定事件</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;div onClick={this.getUserName.bind(this)}&gt;
+  获取用户名
+&lt;/div&gt;
+</code></pre></div><p>react并不是将事件真正的绑定在这个div元素上，而是在document处监听所有支持的事件，当事件发生并<strong>冒泡</strong>至document处时，react将事件内容封装并交由真正的处理函数运行。</p> <h3 id="如何在react中使用原生事件"><a href="#如何在react中使用原生事件" class="header-anchor">#</a> 如何在react中使用原生事件？</h3> <p>在一些情况下我们拥有使用原生事件的必要原因（window上的操作，全局弹窗关闭）
+与合成事件相比，原生事件是真实绑定在DOM上，所以一般在componentDidMount阶段进行操作，
+在componentWillUnmount进行事件的解除避免内存泄漏。</p> <blockquote><p>1）除兼容所有浏览器外，它还拥有和浏览器原生事件相同的接口，包括 stopPropagation() 和 preventDefault()；
+你需要使用浏览器的底层事件时，只需要使用 nativeEvent 属性来获取即可。</p></blockquote> <blockquote><p>2）如果因为某些原因，当你需要使用浏览器的底层事件时，只需要使用 nativeEvent 属性来获取即可。</p></blockquote> <h4 id="事件池"><a href="#事件池" class="header-anchor">#</a> 事件池</h4> <blockquote><p>SyntheticEvent(合成事件是合并而来)，这意味着这个对象可能会被重用，而且在事件回调函数被调用之后，所有的属性都会无效，出于性能考虑，你不能通过异步访问事件。</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code> deleteTest (event:any) {
+ 	 // event.persist()；
+    console.log(event);
+    console.log(event.nativeEvent);
+    console.log(event.type); // =&gt; &quot;click&quot;
+    const eventType = event.type; // =&gt; &quot;click&quot;
+  
+    setTimeout(function() {
+      console.log(event.type); // =&gt; null 报错
+      console.log(eventType); // =&gt; &quot;click&quot;
+    }, 0);
+  };
+</code></pre></div><p>如果你想异步访问事件属性，你需在事件上调用 event.persist()，此方法会从池中移除合成事件，允许用户代码保留对事件的引用。</p> <div class="language- extra-class"><pre class="language-text"><code>class Demo extends React.PureComponent {
+    componentDidMount() {
+        const $this = ReactDOM.findDOMNode(this)
+        $this.addEventListener('click', this.onDOMClick, false)
+    }
+
+    onDOMClick = evt =&gt; {
+       // ...
+    }
+
+    render() {
+        return (
+          &lt;div&gt;Demo&lt;/div&gt;
+        )
+    }
+}
+
+</code></pre></div><h3 id="合成事件与原生事件的混合使用"><a href="#合成事件与原生事件的混合使用" class="header-anchor">#</a> 合成事件与原生事件的混合使用？</h3> <ul><li>合成事件监听器是统一注册在document上，且仅有冒泡阶段。所以原生事件的监听器响应要比合成事件的监听器早。</li> <li>阻止原生事件的冒泡会阻止合成事件的监听执行。</li></ul> <p>几个例子学习下？
+[前提是都是点击子元素触发事件；事件都是先捕获-执行-冒泡]</p> <div class="language- extra-class"><pre class="language-text"><code>  onParentDOMClick = (evt:any) =&gt; {
+      console.log('captrue: parent dom event')
+  }
+
+  onChildDOMClick = (evt:any) =&gt; {
+      console.log('bubble: child dom event')
+  }    
+
+  onParentClick = (evt:any) =&gt; {
+      console.log('capture: parent react event')
+  }
+
+  onChildClick = (evt:any) =&gt; {   
+    console.log('bubble: child react event')
+  }
+
+  componentDidMount () {
+    const $parent:any = ReactDOM.findDOMNode(this)
+    const $child = $parent.querySelector('.child')
+    $parent.addEventListener('click', this.onParentDOMClick, true)
+    $child.addEventListener('click', this.onChildDOMClick, false)
+  };
+
+&lt;div onClickCapture={this.onParentClick} style={{padding: '20px', background: 'red'}}&gt;
+  &lt;div className=&quot;child&quot; onClick={this.onChildClick} 
+  	style={{background: 'green'}}&gt;
+     Demo
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div><blockquote><p>captrue: parent dom event -- bubble: child dom event
+-- capture: parent react event -- captrue: parent dom event</p></blockquote> <p><strong>reason：</strong></p> <ul><li>首先原生事件要早于合成事件，另外在原生事件中的事件捕获要早于事件冒泡。</li> <li>在合成事件中外层元素事件触发要早于内层子元素</li></ul> <h3 id="常见的一个问题-在合成事件中使用stoppropgation-阻止事件冒泡-默认行为-不生效"><a href="#常见的一个问题-在合成事件中使用stoppropgation-阻止事件冒泡-默认行为-不生效" class="header-anchor">#</a> 常见的一个问题，在合成事件中使用stopPropgation（阻止事件冒泡，默认行为）不生效</h3> <div class="language- extra-class"><pre class="language-text"><code>class SommeComponent extends React.Component {
+
+  handleClick = (e) =&gt; {
+    e.stopPropagation();
+  }
+  
+  handleDivClick = () =&gt; {
+    console.log('測試冒泡')
+  }
+
+  componentDidMount () {
+    document.body.addEventListener('click', e =&gt; {
+      if (e.target.id = 'btn') return;
+      console.log('我是body上的click');
+    })
+  };
+
+  render() {
+    return &lt;&gt;
+      &lt;div onClick={this.handleDivClick}&gt;
+        &lt;p className=&quot;code&quot; id='btn' onClick={this.handleClick}&gt;
+          &lt;img src='som.jpg'/&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+  }
+}
+
+</code></pre></div><p>就以上的例子我们点击p元素，触发了handleClick方法，使用了 e.stopPropagation();可以验证“handleDivClick()”不会有输出，
+但是有意思的是&quot;我是body上的click&quot;依旧输出。</p> <p><strong>原因分析：</strong>
+使用e.stopPropagation()有效阻止了事件冒泡，所以&quot;handleDivClick()&quot;不会输出，但是这两个事件都是合成事件（且是click类型），意味着在body上会有这个这个click事件，
+所以通过原生事件还是能捕捉到（合成事件中的阻止事件冒泡只能影响合成事件，不能影响原生事件）; 但如果在原生事件中阻止事件冒泡，则会阻止原生/合成事件冒泡。</p> <p><strong>建议不要将原生事件与合成事件一起使用：</strong></p> <p>如果有时候真的没得办法，那我们有以下两种选择方案可以解决：</p> <ol><li>合理使用e.stopPropagation() 【两个角度原生事件中使用，合成事件中使用】</li> <li>使用事件对象event.target来判断的信息来判断</li></ol> <h3 id="在合成事件中怎么获得原生事件对象了"><a href="#在合成事件中怎么获得原生事件对象了" class="header-anchor">#</a> 在合成事件中怎么获得原生事件对象了</h3> <div class="language- extra-class"><pre class="language-text"><code>// 阻止事件冒泡&amp;捕获
+e.nativeEvent.stopPropagation(); 
+
+// 阻止事件冒泡&amp;捕获 &amp;&amp; 阻止同一事件的其他绑定执行（一个元素被绑定多个click事件，stopImmediatePropagation使得只会执行一次）
+e.nativeEvent.stopImmediatePropagation();
+</code></pre></div><p><a href="https://mp.weixin.qq.com/s/NLJlcdhMcPPgrS8KrnmQ9A" target="_blank" rel="noopener noreferrer">合成事件的例子<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>参考：</p> <p>react官网合成事件：
+<a href="https://react-1251415695.cos-website.ap-chengdu.myqcloud.com/docs/events.html" target="_blank" rel="noopener noreferrer">https://react-1251415695.cos-website.ap-chengdu.myqcloud.com/docs/events.html<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://juejin.im/post/59db6e7af265da431f4a02ef" target="_blank" rel="noopener noreferrer">https://juejin.im/post/59db6e7af265da431f4a02ef<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">8/27/2020, 11:21:55 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/react/react函数编程hook基本用法.html" class="prev">
+        react函数编程hook
+      </a></span> <span class="next"><a href="/react/react生命周期.html">
+        react生命周期
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.57db4ba8.js" defer></script><script src="/assets/js/2.32b4f8de.js" defer></script><script src="/assets/js/83.15f2e7cb.js" defer></script>
+  </body>
+</html>

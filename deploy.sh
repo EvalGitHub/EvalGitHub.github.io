@@ -3,10 +3,10 @@
 set -e
 
 # 构建
-# npm run build
+npm run build
 
 # 进入生成的构建文件夹
-# cd dist
+cd dist
 
 # 如果你是要部署到自定义域名
 # echo 'www.example.com' > CNAME

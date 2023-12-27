@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>收集一些不寻常的异步问题 | 个人主页</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="学习总结">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4f255b1.css" as="style"><link rel="preload" href="/assets/js/app.57db4ba8.js" as="script"><link rel="preload" href="/assets/js/2.32b4f8de.js" as="script"><link rel="preload" href="/assets/js/68.75d372c6.js" as="script"><link rel="prefetch" href="/assets/js/10.fc41ba40.js"><link rel="prefetch" href="/assets/js/100.b92137c9.js"><link rel="prefetch" href="/assets/js/101.65418d74.js"><link rel="prefetch" href="/assets/js/102.bfa39e14.js"><link rel="prefetch" href="/assets/js/103.73b19d4b.js"><link rel="prefetch" href="/assets/js/104.3352cbff.js"><link rel="prefetch" href="/assets/js/105.2e0204ae.js"><link rel="prefetch" href="/assets/js/106.9f449c38.js"><link rel="prefetch" href="/assets/js/107.fd98af35.js"><link rel="prefetch" href="/assets/js/108.0b5ff5fd.js"><link rel="prefetch" href="/assets/js/109.9d09a23a.js"><link rel="prefetch" href="/assets/js/11.8eb18d9e.js"><link rel="prefetch" href="/assets/js/110.10ccf485.js"><link rel="prefetch" href="/assets/js/111.7132a3b3.js"><link rel="prefetch" href="/assets/js/112.fca7f7e6.js"><link rel="prefetch" href="/assets/js/113.7d620747.js"><link rel="prefetch" href="/assets/js/114.466c6b6a.js"><link rel="prefetch" href="/assets/js/115.ca76f80d.js"><link rel="prefetch" href="/assets/js/116.be069044.js"><link rel="prefetch" href="/assets/js/117.f2cb4bc8.js"><link rel="prefetch" href="/assets/js/118.cfeeee98.js"><link rel="prefetch" href="/assets/js/119.6f3553d9.js"><link rel="prefetch" href="/assets/js/12.25654e15.js"><link rel="prefetch" href="/assets/js/120.6acdfbdf.js"><link rel="prefetch" href="/assets/js/121.aac12bd4.js"><link rel="prefetch" href="/assets/js/122.ab9762e0.js"><link rel="prefetch" href="/assets/js/123.db9d4614.js"><link rel="prefetch" href="/assets/js/124.b927b2b0.js"><link rel="prefetch" href="/assets/js/125.a317a883.js"><link rel="prefetch" href="/assets/js/126.88e40ae5.js"><link rel="prefetch" href="/assets/js/127.cb7addf7.js"><link rel="prefetch" href="/assets/js/128.1cc6fac1.js"><link rel="prefetch" href="/assets/js/129.98d08b1e.js"><link rel="prefetch" href="/assets/js/13.dd6c5a8a.js"><link rel="prefetch" href="/assets/js/130.cace1e67.js"><link rel="prefetch" href="/assets/js/131.c5417e28.js"><link rel="prefetch" href="/assets/js/132.4ac26fa3.js"><link rel="prefetch" href="/assets/js/133.31474270.js"><link rel="prefetch" href="/assets/js/134.36271d6d.js"><link rel="prefetch" href="/assets/js/135.7fc24970.js"><link rel="prefetch" href="/assets/js/136.17877c2e.js"><link rel="prefetch" href="/assets/js/137.df61f5c2.js"><link rel="prefetch" href="/assets/js/138.6a17716e.js"><link rel="prefetch" href="/assets/js/139.608b39ca.js"><link rel="prefetch" href="/assets/js/14.1e13830e.js"><link rel="prefetch" href="/assets/js/140.d356eb3d.js"><link rel="prefetch" href="/assets/js/141.5c142706.js"><link rel="prefetch" href="/assets/js/142.b58c8575.js"><link rel="prefetch" href="/assets/js/143.455e9851.js"><link rel="prefetch" href="/assets/js/144.16641598.js"><link rel="prefetch" href="/assets/js/145.8987a2b7.js"><link rel="prefetch" href="/assets/js/146.fa956501.js"><link rel="prefetch" href="/assets/js/147.3e96a623.js"><link rel="prefetch" href="/assets/js/148.040f618d.js"><link rel="prefetch" href="/assets/js/149.346530eb.js"><link rel="prefetch" href="/assets/js/15.dcac7eea.js"><link rel="prefetch" href="/assets/js/150.78b24e2a.js"><link rel="prefetch" href="/assets/js/16.2dc5dd1f.js"><link rel="prefetch" href="/assets/js/17.3bfb5625.js"><link rel="prefetch" href="/assets/js/18.89432a01.js"><link rel="prefetch" href="/assets/js/19.ab4be550.js"><link rel="prefetch" href="/assets/js/20.0bba240e.js"><link rel="prefetch" href="/assets/js/21.70ff07ed.js"><link rel="prefetch" href="/assets/js/22.fb8fbf79.js"><link rel="prefetch" href="/assets/js/23.90910794.js"><link rel="prefetch" href="/assets/js/24.20ddc420.js"><link rel="prefetch" href="/assets/js/25.eeaf3174.js"><link rel="prefetch" href="/assets/js/26.e4023b07.js"><link rel="prefetch" href="/assets/js/27.c0c22cde.js"><link rel="prefetch" href="/assets/js/28.9db7b4e6.js"><link rel="prefetch" href="/assets/js/29.3e53a81c.js"><link rel="prefetch" href="/assets/js/3.0569c9c4.js"><link rel="prefetch" href="/assets/js/30.46fd214a.js"><link rel="prefetch" href="/assets/js/31.211fcc8b.js"><link rel="prefetch" href="/assets/js/32.ae640ccc.js"><link rel="prefetch" href="/assets/js/33.8044271e.js"><link rel="prefetch" href="/assets/js/34.939a099d.js"><link rel="prefetch" href="/assets/js/35.cdb5a625.js"><link rel="prefetch" href="/assets/js/36.be44a88b.js"><link rel="prefetch" href="/assets/js/37.51541bfb.js"><link rel="prefetch" href="/assets/js/38.b229150b.js"><link rel="prefetch" href="/assets/js/39.da4d1cba.js"><link rel="prefetch" href="/assets/js/4.7d86887d.js"><link rel="prefetch" href="/assets/js/40.065f1d7f.js"><link rel="prefetch" href="/assets/js/41.cf8d97fe.js"><link rel="prefetch" href="/assets/js/42.2e70f5d0.js"><link rel="prefetch" href="/assets/js/43.7765aaa3.js"><link rel="prefetch" href="/assets/js/44.633bb2cb.js"><link rel="prefetch" href="/assets/js/45.547c2900.js"><link rel="prefetch" href="/assets/js/46.68dd7ebc.js"><link rel="prefetch" href="/assets/js/47.6ddba031.js"><link rel="prefetch" href="/assets/js/48.8b1c26a4.js"><link rel="prefetch" href="/assets/js/49.309af78e.js"><link rel="prefetch" href="/assets/js/5.f46e4b1c.js"><link rel="prefetch" href="/assets/js/50.9093ca4f.js"><link rel="prefetch" href="/assets/js/51.64932645.js"><link rel="prefetch" href="/assets/js/52.d8b9be33.js"><link rel="prefetch" href="/assets/js/53.411022ff.js"><link rel="prefetch" href="/assets/js/54.1c44aebd.js"><link rel="prefetch" href="/assets/js/55.ba8a3e23.js"><link rel="prefetch" href="/assets/js/56.fec93d22.js"><link rel="prefetch" href="/assets/js/57.3276db5d.js"><link rel="prefetch" href="/assets/js/58.c21bcf0b.js"><link rel="prefetch" href="/assets/js/59.ed37c4f6.js"><link rel="prefetch" href="/assets/js/6.f2ff6c63.js"><link rel="prefetch" href="/assets/js/60.4e3dcd03.js"><link rel="prefetch" href="/assets/js/61.6639b2f1.js"><link rel="prefetch" href="/assets/js/62.6709514a.js"><link rel="prefetch" href="/assets/js/63.4035cbde.js"><link rel="prefetch" href="/assets/js/64.c9e23ba2.js"><link rel="prefetch" href="/assets/js/65.536936dc.js"><link rel="prefetch" href="/assets/js/66.5666e8e6.js"><link rel="prefetch" href="/assets/js/67.5a48fd12.js"><link rel="prefetch" href="/assets/js/69.6e7c9dee.js"><link rel="prefetch" href="/assets/js/7.fb23a202.js"><link rel="prefetch" href="/assets/js/70.1b68a1ef.js"><link rel="prefetch" href="/assets/js/71.7725449e.js"><link rel="prefetch" href="/assets/js/72.6d2a100d.js"><link rel="prefetch" href="/assets/js/73.834d3032.js"><link rel="prefetch" href="/assets/js/74.ab59ea7b.js"><link rel="prefetch" href="/assets/js/75.db97f0d7.js"><link rel="prefetch" href="/assets/js/76.878e916a.js"><link rel="prefetch" href="/assets/js/77.8c9b5242.js"><link rel="prefetch" href="/assets/js/78.9010df7b.js"><link rel="prefetch" href="/assets/js/79.1d9f4ab3.js"><link rel="prefetch" href="/assets/js/8.9d26f0bc.js"><link rel="prefetch" href="/assets/js/80.569eb310.js"><link rel="prefetch" href="/assets/js/81.45fd6a95.js"><link rel="prefetch" href="/assets/js/82.ce48eb4d.js"><link rel="prefetch" href="/assets/js/83.15f2e7cb.js"><link rel="prefetch" href="/assets/js/84.685e7d48.js"><link rel="prefetch" href="/assets/js/85.230d4496.js"><link rel="prefetch" href="/assets/js/86.e35b10ea.js"><link rel="prefetch" href="/assets/js/87.5c1d4ec8.js"><link rel="prefetch" href="/assets/js/88.96beca6c.js"><link rel="prefetch" href="/assets/js/89.7f3eb3ef.js"><link rel="prefetch" href="/assets/js/9.da67dd48.js"><link rel="prefetch" href="/assets/js/90.51ea733b.js"><link rel="prefetch" href="/assets/js/91.80aca0c1.js"><link rel="prefetch" href="/assets/js/92.08877701.js"><link rel="prefetch" href="/assets/js/93.4aeda11d.js"><link rel="prefetch" href="/assets/js/94.6922121f.js"><link rel="prefetch" href="/assets/js/95.85d8a929.js"><link rel="prefetch" href="/assets/js/96.5fbb283c.js"><link rel="prefetch" href="/assets/js/97.ae6605c5.js"><link rel="prefetch" href="/assets/js/98.2f51a1b2.js"><link rel="prefetch" href="/assets/js/99.35709ce2.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4f255b1.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="../assets/logo.png" alt="个人主页" class="logo"> <span class="site-name can-hide">个人主页</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/react/" class="nav-link">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>文档介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端杂记</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>js</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/js/require的原理.html" class="sidebar-link">require的原理</a></li><li><a href="/js/typescript的高级技巧用法.html" class="sidebar-link">TypeScript的高级技巧用法</a></li><li><a href="/js/按顺序加载script的实现.html" class="sidebar-link">按顺序加载script的实现</a></li><li><a href="/js/正则探索.html" class="sidebar-link">正则探索</a></li><li><a href="/js/理解instanceof，typeof.html" class="sidebar-link">理解instanceof，typeof，Object.prototype.toString</a></li><li><a href="/js/神奇的js异步问题.html" class="active sidebar-link">收集一些不寻常的异步问题</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/js/神奇的js异步问题.html#红灯-3s-亮一次-绿灯-1s-亮一次-黄灯-2s-亮一次-如何让三个灯不断交替重复亮灯" class="sidebar-link">红灯 3s 亮一次，绿灯 1s 亮一次，黄灯 2s 亮一次；如何让三个灯不断交替重复亮灯？</a></li><li class="sidebar-sub-header"><a href="/js/神奇的js异步问题.html#请写出下面的结果" class="sidebar-link">请写出下面的结果？</a></li></ul></li><li><a href="/js/闭包.html" class="sidebar-link">闭包</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>构建工具篇-webpack等</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>flutter</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>H5开发汇总</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>web 安全</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>http 协议</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>pwa</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>浏览器原理&amp;性能优化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>babel</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>3D探索</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="收集一些不寻常的异步问题"><a href="#收集一些不寻常的异步问题" class="header-anchor">#</a> 收集一些不寻常的异步问题</h1> <h2 id="红灯-3s-亮一次-绿灯-1s-亮一次-黄灯-2s-亮一次-如何让三个灯不断交替重复亮灯"><a href="#红灯-3s-亮一次-绿灯-1s-亮一次-黄灯-2s-亮一次-如何让三个灯不断交替重复亮灯" class="header-anchor">#</a> 红灯 3s 亮一次，绿灯 1s 亮一次，黄灯 2s 亮一次；如何让三个灯不断交替重复亮灯？</h2> <div class="language- extra-class"><pre class="language-text"><code>function red () {
+  console.log('red');
+}
+function green() {
+  console.log('green');
+}
+function yellow() {
+  console.log('yellow')
+}
+
+function dealFun(time, funCallback) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      funCallback();
+      resolve();
+    }, time)
+  }) 
+}
+
+function step() {
+  dealFun(3000, red).then(() =&gt; {
+    dealFun(1000, green)
+  }).then(() =&gt; {
+    dealFun(2000, yellow)
+  }).then(() =&gt; step());
+}
+step();
+</code></pre></div><p>尝试把上面的代码放在浏览器中会发现，执行速度并不是我们预期的那样，仔细分析会发现问题就出现在</p> <div class="language- extra-class"><pre class="language-text"><code>function step() {
+  dealFun(3000, red).then(() =&gt; {
+    dealFun(1000, green)
+  }).then(() =&gt; {
+    dealFun(2000, yellow)
+  }).then(() =&gt; step());
+}
+</code></pre></div><p>在resolve中如果不手动返回resolve，会默认返回一个resoive</p> <p>用代码翻译：</p> <div class="language- extra-class"><pre class="language-text"><code>function step() {
+  dealFun(3000, red).then(() =&gt; {
+    dealFun(1000, green)
+    return Promise.resolve();
+  }).then(() =&gt; {
+    dealFun(2000, yellow)
+    return Promise.resolve();
+  }).then(() =&gt; step());
+}
+</code></pre></div><p>会发现<strong>return Promise.resolve();</strong> 并不会等待**dealFun(1000, green)**执行完毕再执行，所以导致执行效果与我们预期不同；</p> <p>解决思路：</p> <div class="language- extra-class"><pre class="language-text"><code>function step() {
+  dealFun(3000, red).then(() =&gt; {
+    return dealFun(1000, green)
+  }).then(() =&gt; {
+    return dealFun(2000, yellow)
+  }).then(() =&gt; step());
+}
+
+// or 
+
+function step() {
+  dealFun(3000, red).then(() =&gt; dealFun(1000, green)).then(() =&gt; dealFun(2000, yellow)).then(() =&gt; step());
+}
+</code></pre></div><p>这样的话就阻止了默认的返回resolve。</p> <h2 id="请写出下面的结果"><a href="#请写出下面的结果" class="header-anchor">#</a> 请写出下面的结果？</h2> <div class="language- extra-class"><pre class="language-text"><code>async function async1() {
+  console.log('async1 start')
+  await async2()
+  console.log('async1 end')
+}
+
+async function async2() {
+  console.log('async2')
+}
+
+console.log('script start')
+
+setTimeout(function() {
+  console.log('setTimeout') 
+}, 0)  
+
+async1()
+
+new Promise(function(resolve) {
+  console.log('promise1')
+  resolve()
+}).then(function() {
+  console.log('promise2')
+})
+
+console.log('script end')
+</code></pre></div><p>async/await是promise的语法糖（对promise做的二次封装）。</p> <p>在一开始写出的答案是：</p> <blockquote><p>script start -&gt; async1 start -&gt; promise1 -&gt; script end  -&gt; async2 -&gt; async1 end -&gt; promise2 -&gt; setTimeout</p></blockquote> <p>但是真正的答案：</p> <blockquote><p>script start -&gt; async1 start -&gt; async2 -&gt; promise1 -&gt; script end -&gt; async1 end -&gt; promise2 -&gt; setTimeout</p></blockquote> <p>上面的答案出现的错误就在与没能真正理解async/await，所以导致对于async2的执行时间判断有偏差。</p> <p>先回顾下js基础知识，js中存在的任务可分为两种，一中是可以立即执行的同步任务，一种是需要等待某些时间才可以执行的异步任务，对于单线程的js来说，如果不对异步任务做特殊处理就会导致执行阻塞。因此js中出现了异步任务队列（专门用于收集异步任务，待主程序执行完同步任务，再来循环遍历这个异步人任务队列，这就是常说的js事件循环event loop）。</p> <p><strong>同步任务</strong></p> <blockquote><p>当前主线程将要消化执行的任务，这些任务一起形成执行栈（execution context stack）</p></blockquote> <p><strong>异步任务</strong></p> <blockquote><p>不进入主线程，而是进入任务队列（task queue），即不会马上进行的任务。</p></blockquote> <ul><li>异步任务可分：
+<ul><li>宏任务
+<ul><li>setTimeout</li> <li>setInterval</li> <li>I/O</li> <li>事件</li> <li>postMessage</li> <li>setImmediate (Node.js，浏览器端该 API 已经废弃)</li> <li>requestAnimationFrame</li> <li>UI 渲染</li></ul></li> <li>微任务
+<ul><li>Promise.then</li> <li>MutationObserver</li> <li>process.nextTick (Node.js)</li></ul></li></ul></li></ul> <p><a href="https://mp.weixin.qq.com/s/g_-blGV4CVF5EogYZaPMzQ" target="_blank" rel="noopener noreferrer">Event Loop和js引擎，渲染引擎的关系<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><strong>关于执行顺序总体来说就是： 同步任务 &gt;  微任务 &gt; 宏任务</strong></p> <div class="language- extra-class"><pre class="language-text"><code>分析： 
+
+先看同步任务： 
+
+console.log('script start') 优先执行  --- script start (1)
+
+setTimeout  添加异步任务队列
+
+async1()
+  console.log('async1 start')      ----- async1 start (2)
+  await async2()                   ----- async2       (3)
+  console.log('async1 end') 添加到异步任务队列
+
+
+Promise() 
+  console.log('promise1')           ---- promise1     (4)
+  console.log('promise2') 添加到异步任务队列
+
+console.log('script end')           ---- script end   (5)
+
+至此同步任务执行完毕，开始执行异步任务
+微任务Promise.then优先与setTimeout
+
+console.log('async1 end')          ---- async1 end    (6)
+
+console.log('promise2')            ---- promise2      (7)
+
+setTimeout                          --- setTimeout    (8)
+</code></pre></div><p><strong>补充两点：</strong></p> <ul><li>Promise.then是异步，但是Promise不是异步 因此 “console.log('promise1')“会同步执行。</li> <li>async/await是promise的语法糖
+<ul><li>async 声明的函数，其返回值必定是 promise 对象，如果没有显式返回 promise 对象，也会用 Promise.resolve() 对结果进行包装，保证返回值为 promise 类型</li> <li>如果 await 右侧表达逻辑是个 promise，让出主线程，继续执行 async 函数外的同步代码，等待同步任务结束后，且该 promise 被 resolve 时，继续执行 await 后面的逻辑
+如果 await 右侧表达逻辑不是 promise 类型，那么仍然异步处理，将其理解包装为 promise， async 函数之外的同步代码执行完毕之后，会回到 async 函数内部，继续执行 await 之后的逻辑</li></ul></li></ul> <div class="language- extra-class"><pre class="language-text"><code>async function async1() {
+  console.log('async1 start')
+  await async2()
+  console.log('async1 end')
+}
+</code></pre></div><p>等价与</p> <div class="language- extra-class"><pre class="language-text"><code>function async1() {
+  new Promise(function(resolve, reject) {
+    console.log('async1 start')
+    async2()
+    resolve()
+  })
+}
+
+function async2 () {
+  return new Promise(function(resolve, reject) {
+    console.log('async2')
+    resolve()
+  }).then(() =&gt; {
+    console.log('async1 end')
+  })
+}
+async1()
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">5/13/2021, 10:44:52 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/js/理解instanceof，typeof.html" class="prev">
+        理解instanceof，typeof，Object.prototype.toString
+      </a></span> <span class="next"><a href="/js/闭包.html">
+        闭包
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.57db4ba8.js" defer></script><script src="/assets/js/2.32b4f8de.js" defer></script><script src="/assets/js/68.75d372c6.js" defer></script>
+  </body>
+</html>

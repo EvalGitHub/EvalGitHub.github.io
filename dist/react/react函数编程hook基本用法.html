@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>react函数编程hook | 个人主页</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="学习总结">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4f255b1.css" as="style"><link rel="preload" href="/assets/js/app.57db4ba8.js" as="script"><link rel="preload" href="/assets/js/2.32b4f8de.js" as="script"><link rel="preload" href="/assets/js/82.ce48eb4d.js" as="script"><link rel="prefetch" href="/assets/js/10.fc41ba40.js"><link rel="prefetch" href="/assets/js/100.b92137c9.js"><link rel="prefetch" href="/assets/js/101.65418d74.js"><link rel="prefetch" href="/assets/js/102.bfa39e14.js"><link rel="prefetch" href="/assets/js/103.73b19d4b.js"><link rel="prefetch" href="/assets/js/104.3352cbff.js"><link rel="prefetch" href="/assets/js/105.2e0204ae.js"><link rel="prefetch" href="/assets/js/106.9f449c38.js"><link rel="prefetch" href="/assets/js/107.fd98af35.js"><link rel="prefetch" href="/assets/js/108.0b5ff5fd.js"><link rel="prefetch" href="/assets/js/109.9d09a23a.js"><link rel="prefetch" href="/assets/js/11.8eb18d9e.js"><link rel="prefetch" href="/assets/js/110.10ccf485.js"><link rel="prefetch" href="/assets/js/111.7132a3b3.js"><link rel="prefetch" href="/assets/js/112.fca7f7e6.js"><link rel="prefetch" href="/assets/js/113.7d620747.js"><link rel="prefetch" href="/assets/js/114.466c6b6a.js"><link rel="prefetch" href="/assets/js/115.ca76f80d.js"><link rel="prefetch" href="/assets/js/116.be069044.js"><link rel="prefetch" href="/assets/js/117.f2cb4bc8.js"><link rel="prefetch" href="/assets/js/118.cfeeee98.js"><link rel="prefetch" href="/assets/js/119.6f3553d9.js"><link rel="prefetch" href="/assets/js/12.25654e15.js"><link rel="prefetch" href="/assets/js/120.6acdfbdf.js"><link rel="prefetch" href="/assets/js/121.aac12bd4.js"><link rel="prefetch" href="/assets/js/122.ab9762e0.js"><link rel="prefetch" href="/assets/js/123.db9d4614.js"><link rel="prefetch" href="/assets/js/124.b927b2b0.js"><link rel="prefetch" href="/assets/js/125.a317a883.js"><link rel="prefetch" href="/assets/js/126.88e40ae5.js"><link rel="prefetch" href="/assets/js/127.cb7addf7.js"><link rel="prefetch" href="/assets/js/128.1cc6fac1.js"><link rel="prefetch" href="/assets/js/129.98d08b1e.js"><link rel="prefetch" href="/assets/js/13.dd6c5a8a.js"><link rel="prefetch" href="/assets/js/130.cace1e67.js"><link rel="prefetch" href="/assets/js/131.c5417e28.js"><link rel="prefetch" href="/assets/js/132.4ac26fa3.js"><link rel="prefetch" href="/assets/js/133.31474270.js"><link rel="prefetch" href="/assets/js/134.36271d6d.js"><link rel="prefetch" href="/assets/js/135.7fc24970.js"><link rel="prefetch" href="/assets/js/136.17877c2e.js"><link rel="prefetch" href="/assets/js/137.df61f5c2.js"><link rel="prefetch" href="/assets/js/138.6a17716e.js"><link rel="prefetch" href="/assets/js/139.608b39ca.js"><link rel="prefetch" href="/assets/js/14.1e13830e.js"><link rel="prefetch" href="/assets/js/140.d356eb3d.js"><link rel="prefetch" href="/assets/js/141.5c142706.js"><link rel="prefetch" href="/assets/js/142.b58c8575.js"><link rel="prefetch" href="/assets/js/143.455e9851.js"><link rel="prefetch" href="/assets/js/144.16641598.js"><link rel="prefetch" href="/assets/js/145.8987a2b7.js"><link rel="prefetch" href="/assets/js/146.fa956501.js"><link rel="prefetch" href="/assets/js/147.3e96a623.js"><link rel="prefetch" href="/assets/js/148.040f618d.js"><link rel="prefetch" href="/assets/js/149.346530eb.js"><link rel="prefetch" href="/assets/js/15.dcac7eea.js"><link rel="prefetch" href="/assets/js/150.78b24e2a.js"><link rel="prefetch" href="/assets/js/16.2dc5dd1f.js"><link rel="prefetch" href="/assets/js/17.3bfb5625.js"><link rel="prefetch" href="/assets/js/18.89432a01.js"><link rel="prefetch" href="/assets/js/19.ab4be550.js"><link rel="prefetch" href="/assets/js/20.0bba240e.js"><link rel="prefetch" href="/assets/js/21.70ff07ed.js"><link rel="prefetch" href="/assets/js/22.fb8fbf79.js"><link rel="prefetch" href="/assets/js/23.90910794.js"><link rel="prefetch" href="/assets/js/24.20ddc420.js"><link rel="prefetch" href="/assets/js/25.eeaf3174.js"><link rel="prefetch" href="/assets/js/26.e4023b07.js"><link rel="prefetch" href="/assets/js/27.c0c22cde.js"><link rel="prefetch" href="/assets/js/28.9db7b4e6.js"><link rel="prefetch" href="/assets/js/29.3e53a81c.js"><link rel="prefetch" href="/assets/js/3.0569c9c4.js"><link rel="prefetch" href="/assets/js/30.46fd214a.js"><link rel="prefetch" href="/assets/js/31.211fcc8b.js"><link rel="prefetch" href="/assets/js/32.ae640ccc.js"><link rel="prefetch" href="/assets/js/33.8044271e.js"><link rel="prefetch" href="/assets/js/34.939a099d.js"><link rel="prefetch" href="/assets/js/35.cdb5a625.js"><link rel="prefetch" href="/assets/js/36.be44a88b.js"><link rel="prefetch" href="/assets/js/37.51541bfb.js"><link rel="prefetch" href="/assets/js/38.b229150b.js"><link rel="prefetch" href="/assets/js/39.da4d1cba.js"><link rel="prefetch" href="/assets/js/4.7d86887d.js"><link rel="prefetch" href="/assets/js/40.065f1d7f.js"><link rel="prefetch" href="/assets/js/41.cf8d97fe.js"><link rel="prefetch" href="/assets/js/42.2e70f5d0.js"><link rel="prefetch" href="/assets/js/43.7765aaa3.js"><link rel="prefetch" href="/assets/js/44.633bb2cb.js"><link rel="prefetch" href="/assets/js/45.547c2900.js"><link rel="prefetch" href="/assets/js/46.68dd7ebc.js"><link rel="prefetch" href="/assets/js/47.6ddba031.js"><link rel="prefetch" href="/assets/js/48.8b1c26a4.js"><link rel="prefetch" href="/assets/js/49.309af78e.js"><link rel="prefetch" href="/assets/js/5.f46e4b1c.js"><link rel="prefetch" href="/assets/js/50.9093ca4f.js"><link rel="prefetch" href="/assets/js/51.64932645.js"><link rel="prefetch" href="/assets/js/52.d8b9be33.js"><link rel="prefetch" href="/assets/js/53.411022ff.js"><link rel="prefetch" href="/assets/js/54.1c44aebd.js"><link rel="prefetch" href="/assets/js/55.ba8a3e23.js"><link rel="prefetch" href="/assets/js/56.fec93d22.js"><link rel="prefetch" href="/assets/js/57.3276db5d.js"><link rel="prefetch" href="/assets/js/58.c21bcf0b.js"><link rel="prefetch" href="/assets/js/59.ed37c4f6.js"><link rel="prefetch" href="/assets/js/6.f2ff6c63.js"><link rel="prefetch" href="/assets/js/60.4e3dcd03.js"><link rel="prefetch" href="/assets/js/61.6639b2f1.js"><link rel="prefetch" href="/assets/js/62.6709514a.js"><link rel="prefetch" href="/assets/js/63.4035cbde.js"><link rel="prefetch" href="/assets/js/64.c9e23ba2.js"><link rel="prefetch" href="/assets/js/65.536936dc.js"><link rel="prefetch" href="/assets/js/66.5666e8e6.js"><link rel="prefetch" href="/assets/js/67.5a48fd12.js"><link rel="prefetch" href="/assets/js/68.75d372c6.js"><link rel="prefetch" href="/assets/js/69.6e7c9dee.js"><link rel="prefetch" href="/assets/js/7.fb23a202.js"><link rel="prefetch" href="/assets/js/70.1b68a1ef.js"><link rel="prefetch" href="/assets/js/71.7725449e.js"><link rel="prefetch" href="/assets/js/72.6d2a100d.js"><link rel="prefetch" href="/assets/js/73.834d3032.js"><link rel="prefetch" href="/assets/js/74.ab59ea7b.js"><link rel="prefetch" href="/assets/js/75.db97f0d7.js"><link rel="prefetch" href="/assets/js/76.878e916a.js"><link rel="prefetch" href="/assets/js/77.8c9b5242.js"><link rel="prefetch" href="/assets/js/78.9010df7b.js"><link rel="prefetch" href="/assets/js/79.1d9f4ab3.js"><link rel="prefetch" href="/assets/js/8.9d26f0bc.js"><link rel="prefetch" href="/assets/js/80.569eb310.js"><link rel="prefetch" href="/assets/js/81.45fd6a95.js"><link rel="prefetch" href="/assets/js/83.15f2e7cb.js"><link rel="prefetch" href="/assets/js/84.685e7d48.js"><link rel="prefetch" href="/assets/js/85.230d4496.js"><link rel="prefetch" href="/assets/js/86.e35b10ea.js"><link rel="prefetch" href="/assets/js/87.5c1d4ec8.js"><link rel="prefetch" href="/assets/js/88.96beca6c.js"><link rel="prefetch" href="/assets/js/89.7f3eb3ef.js"><link rel="prefetch" href="/assets/js/9.da67dd48.js"><link rel="prefetch" href="/assets/js/90.51ea733b.js"><link rel="prefetch" href="/assets/js/91.80aca0c1.js"><link rel="prefetch" href="/assets/js/92.08877701.js"><link rel="prefetch" href="/assets/js/93.4aeda11d.js"><link rel="prefetch" href="/assets/js/94.6922121f.js"><link rel="prefetch" href="/assets/js/95.85d8a929.js"><link rel="prefetch" href="/assets/js/96.5fbb283c.js"><link rel="prefetch" href="/assets/js/97.ae6605c5.js"><link rel="prefetch" href="/assets/js/98.2f51a1b2.js"><link rel="prefetch" href="/assets/js/99.35709ce2.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4f255b1.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="../assets/logo.png" alt="个人主页" class="logo"> <span class="site-name can-hide">个人主页</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/react/" class="nav-link router-link-active">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/react/" class="nav-link router-link-active">
+  react
+</a></div><div class="nav-item"><a href="/vue/" class="nav-link">
+  vue
+</a></div><div class="nav-item"><a href="/error.html" class="nav-link">
+  附录：错误码
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>文档介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>react</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/react/" aria-current="page" class="sidebar-link">REACT 篇</a></li><li><a href="/react/mobx-react的使用.html" class="sidebar-link">mob-react的使用</a></li><li><a href="/react/mobx的学习与使用.html" class="sidebar-link">mobx的学习与使用</a></li><li><a href="/react/react-redux的学习与使用.html" class="sidebar-link">react-redux的学习与使用</a></li><li><a href="/react/react中关于state的不常用技巧.html" class="sidebar-link">react中关于state的不常用技巧</a></li><li><a href="/react/react中抽离公共逻辑复用的方式.html" class="sidebar-link">react中优雅抽离公共逻辑的方式</a></li><li><a href="/react/react中组件之间的相互通信.html" class="sidebar-link">react中组件相互通信的方式</a></li><li><a href="/react/react使用优化实践.html" class="sidebar-link">react使用优化实践</a></li><li><a href="/react/react全局方法使用.html" class="sidebar-link">react全局方法的使用</a></li><li><a href="/react/react函数编程hook基本用法.html" class="active sidebar-link">react函数编程hook</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#usestate" class="sidebar-link">useState</a></li><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#useeffect" class="sidebar-link">useEffect</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#关于第二个参数" class="sidebar-link">关于第二个参数</a></li></ul></li><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#usecontext" class="sidebar-link">useContext</a></li><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#useref" class="sidebar-link">useRef</a></li><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#usereducer" class="sidebar-link">useReducer</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#usereducer的使用方法" class="sidebar-link">useReducer的使用方法</a></li></ul></li><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#usecallback-usememo" class="sidebar-link">useCallback，useMemo</a></li><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#useimperativehandle" class="sidebar-link">useImperativeHandle</a></li><li class="sidebar-sub-header"><a href="/react/react函数编程hook基本用法.html#uselayouteffect" class="sidebar-link">useLayoutEffect</a></li></ul></li><li><a href="/react/react合成事件与原生事件.html" class="sidebar-link">react合成事件与原生事件</a></li><li><a href="/react/react生命周期.html" class="sidebar-link">react生命周期</a></li><li><a href="/react/react的diff过程.html" class="sidebar-link">react的diff过程</a></li><li><a href="/react/redux-saga的学习与使用.html" class="sidebar-link">react-saga的使用实践</a></li><li><a href="/react/redux与react-redux的使用实践.html" class="sidebar-link">redux与react-redux的使用实践</a></li><li><a href="/react/setState的实现原理.html" class="sidebar-link">setState的异步分析及实现原理</a></li><li><a href="/react/使用errorboundary优化错误处理.html" class="sidebar-link">关于errorboundary的使用</a></li><li><a href="/react/创建一个全局toast.html" class="sidebar-link">创建一个全局toast</a></li><li><a href="/react/对setState的理解.html" class="sidebar-link">对setState的理解</a></li><li><a href="/react/浅析react_fiber.html" class="sidebar-link">浅谈react-fiber</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端杂记</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>构建工具篇-webpack等</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>flutter</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>H5开发汇总</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>web 安全</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>http 协议</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>node相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>pwa</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>浏览器原理&amp;性能优化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端工程化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>babel</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>3D探索</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="react函数编程hook"><a href="#react函数编程hook" class="header-anchor">#</a> react函数编程hook</h1> <p><strong>定义</strong></p> <blockquote><p>Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性</p></blockquote> <p><strong>解决问题：</strong></p> <ul><li>class组件逻辑难复用（高阶组件，render props） ---&gt; 自定义hook实现逻辑的复用，因为组件和 Hook 都是函数，所以操作起来很方便。</li> <li>class组件代码趋于复杂不易被理解 ---&gt; 使用function</li> <li>class组件的生命周期中往往会注入许多逻辑代码,甚至是滥用 ---&gt; 去掉构造函数、生命周期提升性能，useEffect中可以返回回调函数清除副作用，而不需要在多个生命周期中写入处理代码</li> <li>class组件this的必须邦定， hook中不需要绑定this</li></ul> <p>至于性能方面的提升还有带商榷。</p> <p><strong>好处</strong></p> <blockquote><p>从此可以很流畅的编写无状态组件，减少代码量</p></blockquote> <p><strong>注意</strong></p> <ul><li><p>Hook不能在class组件中使用</p></li> <li><p>不要在循环，条件或者嵌套函数中调用hook，确保总是在React最顶层调用</p> <p>列举一种经常的错误：</p> <div class="language- extra-class"><pre class="language-text"><code>  // 🔴 在条件语句中使用 Hook 违反第一条规则
+  if (name !== '') {
+    useEffect(function persistForm() {
+      localStorage.setItem('formData', name);
+    });
+  }
+</code></pre></div><blockquote><p>确保 Hook 在每一次渲染中都按照同样的顺序被调用。这让 React 能够在多次的 useState 和 useEffect 调用之间保持 hook 状态的正确。</p></blockquote></li></ul> <p><strong>因为react hook的内部实现是方式是使用链表来记录每个hook的执行顺序的；如果在条件语句等非react组件顶层声明的hok会导致记录顺序出错。</strong></p> <p><a href="https://www.jianshu.com/p/b9ac8fa849f1" target="_blank" rel="noopener noreferrer">react hook原理<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="usestate"><a href="#usestate" class="header-anchor">#</a> useState</h2> <blockquote><p>import React, { useState } from 'react';</p></blockquote> <ul><li>useState会返回一对值：当前状态、更新状态的函数；类似 class 组件的 this.setState，但是它不会把新的 state 和旧的 state 进行合并</li> <li>useState 唯一的参数就是初始state</li> <li>使用Object.is进行判断，如果传入的值相等就不会更新，这点相对于class组件来时是做了优化处理，不需要手动去使用
+shouldComponentUpdate去判断。</li></ul> <p>函数组件：</p> <div class="language- extra-class"><pre class="language-text"><code>import * as React from 'react';
+export function Example () {
+  const [count, setCount] = React.useState(0);
+  const [obj, setObj] = React.useState({
+    name: '测试对象',
+    age: 12
+  })
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;p&gt;You age {obj.age} &lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+      &lt;button onClick={() =&gt; setObj({...obj, age: obj.age+1})}&gt;
+        Add you age
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div><blockquote><p>如果我们想要在 state 中存储两个不同的变量，只需调用 useState() 两次即可。</p></blockquote> <p>传入函数</p> <div class="language- extra-class"><pre class="language-text"><code>setState(prevState =&gt; { // 可以拿到上一次的 state 值
+  // 也可以使用 Object.assign
+  return {...prevState, ...updatedValues};
+});
+</code></pre></div><p><strong>惰性的初始化</strong></p> <blockquote><p>该initialState参数是在初始渲染中使用的状态。在后续渲染中，将忽略它。如果初始状态是昂贵的计算结果，则可以提供一个函数，该函数仅在初始渲染器上执行：</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>const [state, setState] = useState(() =&gt; {
+  const initialState = someExpensiveComputation(props);
+  return initialState;
+});
+</code></pre></div><p><strong>源码分析</strong></p> <p>常规用法：const [count, setCount] = React.useState(0)
+返回一个函数，第一个参数是一个state值，第二个参数是修改state的函数</p> <div class="language- extra-class"><pre class="language-text"><code>Object.assing(React,  {
+  useState(initVal:any) {
+   function setVal(val:any) {
+     initVal = val;
+   }
+   return [initVal, setVal] 
+  }
+})
+</code></pre></div><h2 id="useeffect"><a href="#useeffect" class="header-anchor">#</a> useEffect</h2> <p><strong>副作用/作用的概念</strong></p> <blockquote><p>数据获取、订阅或者手动修改过 DOM。我们统一把这些操作称为“副作用”，或者简称为“作用”；可分为需要清除的副作用，和不需要清除的副作用。</p></blockquote> <p><strong>useEffect的作用</strong></p> <blockquote><p>useEffect 就是一个 Effect Hook，给函数组件增加了操作副作用的能力。它跟 class 组件中的 componentDidMount、componentDidUpdate 和 componentWillUnmount 具有相同的用途</p></blockquote> <p><strong>使用useEffect：不需要清除的副作用</strong></p> <div class="language- extra-class"><pre class="language-text"><code>import React, { useState, useEffect } from 'react';
+function Example() {
+  const [count, setCount] = useState(0);
+  useEffect(() =&gt; {
+    document.title = `You clicked ${count} times`;
+  });
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div><blockquote><p>默认在组件挂载完之后，和组件更新之后都会执行</p></blockquote> <p><strong>使用useEffect：需要清除的副作用</strong></p> <ul><li>只需要在useEffect中返回一个函数，React将会在<strong>组件卸载时</strong>执行清除操作</li> <li>每个 effect 都可以返回一个清除函数,可选的清除机制</li> <li>会在调用一个新的effect之前对前一个effect进行清理，对于需要清理的副作用(定时器，监听器)我们需要定义这个函数，
+并且为防止内存泄漏，清除函数会在组件卸载前执行。</li></ul> <div class="language- extra-class"><pre class="language-text"><code>import React, { useState, useEffect } from 'react';
+function FriendStatusWithCounter(props) {
+  const [count, setCount] = useState(0);
+  useEffect(() =&gt; {
+    document.title = `You clicked ${count} times`;
+  });
+
+  const [isOnline, setIsOnline] = useState(null);
+  useEffect(() =&gt; {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    return () =&gt; {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+  // ...
+}
+</code></pre></div><p>对于上面的例子我么会发现，每一次的组件更新都会执行<strong>document.title = `You clicked ${count} times</strong>，问题是有时候即使我们没有更新count但还是会执行这句话，就是没有必要的性能浪费。</p> <ul><li>class组件中可以做如下优化</li></ul> <div class="language- extra-class"><pre class="language-text"><code>componentDidUpdate (preProps, preState) {
+  if(preState.count !== this.state.count) {
+    document.title = `You clicked ${count} times
+  }
+}
+
+</code></pre></div><ul><li>在useEffect中</li></ul> <div class="language- extra-class"><pre class="language-text"><code>useEffect(() =&gt; {
+  document.title = `You clicked ${count} times`;
+}, [count]); // 仅在 count 更改时更新
+</code></pre></div><blockquote><p>如果数组中有多个元素，即使只有一个元素发生变化，React 也会执行 effect。</p></blockquote> <h3 id="关于第二个参数"><a href="#关于第二个参数" class="header-anchor">#</a> 关于第二个参数</h3> <p>常见的一个问题，如果第二个参数省略了在useEffect中执行了相关的异步操作并且修改了某个状态，会发现一直循环的执行下去，
+这个时候就可以传入了一个空数组（[]）去解决这个问题，传入一个空数组的作用就相当于是状态组件的componentDidMounted中
+执行一样，只会在组件mount之后，ummount之前执行。</p> <blockquote><p>函数组件初始化，以及状态更新的时候(如果没有提供第二个参数)，都会执行useEffect。</p></blockquote> <p><a href="https://zhuanlan.zhihu.com/p/65773322" target="_blank" rel="noopener noreferrer">useEffect使用指南<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><strong>源码分析</strong></p> <p>useEffect接受两个参数，第一个回调函数，第二个参数是一个数组</p> <div class="language- extra-class"><pre class="language-text"><code>Object.assign(React, {
+  let _tmp = null;
+  useEffect(callback, depArr:any[]) {
+    if (!_tmp) {
+      _tmp = depArr.slice();
+    }
+    let _shouldUpdate = depArr.length === 0 ? true : depArr.every((item:any, index:number) =&gt; _tmp[index]) ? false : true;
+    if (_shouldUpdate) {
+      callback();
+      _tmp = depArr.slice();
+    }
+  }
+})
+</code></pre></div><p><strong>进一步拓展</strong></p> <blockquote><p>在react hook的使用限制中明确指出，reactHook必须在函数组件的最顶层建立，不能在条件语句循环语句，以及自定义的函数中建立的原因是什么？</p></blockquote> <p>首先我们可以看到在定义React.useState、React.useEffect的时候我们可以建立多个，在使用的时候，并不会出现混淆，原因就是hook的源码中使用数组来存储着他们的定义顺序（多以禁忌在条件语句中定义）。</p> <p>进一步优化上面的源码：</p> <div class="language- extra-class"><pre class="language-text"><code>const React = (function(){
+  let hooks = [];
+  let currentIndex = 0;
+  return Object.design(React, {
+    useState(initStateVal) {
+      hooks[currentIndex] = initStateVal;
+      function setState(val) {
+        hooks[currentIndex] = val;
+      }
+      return [hooks[currentIndex++], setState]
+    },
+   
+    useEffect(callback, depArr) {
+      hooks[currntIndex] = depArr.slice();
+      let shouleUpdate = depArr.length === 0? hooks[currntIndex].every((item:any, index:number) =&gt; hooks[currntIndex][index] === item) ? false : true;
+      if (shouleUpdate) {
+        callback();
+        hooks[currntIndex++] = depArr;
+      }
+    }
+  })
+})()
+
+</code></pre></div><h2 id="usecontext"><a href="#usecontext" class="header-anchor">#</a> useContext</h2> <p>接受一个context对象并返回该context的当前值；读取 context 的值以及订阅 context的变化</p> <ul><li>useContext 的参数必须是 context 对象本身</li></ul> <p><strong>在父组件中创建一个context</strong></p> <ul><li>createContext（）创建一个上下文</li> <li>Provider：用于生产共享数据的地方；value：用于放置共享的数据</li></ul> <div class="language- extra-class"><pre class="language-text"><code>// index.tsx
+// 创建一个context
+export const NameContext = React.createContext({
+  name: &quot;默认名称&quot;,
+  changeName: () =&gt; {}
+});
+class App extends React.Component&lt;initProps, initState&gt; {
+  constructor (props:any) {
+    super (props);  
+    this.state = {
+      name: '我不是默认值'
+    }
+  }
+  changeName = () =&gt; {
+    this.setState({
+      name: '我是改变的值'
+    })
+  };
+  render() {
+    return (
+     &lt;NameContext.Provider value={{name: this.state.name, changeName: this.changeName}}&gt;
+      {Routeconfig()}
+     &lt;/NameContext.Provider&gt;
+    );
+  }
+};
+</code></pre></div><p><strong>子组件中消费context</strong></p> <ul><li>Consumer：Consumer需要嵌套在生产者(provider)下面才能通过回调的方式拿到共享的数据源。当然也可以单独使用（例如不是父(index.tsx)子(hook_component.tsx)关系的list.tsx与index.tsx组件），那就只能消费到上文提到的defaultValue</li></ul> <div class="language- extra-class"><pre class="language-text"><code>import { NameContext } from '@/index';
+class List extends React.Component&lt;initProps, initState&gt; {
+  render () {
+    return (
+      &lt;NameContext.Consumer&gt;
+        {
+          (context) =&gt; (
+            &lt;&gt;
+              &lt;div&gt;this is list page&lt;/div&gt;
+              &lt;p&gt;{context.name}&lt;/p&gt;
+            &lt;/&gt;
+          )
+        }
+      &lt;/NameContext.Consumer&gt;
+    )
+  }
+};
+</code></pre></div><p>如果把子组件写成函数式组件</p> <div class="language- extra-class"><pre class="language-text"><code>import * as React from 'react';
+import { NameContext } from '@/index';
+export function HookComponent () {
+  const context = React.useContext(NameContext);
+  return (
+    &lt;&gt;
+      &lt;p&gt;this is context {context.name}&lt;/p&gt;
+      &lt;button onClick={() =&gt; context.changeName()}&gt;
+        cahngeContext
+      &lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre></div><p>参考代码：<a href="https://github.com/EvalGitHub/webpack_reactJS/blob/master/src/index.tsx" target="_blank" rel="noopener noreferrer">index.txs、hook_componen.tsx、list.tsx<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="useref"><a href="#useref" class="header-anchor">#</a> useRef</h2> <p>useRef可用于获取元素节点，常见的操作就是获取input这个元素，实现初始化的自动获取焦点。</p> <div class="language- extra-class"><pre class="language-text"><code>const Example:React.FC&lt;InitProps&gt; = (props:InitProps) =&gt; {
+  const inputEl = useRef(null);
+  const onBtnClick = () =&gt; {
+    inputEl.current.focus();
+  };
+  return (
+    &lt;&gt;
+      &lt;input ref={inputEl} type=&quot;text&quot;/&gt;
+      &lt;button onClick={onBtnClick}&gt;clickBtn&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre></div><p>上面的例子可以清晰看到，使用useRef获取了input这个元素节点，然后修改属性自动获取焦点。</p> <p><strong>useRef返回的ref对象在组件的整个生命周期内保持不变</strong></p> <p>利用上面的这个特性能做规避很多问题：</p> <ol><li>timeout中读不到其他状态的新值</li></ol> <div class="language- extra-class"><pre class="language-text"><code>export default function App() {
+  const [flag, setValue] = React.useState(false);
+  function dealClick() {
+    setValue(!flag);
+    timer = window.setTimeout(() =&gt; {
+      setValue(!flag);
+      console.log(value);
+    }, 1000);
+  }
+  return (
+    &lt;&gt;
+      &lt;p&gt;{value ? &quot;true&quot; : &quot;false&quot;}&lt;/p&gt;
+      &lt;button onClick={dealClick}&gt;click me &lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre></div><p>我们可以看到在点击按钮之后界面上显示true，1s之后打印出false,但是界面并没有更新为false，上面的问题就是<strong>setValue(!flag)</strong>
+这句有问题，因为setValue是用来修改flag（flag是一个状态，对于状态的修改必须返回新的state才会是的视图更新）</p> <p>使用UseRef来救场</p> <div class="language- extra-class"><pre class="language-text"><code>export default function App() {
+  const [flag, setValue] = React.useState(false);
+  const valueRef = React.useRef(flag); 
+  valueRef.current = flag;
+
+  function dealClick() {
+    setValue(!valueRef.current); 
+    timer = window.setTimeout(() =&gt; {
+      setValue(!valueRef.current);
+    }, 1000);
+  }
+  return (
+    &lt;&gt;
+      &lt;p&gt;{valueRef.current}&lt;/p&gt;
+      &lt;button onClick={dealClick}&gt;click me &lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre></div><p>因为valueRef.current对于flag来说就是一个新的状态。</p> <h2 id="usereducer"><a href="#usereducer" class="header-anchor">#</a> useReducer</h2> <p>可以看做是useState的替代方案</p> <div class="language- extra-class"><pre class="language-text"><code>const [state, dispatch] = useReducer(reducer, initialArg, init);
+</code></pre></div><p>useReducer 会比 useState 更适用，例如 state 逻辑较复杂且包含多个子值，或者下一个 state 依赖于之前的 state 等。并且，使用 useReducer 还能给那些会触发深更新的组件做性能优化，<a href="https://zh-hans.reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down" target="_blank" rel="noopener noreferrer">因为你可以向子组件传递 dispatch 而不是回调函数<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</p> <p>示例代码参考官网：<a href="https://zh-hans.reactjs.org/docs/hooks-reference.html#usereducer" target="_blank" rel="noopener noreferrer">代码<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><strong>比较useState，useReducer</strong></p> <p>使用useState的情况：</p> <ul><li>state 为基本类型（也要看情况）</li> <li>state 转换逻辑简单的场景</li> <li>state 转换只会在当前组件中出现，其他组件不需要感知这个 state</li> <li>多个 useState hooks 之间的 state 并没有关联关系</li></ul> <p>使用 useReducer 的情况：</p> <ul><li>state 为引用类型（也要看情况）</li> <li>state 转换逻辑比较复杂的场景</li> <li>不同 state 之间存在较强的关联关系，应该作为一个 object，用一个 state 来表示的场景</li></ul> <h3 id="usereducer的使用方法"><a href="#usereducer的使用方法" class="header-anchor">#</a> useReducer的使用方法</h3> <p>store.js</p> <div class="language- extra-class"><pre class="language-text"><code>import React from 'react';
+const store = React.createContext(null);
+
+export const initialState  = {
+ // ....
+ // ...
+}
+
+export const reducer = (state, action) =&gt; {
+  switch (action.type) {
+    // ...
+  }
+}
+
+export default store
+</code></pre></div><p>Provider根组件的挂载</p> <div class="language- extra-class"><pre class="language-text"><code>import React, { useReducer } from 'react'
+import store, { reducer, initialState } from './store'
+
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  return (
+     &lt;store.Provider value={{ state, dispatch }}&gt;
+      &lt;div/&gt;
+     &lt;/store&gt;
+  )
+}
+</code></pre></div><p>业务组件就可以直接使用：</p> <div class="language- extra-class"><pre class="language-text"><code>import React, { useContext } from 'react'
+import store from './store'
+
+cosnt Child = props =&gt; {
+  const { state, dispatch } = useContext(store)
+  // ...
+  return (
+    &lt;&gt;
+      &lt;button onClick={() =&gt; dispatch({type: 'increment'})}&gt;+&lt;/button&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre></div><h2 id="usecallback-usememo"><a href="#usecallback-usememo" class="header-anchor">#</a> useCallback，useMemo</h2> <p>这两个hook可用于优化react性能，在项目中经常会存在大批量的逻辑运算，其中有些函数是纯函数（没有任何副作用），相同的输入会返回相同的结果，但是如果不做处理，这些计算会在react组件重新渲染的时候会又一次的去执行，所有我们有必要将这些纯函数逻辑进行缓存，对于相同输入的
+情况直接去缓存结果，而不需要重新计算，这就是useCallback，useMemo存在的目的。</p> <blockquote><p>reack hook在组件diff的时候是会重新执行一遍的，这就意味着如果你在react组件中定义普通变量都会重新初始化，但是
+如果使用的是useState等hook函数声明的变量只能被是对应的函数更新。</p></blockquote> <p>useCallback返回缓存的函数</p> <div class="language- extra-class"><pre class="language-text"><code>const memoizedCallback = useCallback(
+  () =&gt; {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+</code></pre></div><p>useMemo返回缓存的变量</p> <div class="language- extra-class"><pre class="language-text"><code>const expensiveCount = useMemo(() =&gt; {
+  let sum = 0;
+  for (let i = 0; i &lt; count * 100; i++) {
+    sum += i;
+  }
+  return sum;
+}, [count]);
+</code></pre></div><p>useCallback(fn, deps) 相当于 useMemo(() =&gt; fn, deps)。</p> <p><a href="https://blog.csdn.net/hesongGG/article/details/84347484" target="_blank" rel="noopener noreferrer">react中useMemo的用法<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="useimperativehandle"><a href="#useimperativehandle" class="header-anchor">#</a> useImperativeHandle</h2> <ul><li>使用 ref 时自定义暴露给父组件的实例值，useImperativeHandle 应当与 forwardRef 一起使用。</li></ul> <div class="language- extra-class"><pre class="language-text"><code>function FancyInput(props, ref) {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () =&gt; ({
+    focus: () =&gt; {
+      inputRef.current.focus();
+    }
+  }));
+  return &lt;input ref={inputRef} ... /&gt;;
+}
+FancyInput = forwardRef(FancyInput);
+</code></pre></div><p>另外的使用场景：</p> <blockquote><p>在react中函数组件是没有对应实例的，因此如果对组件使用ref，想获取组件的方法，会失败；useImperativeHandle提供了一种解决方案。</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>function OnLineModal(props:InitProps, ref:React.Ref&lt;null&gt;) {
+  const [modalVisible, setModalVisible] = React.useState&lt;boolean&gt;(false);
+  React.useImperativeHandle(ref, () : any =&gt; ({
+    setModalVisible: (flag:boolean) =&gt; setModalVisible(flag),
+  }));
+
+  return &lt;ContainModal visible={modalVisible}/&gt;;
+}
+export const OnLineModalCom = React.forwardRef(OnLineModal); 
+</code></pre></div><p>父组件：</p> <div class="language- extra-class"><pre class="language-text"><code>function StateList(props:InitProps) {
+  const OnLineModalRef:React.Ref&lt;null&gt; = React.createRef();
+  function getRefVal() {
+    console.log(OnLineModalRef); // {setModalVisible:f}
+  }
+  return &lt;section&gt;
+    &lt;button onClick={getRefVal}&gt;get Ref value&lt;/button&gt;
+    &lt;OnLineModalCom ref = {OnLineModalRef}/&gt;
+  &lt;/section&gt;
+}
+</code></pre></div><ul><li>进阶：如果是一个列表，每个列表项都是函数组件，想获取每一个函数组件的实例？</li></ul> <div class="language- extra-class"><pre class="language-text"><code>const LIST = [&quot;ce&quot;, &quot;shi&quot;, &quot;demo&quot;];
+const Item: React.FC&lt;{
+  label: string;
+  idx: number;
+  ref: Ref;
+}&gt; = forwardRef(({ label, idx }, ref) =&gt; {
+  const innerMethod = () =&gt; {
+    console.log(`${label}-${idx}`);
+  };
+
+  useImperativeHandle(ref, {
+    [`you example-${idx}`]: innerMethod
+  });
+  return &lt;p&gt;{label}&lt;/p&gt;;
+});
+
+export const MutilApp: React.FC = () =&gt; {
+  const globalRef = useRef(null);
+
+  const invokeAllMountMethod = () =&gt; {
+    const globalObject = globalRef?.current;
+    for (const [, method] of Object.entries(globalObject)) {
+      method();
+    }
+  };
+
+  return (
+    &lt;&gt;
+      &lt;button
+        onClick={() =&gt; {
+          invokeAllMountMethod();
+        }}
+      &gt;
+        INVOKE
+      &lt;/button&gt;
+      {LIST.map((item, idx) =&gt; (
+        &lt;Item label={item} idx={idx} key={item} ref={globalRef} /&gt;
+      ))}
+    &lt;/&gt;
+  );
+};
+</code></pre></div><p>现在的代码如上，如果点击这个按钮，会发现最終的結果就是“demo-02”，
+那麽該如何获取到所有的实例呢？？</p> <blockquote><p>实际上，我们在前面也提到了这一点：一根垂直管道，你在上方投入了什么，下方拿到的就是什么， 我们始终只有一个globalRef，因此多次调用下最后一次的挂载覆盖掉了前面的。</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>import {Ref, useImperativeHandle, MutableRefObject } from &quot;react&quot;;
+
+const useMultiImperativeHandle = &lt;T, K extends object&gt;(
+  originRef: Ref,
+  convertRefObj: K,
+  deps?:any
+): void =&gt; {
+  return useImperativeHandle(
+    originRef,
+    () =&gt; {
+      return {
+        ...originRef.current,
+        ...convertRefObj
+      };
+    },
+    deps
+  );
+};
+
+export default useMultiImperativeHandle;
+</code></pre></div><p>源码中使用：</p> <div class="language- extra-class"><pre class="language-text"><code>const Item: React.FC&lt;{
+  label: string;
+  idx: number;
+  ref: Ref;
+}&gt; = forwardRef(({ label, idx }, ref) =&gt; {
+  const innerMethod = () =&gt; {
+    console.log(`${label}-${idx}`);
+  };
+
+  useMultiImperativeHandle(ref, {
+    [`method-from-${idx}`]: innerMethod
+  });
+
+  return &lt;p&gt;{label}&lt;/p&gt;;
+});
+</code></pre></div><h2 id="uselayouteffect"><a href="#uselayouteffect" class="header-anchor">#</a> useLayoutEffect</h2> <blockquote><p>在所有的 DOM 变更之后同步调用effect。可以使用它来<strong>读取 DOM 布局并同步
+触发重渲染</strong>。<strong>在浏览器执行绘制之前，useLayoutEffect 内部的更新计划将被同
+步刷新</strong>，也就是说它会阻塞浏览器绘制。所以尽可能使用 useEffect 以避免阻
+塞视觉更新。</p></blockquote> <p>如果只是大量的数据处理，建议使用useEffect来进行处理；如果设计到动画效果，在首次展示的时候需要一个很流畅的体验，可以借助useLayoutEffect来进行</p> <p>具体效果demo：</p> <div class="language- extra-class"><pre class="language-text"><code>import React, { useEffect, useLayoutEffect, useRef } from &quot;react&quot;;
+import &quot;./styles.css&quot;;
+
+const UseEffect: React.FC&lt;any&gt; = () =&gt; {
+  const box = useRef();
+  useEffect(() =&gt; {
+    (box.current as any).style.marginLeft = 100 + &quot;px&quot;;
+  }, []);
+  return (
+    &lt;div className=&quot;box box1&quot; ref={box}&gt;
+      useEffect
+    &lt;/div&gt;
+  );
+};
+const UseLayoutEffect: React.FC&lt;any&gt; = () =&gt; {
+  const box = useRef();
+  useLayoutEffect(() =&gt; {
+    (box.current as any).style.marginLeft = 100 + &quot;px&quot;;
+  }, []);
+  return (
+    &lt;div className=&quot;box box2&quot; ref={box}&gt;
+      UseLayoutEffect
+    &lt;/div&gt;
+  );
+};
+
+export default function App() {
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;h1&gt;刷新浏览器看下区别效果&lt;/h1&gt;
+      &lt;UseEffect /&gt;
+      &lt;UseLayoutEffect /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div><p>可以看到使用useEffect的时候，界面动效会有点生硬；使用useLayoutEffect时候就很流畅；
+原因就是useLayoutEffect会在界面渲染之前就完成了计算更新，同步完成的，然后才会被浏览器
+渲染。</p> <p><a href="https://juejin.im/post/5dbbdbd5f265da4d4b5fe57d" target="_blank" rel="noopener noreferrer">React Hooks 详解 【近 1W 字】+ 项目实战<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://juejin.im/post/5ec7372cf265da76de5cd0c9?utm_source=gold_browser_extension#heading-14" target="_blank" rel="noopener noreferrer">react hook进阶<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://www.zhihu.com/question/350523308/answer/858145147" target="_blank" rel="noopener noreferrer">使用 React Hooks 的心智负担<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/19/2020, 1:15:52 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/react/react全局方法使用.html" class="prev">
+        react全局方法的使用
+      </a></span> <span class="next"><a href="/react/react合成事件与原生事件.html">
+        react合成事件与原生事件
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.57db4ba8.js" defer></script><script src="/assets/js/2.32b4f8de.js" defer></script><script src="/assets/js/82.ce48eb4d.js" defer></script>
+  </body>
+</html>
