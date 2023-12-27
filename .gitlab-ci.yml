@@ -45,10 +45,9 @@ build:
 
 deploy_project:
   stage: deploy
-  script: 
-    - echo '部署阶段'
   only:
     - master  # 只对 master 的改动做处理
   script:
+    - echo '部署阶段'
     - bash deploy.sh 
 
