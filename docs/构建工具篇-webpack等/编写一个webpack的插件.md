@@ -1,10 +1,16 @@
+---
+runme:
+  id: 01HM5WFQG3BXKKSGA7QYS9PF8T
+  version: v2.2
+---
+
 # 编写一个webpack的插件（plugin）
 
 webpack插件的是用于代码的压缩，混淆等优化
 
 webpack的插件本质上都是一些类，形如：
 
-```
+```css {"id":"01HM5WFQG3BXKKSGA7QQSEGWJP"}
 class xxxxWebpackPlugin {
     constructor (options) {
         ....初始化
@@ -25,7 +31,7 @@ class xxxxWebpackPlugin {
 
 - 异步钩子的调用形式：
 
-```
+```ini {"id":"01HM5WFQG3BXKKSGA7QSMTRC03"}
  compiler.hooks.[钩子函数名].tapAsync（‘插件名’, (compilation, cb) => {
      ....
      ....
@@ -35,7 +41,7 @@ class xxxxWebpackPlugin {
 
 - 同步钩子的调用形式：
 
-```
+```js {"id":"01HM5WFQG3BXKKSGA7QTFFMMAC"}
  compiler.hooks.compiler.tap('CopyrightWebpackPlugin', (compilation) => {
     ....
     console.log('compiler')
@@ -44,7 +50,7 @@ class xxxxWebpackPlugin {
 
 现在有个需求是在webpack打包快结束之时，在dist目录生成一个copyright.txt文件
 
-```
+```groovy {"id":"01HM5WFQG3BXKKSGA7QYFAJMW5"}
 class CopyrightWebpackPlugin {
   constructor (options) {
     console.log('插件被使用了', options)
