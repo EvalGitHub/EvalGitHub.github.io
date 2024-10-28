@@ -15,6 +15,7 @@ const Git = require('./categoryConfig/git');
 const FrontEngerner = require('./categoryConfig/前端工程化');
 const Babel = require('./categoryConfig/babel');
 const threeDesign = require('./categoryConfig/3D探索');
+const micFont = require('./categoryConfig/microFrontend');
 module.exports = {
   title: '个人主页',
   description: '学习总结',
@@ -57,6 +58,7 @@ module.exports = {
       {...FrontEngerner},
       {...Babel},
       {...threeDesign},
+      {...micFont},
       // { ...FinancialManageConfig },
     ]
 
