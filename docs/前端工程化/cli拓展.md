@@ -108,6 +108,6 @@ const evel_react_cli = {
 
 - 【解决方案】支持用户自定义插件机制
 
-![assets](../assets/插件机制-流程图.jpg)
+![assets](../assets/plugin-process.jpg)
 
 在上述的插件自定义开发流程很大程度上满足的业务需求个性化定制，不需频繁发布c容器的核心代码，cli容器主要做cli版本, node检测，插件的扫描，安装，注册等功能
